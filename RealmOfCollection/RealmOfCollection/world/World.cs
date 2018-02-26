@@ -31,7 +31,7 @@ namespace RealmOfCollection
             v2.VColor = Color.Green;
             Vehicle v3 = new Vehicle(new Vector2D(100, 100), this);
             v3.VColor = Color.Pink;
-            //entities.Add(v);
+            entities.Add(v);
             entities.Add(v2);
             entities.Add(v3);
 
@@ -45,6 +45,7 @@ namespace RealmOfCollection
             foreach (MovingEntity me in entities)
             {
                 me.SB = new SeekBehaviour(me); // restore later
+                Console.WriteLine("Target Position X: " + Target.Pos.X + " and Y: " + Target.Pos.Y);
                 me.Update(timeElapsed);
             }  
         }

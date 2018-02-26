@@ -42,7 +42,7 @@ namespace RealmOfCollection.entity
             Pos.Add(Velocity.Multiply(timeElapsed));
 
             //Update heading
-            if(Velocity.LengthSquared() > 0.00000001)
+            if (Velocity.LengthSquared() > 0.00000001)
             {
                 Heading = Velocity.Normalize();
                 Side = Heading.Perp();
@@ -51,7 +51,7 @@ namespace RealmOfCollection.entity
             //treat the screen as a toroid
 
 
-            Console.WriteLine(ToString());
+            //Console.WriteLine(ToString());
         }
 
         public override string ToString()

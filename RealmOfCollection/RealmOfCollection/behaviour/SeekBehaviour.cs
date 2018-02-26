@@ -16,11 +16,14 @@ namespace RealmOfCollection.behaviour
         public override Vector2D Calculate()
         {
             Vector2D MyPos = ME.Pos;
-            Vector2D normalizedNewPos = ME.MyWorld.Target.Pos.Sub(MyPos);
-            normalizedNewPos.Normalize();
-            
-            Vector2D DesiredVelocity = normalizedNewPos.Multiply(ME.MaxSpeed);
-            return DesiredVelocity.Sub(ME.Velocity);
+            Vector2D TargetPos = ME.MyWorld.Target.Pos;
+            float MaxSpeed = ME.MaxSpeed;
+
+            Vector2D DesiredVelocity = new Vector2D((TargetPos.X - MyPos.X), (TargetPos.Y - MyPos.Y));
+            DesiredVelocity = DesiredVelocity.Normalize();
+            DesiredVelocity = DesiredVelocity.Multiply(MaxSpeed);
+            DesiredVelocity = DesiredVelocity.Sub(ME.Velocity);
+            return DesiredVelocity;
         }
     }
 }
