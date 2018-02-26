@@ -9,6 +9,9 @@ namespace RealmOfCollection.entity
 
     abstract class MovingEntity : BaseGameEntity
     {
+
+        protected Vector2D Heading { get; set; }
+        protected Vector2D Side { get; set; }
         public Vector2D Velocity { get; set; }
         public float Mass { get; set; }
         public float MaxSpeed { get; set; }
@@ -24,7 +27,30 @@ namespace RealmOfCollection.entity
 
         public override void Update(float timeElapsed)
         {
-            // to do
+            Vector2D SteeringForce = SB.Calculate();
+
+            //Acceleration
+            Vector2D acceleration = SteeringForce.divide(Mass);
+
+            //Update velocity
+            Velocity.Add(acceleration.Multiply(timeElapsed));
+
+            //Check on maxspeed
+            Velocity.truncate(MaxSpeed);
+
+            //Update position
+            Pos.Add(Velocity.Multiply(timeElapsed));
+
+            //Update heading
+            if(Velocity.LengthSquared() > 0.00000001)
+            {
+                Heading = Velocity.Normalize();
+                Side = Heading.Perp();
+            }
+
+            //treat the screen as a toroid
+
+
             Console.WriteLine(ToString());
         }
 

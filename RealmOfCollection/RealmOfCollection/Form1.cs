@@ -25,7 +25,7 @@ namespace RealmOfCollection
 
             timer = new System.Timers.Timer();
             timer.Elapsed += Timer_Elapsed;
-            timer.Interval = 20;
+            timer.Interval = 50;
             timer.Enabled = true;
         }
 

@@ -7,8 +7,20 @@ using System.Threading.Tasks;
 
 namespace RealmOfCollection.behaviour
 {
-    class SeekBehaviour 
+    class SeekBehaviour : SteeringBehaviour
     {
-        // to do
+        public SeekBehaviour(MovingEntity me) : base(me)
+        {
+        }
+
+        public override Vector2D Calculate()
+        {
+            Vector2D MyPos = ME.Pos;
+            Vector2D normalizedNewPos = ME.MyWorld.Target.Pos.Sub(MyPos);
+            normalizedNewPos.Normalize();
+            
+            Vector2D DesiredVelocity = normalizedNewPos.Multiply(ME.MaxSpeed);
+            return DesiredVelocity.Sub(ME.Velocity);
+        }
     }
 }

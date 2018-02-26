@@ -27,7 +27,13 @@ namespace RealmOfCollection
         {
             Vehicle v = new Vehicle(new Vector2D(10,10), this);
             v.VColor = Color.Blue;
-            entities.Add(v);
+            Vehicle v2 = new Vehicle(new Vector2D(50, 50), this);
+            v2.VColor = Color.Green;
+            Vehicle v3 = new Vehicle(new Vector2D(100, 100), this);
+            v3.VColor = Color.Pink;
+            //entities.Add(v);
+            entities.Add(v2);
+            entities.Add(v3);
 
             Target = new Vehicle(new Vector2D(100, 60), this);
             Target.VColor = Color.DarkRed;
@@ -38,7 +44,7 @@ namespace RealmOfCollection
         {
             foreach (MovingEntity me in entities)
             {
-                // me.SB = new SeekBehaviour(me); // restore later
+                me.SB = new SeekBehaviour(me); // restore later
                 me.Update(timeElapsed);
             }  
         }

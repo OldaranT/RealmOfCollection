@@ -25,17 +25,20 @@ namespace RealmOfCollection
 
         public double Length()
         {
-            throw new NotImplementedException();
+            double length = Math.Sqrt(X * X + Y * Y);
+            return length; 
         }
 
         public double LengthSquared()
         {
-            throw new NotImplementedException();
+            return Length() * Length();
         }
 
         public Vector2D Add(Vector2D v)
         {
-            throw new NotImplementedException();
+            this.X += v.X;
+            this.Y += v.Y;
+            return this;
         }
 
         public Vector2D Sub(Vector2D v)
@@ -52,14 +55,26 @@ namespace RealmOfCollection
             return this;
         }
 
+        public Vector2D Multiply(float value)
+        {
+            this.X *= value;
+            this.Y *= value;
+            return this;
+        }
+
         public Vector2D divide(double value)
         {
-            throw new NotImplementedException();
+            this.X /= value;
+            this.Y /= value;
+            return this;
         }
 
         public Vector2D Normalize()
         {
-            throw new NotImplementedException();
+            double length = Length();
+            this.X = X / length;
+            this.Y = Y / length;
+            return this;
         }
 
         public Vector2D truncate(double maX)
@@ -70,6 +85,11 @@ namespace RealmOfCollection
                 Multiply(maX);
             }
             return this;
+        }
+
+        public Vector2D Perp()
+        {
+            return new Vector2D(-this.Y, this.X);
         }
         
         public Vector2D Clone()
