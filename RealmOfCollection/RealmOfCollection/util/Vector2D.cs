@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RealmOfCollection.util;
+using System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -101,6 +102,27 @@ namespace RealmOfCollection
         {
             return String.Format("({0},{1})", X, Y);
         }
+
+        public static Vector2D PointToWorldSpace(Vector2D point, Vector2D AgentHeading, Vector2D AgentSide, Vector2D AgentPosition)
+        {
+            //make a copy of the point
+            Vector2D TransPoint = point;
+
+            //create a transformation matrix
+            C2DMatrix matTransform = new C2DMatrix();
+
+            //rotate
+            matTransform.Rotate(AgentHeading, AgentSide);
+
+            //and translate
+            matTransform.Translate(AgentPosition.X, AgentPosition.Y);
+
+            //now transform the vertices
+            matTransform.TransformVector2Ds(TransPoint);
+
+            return TransPoint;
+        }
+
     }
 
 

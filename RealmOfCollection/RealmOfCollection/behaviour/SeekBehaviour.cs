@@ -9,14 +9,26 @@ namespace RealmOfCollection.behaviour
 {
     class SeekBehaviour : SteeringBehaviour
     {
-        public SeekBehaviour(MovingEntity me) : base(me)
+        public bool wander { get; set; }
+        Vector2D TargetPos;
+
+        public SeekBehaviour(MovingEntity me, bool wander) : base(me)
         {
+            this.wander = wander;
+            //TargetPos = ME.MyWorld.Target.Pos;
         }
 
         public override Vector2D Calculate()
         {
             Vector2D MyPos = ME.Pos;
-            Vector2D TargetPos = ME.MyWorld.Target.Pos;
+            if (wander)
+            {
+                TargetPos = wanderT();
+            }
+            else
+            {
+                TargetPos = ME.MyWorld.Target.Pos;
+            }
             float MaxSpeed = ME.MaxSpeed;
 
             Vector2D DesiredVelocity = new Vector2D((TargetPos.X - MyPos.X), (TargetPos.Y - MyPos.Y));

@@ -10,8 +10,8 @@ namespace RealmOfCollection.entity
     abstract class MovingEntity : BaseGameEntity
     {
 
-        protected Vector2D Heading { get; set; }
-        protected Vector2D Side { get; set; }
+        public Vector2D Heading { get; set; }
+        public Vector2D Side { get; set; }
         public Vector2D Velocity { get; set; }
         public float Mass { get; set; }
         public float MaxSpeed { get; set; }
@@ -23,6 +23,9 @@ namespace RealmOfCollection.entity
             Mass = 30;
             MaxSpeed = 150;
             Velocity = new Vector2D();
+            Heading = new Vector2D();
+            Vector2D temp = Heading;
+            Side = temp.Perp();
         }
 
         public override void Update(float timeElapsed)

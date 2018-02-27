@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="behaviour\SeekBehaviour.cs" />
     <Compile Include="behaviour\SteeringBehaviour.cs" />
+    <Compile Include="behaviour\WanderBehaviour.cs" />
     <Compile Include="DBPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -64,6 +65,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="util\C2DMatrix.cs" />
     <Compile Include="util\Vector2D.cs" />
     <Compile Include="world\World.cs" />
     <EmbeddedResource Include="Form1.resx">

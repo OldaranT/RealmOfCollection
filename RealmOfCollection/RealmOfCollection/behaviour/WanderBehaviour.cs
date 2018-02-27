@@ -1,26 +1,26 @@
-﻿using RealmOfCollection.entity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RealmOfCollection.entity;
 
-namespace RealmOfCollection
+namespace RealmOfCollection.behaviour
 {
-    abstract class SteeringBehaviour
+    class WanderBehaviour : SteeringBehaviour
     {
-        public MovingEntity ME { get; set; }
-        public abstract Vector2D Calculate();
-        double wanderRadius = 2000;
-        double wanderDistance = 2000;
-        double wanderJitter = 20;
-        Vector2D wanderTarget = new Vector2D(100,100);
 
-        public SteeringBehaviour(MovingEntity me)
+        double wanderRadius;
+        double wanderDistance;
+        double wanderJitter;
+        Vector2D wanderTarget;
+
+        public WanderBehaviour(MovingEntity me, double radius, double distance, double jitter) : base(me)
         {
-            ME = me;
-            double theta = randomFloat()*(2 * Math.PI);
-
+            wanderRadius = radius;
+            wanderDistance = distance;
+            wanderJitter = jitter;
+            float theta = randomFloat();
             wanderTarget = new Vector2D(wanderRadius * Math.Cos(theta), wanderRadius * Math.Sin(theta));
         }
 
@@ -43,7 +43,7 @@ namespace RealmOfCollection
             return (float)(mantissa * exponent);
         }
 
-        public Vector2D wanderT()
+        public override Vector2D Calculate()
         {
             wanderTarget.Add(new Vector2D(randomDouble() * wanderJitter, randomDouble() * wanderJitter));
             wanderTarget = wanderTarget.Normalize();
@@ -52,10 +52,8 @@ namespace RealmOfCollection
             Vector2D targetWorld = Vector2D.PointToWorldSpace(targetLocal, ME.Heading, ME.Side, ME.Pos);
 
 
-
+            
             return (targetWorld.Sub(ME.Pos));
         }
     }
-
-    
 }

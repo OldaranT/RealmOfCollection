@@ -44,7 +44,7 @@ namespace RealmOfCollection
         {
             foreach (MovingEntity me in entities)
             {
-                me.SB = new SeekBehaviour(me); // restore later
+                me.SB = new SeekBehaviour(me, true); // restore later
                 Console.WriteLine("Target Position X: " + Target.Pos.X + " and Y: " + Target.Pos.Y);
                 me.Update(timeElapsed);
             }  
