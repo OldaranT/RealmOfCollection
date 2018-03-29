@@ -16,20 +16,23 @@ namespace RealmOfCollection
         public int Width { get; set; }
         public int Height { get; set; }
 
+        public Random random { get; set; }
+
         public World(int w, int h)
         {
             Width = w;
             Height = h;
+            random = new Random();
             populate();
         }
 
         private void populate()
         {
-            Vehicle v = new Vehicle(new Vector2D(10,10), this);
+            Vehicle v = new Vehicle(new Vector2D(Width/2,Height/2), this);
             v.VColor = Color.Blue;
-            Vehicle v2 = new Vehicle(new Vector2D(50, 50), this);
+            Vehicle v2 = new Vehicle(new Vector2D(Width / 2, Height / 2), this);
             v2.VColor = Color.Green;
-            Vehicle v3 = new Vehicle(new Vector2D(100, 100), this);
+            Vehicle v3 = new Vehicle(new Vector2D(Width / 2, Height / 2), this);
             v3.VColor = Color.Pink;
             entities.Add(v);
             entities.Add(v2);
@@ -44,7 +47,7 @@ namespace RealmOfCollection
         {
             foreach (MovingEntity me in entities)
             {
-                me.SB = new SeekBehaviour(me, true); // restore later
+                me.SB = new WanderBehaviour(me,2500, 0, 2, random); // restore later
                 Console.WriteLine("Target Position X: " + Target.Pos.X + " and Y: " + Target.Pos.Y);
                 me.Update(timeElapsed);
             }  
