@@ -52,7 +52,7 @@ namespace RealmOfCollection.entity
             }
 
             //treat the screen as a toroid
-
+            Vector2D.WrapAround(this.Pos, MyWorld.Width, MyWorld.Height);
 
             //Console.WriteLine(ToString());
         }

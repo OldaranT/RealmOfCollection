@@ -11,8 +11,8 @@ namespace RealmOfCollection
     {
         public MovingEntity ME { get; set; }
         public abstract Vector2D Calculate();
-        double wanderRadius = 2000;
-        double wanderDistance = 2000;
+        double wanderRadius = 300;
+        double wanderDistance = 2;
         double wanderJitter = 20;
         Vector2D wanderTarget = new Vector2D(100,100);
 
@@ -26,8 +26,11 @@ namespace RealmOfCollection
 
         public double randomDouble()
         {
-            Random r = new Random();
-            return (r.NextDouble() * 2.0 - 1.0);
+            DateTime currentDate = DateTime.Now;
+            Random r = new Random(currentDate.Millisecond);
+            double next = r.NextDouble() * 2.0 - 1.0;
+            Console.WriteLine(next);
+            return next;
         }
 
         public float randomFloat()
@@ -36,7 +39,7 @@ namespace RealmOfCollection
             return NextFloat(r);
         }
 
-        static float NextFloat(Random random)
+        public float NextFloat(Random random)
         {
             double mantissa = (random.NextDouble() * 2.0) - 1.0;
             double exponent = Math.Pow(2.0, random.Next(-126, 128));

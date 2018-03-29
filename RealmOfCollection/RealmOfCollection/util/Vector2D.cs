@@ -1,6 +1,5 @@
 ﻿using RealmOfCollection.util;
 using System;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -121,6 +120,30 @@ namespace RealmOfCollection
             matTransform.TransformVector2Ds(TransPoint);
 
             return TransPoint;
+        }
+
+        public static void WrapAround(Vector2D pos, int MaxX, int MaxY)
+        {
+            if (pos.X > MaxX)
+            {
+                pos.X = 0.0;
+            }
+
+            if (pos.X < 0)
+            {
+                pos.X = (double)MaxX;
+            }
+
+            if (pos.Y < 0)
+            {
+                pos.Y = (double)MaxY;
+            }
+
+            if (pos.Y > MaxY)
+            {
+                pos.Y = 0.0;
+            }
+
         }
 
     }

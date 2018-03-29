@@ -15,7 +15,7 @@ namespace RealmOfCollection.behaviour
         public SeekBehaviour(MovingEntity me, bool wander) : base(me)
         {
             this.wander = wander;
-            //TargetPos = ME.MyWorld.Target.Pos;
+
         }
 
         public override Vector2D Calculate()
