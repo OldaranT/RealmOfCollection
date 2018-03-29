@@ -13,6 +13,7 @@ namespace RealmOfCollection.behaviour
         double wanderRadius { get; set; }
         double wanderDistance { get; set; }
         double wanderJitter { get; set; }
+        Vector2D TargetLocation;
 
         public WanderBehaviour(MovingEntity me, double radius, double distance, double jitter, Random r) : base(me, r)
         {
@@ -49,8 +50,11 @@ namespace RealmOfCollection.behaviour
             wanderTarget = wanderTarget.Normalize();
             wanderTarget = wanderTarget.Multiply(wanderRadius);
             Vector2D targetLocal = wanderTarget.Add(new Vector2D(wanderDistance, 0));
+            
+
             Vector2D targetWorld = Vector2D.PointToWorldSpace(targetLocal, ME.Heading, ME.Side, ME.Pos);
             targetWorld = targetWorld.Sub(ME.Pos);
+            TargetLocation = targetWorld;
             float MaxSpeed = ME.MaxSpeed;
 
             Vector2D DesiredVelocity = new Vector2D((targetWorld.X - MyPos.X), (targetWorld.Y - MyPos.Y));

@@ -40,7 +40,8 @@ namespace RealmOfCollection
 
             Target = new Vehicle(new Vector2D(100, 60), this);
             Target.VColor = Color.DarkRed;
-            Target.Pos = new Vector2D(100, 40);
+            //Target.Scale = 50;
+            Target.Pos = new Vector2D(200, 100);
         }
 
         public void Update(float timeElapsed)

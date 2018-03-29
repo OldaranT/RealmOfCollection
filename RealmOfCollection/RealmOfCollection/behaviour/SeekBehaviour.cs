@@ -29,7 +29,20 @@ namespace RealmOfCollection.behaviour
             Vector2D DesiredVelocity = new Vector2D((TargetPos.X - MyPos.X), (TargetPos.Y - MyPos.Y));
             DesiredVelocity = DesiredVelocity.Normalize();
             DesiredVelocity = DesiredVelocity.Multiply(MaxSpeed);
-            DesiredVelocity = DesiredVelocity.Sub(ME.Velocity);
+            //DesiredVelocity = DesiredVelocity.Sub(ME.Velocity);
+            Console.WriteLine("=========================");
+            Console.WriteLine("DesiredVelocity X: " + DesiredVelocity.X + " Y: " + DesiredVelocity.Y);
+            Console.WriteLine("My cord X: " + MyPos.X + " Y: " + MyPos.Y);
+            double Aanligende = DesiredVelocity.X;
+            double overstaande = DesiredVelocity.Y;
+            double schuine = Math.Sqrt(Aanligende * Aanligende + overstaande * overstaande);
+
+            double theAngle = Math.Cos(Aanligende / schuine);
+            Console.WriteLine("The Angle: " + theAngle);
+            theAngle = theAngle * 360;
+            Console.WriteLine("The Angle * 360: " + theAngle);
+
+            Console.WriteLine("=========================");
             return DesiredVelocity;
         }
     }

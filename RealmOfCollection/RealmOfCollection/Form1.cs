@@ -35,14 +35,26 @@ namespace RealmOfCollection
             dbPanel1.Invalidate();
         }
 
+        Rectangle Border = new Rectangle(10, 10, 1180, 700);
+
+        Rectangle Border2 = new Rectangle(200, 200, 100, 100);
+        Pen p = new Pen(new SolidBrush(Color.Black) , 5);
+        Pen p2 = new Pen(new SolidBrush(Color.LimeGreen), 1);
+
         private void dbPanel1_Paint(object sender, PaintEventArgs e)
         {
+            e.Graphics.DrawRectangle(p, Border);
+            e.Graphics.DrawRectangle(p2, Border2);
             world.Render(e.Graphics);
         }
 
         private void dbPanel1_MouseClick(object sender, MouseEventArgs e)
         {
             world.Target.Pos = new Vector2D(e.X, e.Y);
+        }
+
+        private void dbPanel1_MouseMove(object sender, MouseEventArgs e)
+        {
         }
     }
 }

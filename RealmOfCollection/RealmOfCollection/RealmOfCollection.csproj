@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="behaviour\FleeBehaviour.cs" />
     <Compile Include="behaviour\SeekBehaviour.cs" />
     <Compile Include="behaviour\SteeringBehaviour.cs" />
     <Compile Include="behaviour\WanderBehaviour.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="util\C2DMatrix.cs" />
     <Compile Include="util\Vector2D.cs" />
+    <Compile Include="util\Wall2D.cs" />
     <Compile Include="world\World.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
