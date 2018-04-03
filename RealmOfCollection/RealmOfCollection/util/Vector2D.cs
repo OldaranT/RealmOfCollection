@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace RealmOfCollection
 {
-   
+
     public class Vector2D
     {
         public double X { get; set; }
         public double Y { get; set; }
 
-        public Vector2D() : this(0,0)
+        public Vector2D() : this(0, 0)
         {
         }
 
@@ -27,10 +27,24 @@ namespace RealmOfCollection
             Y = y;
         }
 
+        public void Zero()
+        {
+            this.X = 0;
+            this.Y = 0;
+        }
+
+        public bool isZero()
+        {
+            if (X == 0 && Y == 0)
+                return true;
+            else
+                return false;
+        }
+
         public double Length()
         {
             double length = Math.Sqrt(X * X + Y * Y);
-            return length; 
+            return length;
         }
 
         public double LengthSquared()
@@ -77,45 +91,6 @@ namespace RealmOfCollection
             return this;
         }
 
-        public Vector2D Normalize()
-        {
-            double length = Length();
-            if(length == 0)
-            {
-                length = 1;
-            }
-            this.X = X / length;
-            this.Y = Y / length;
-            return this;
-        }
-
-        public Vector2D truncate(double maX)
-        {
-            if (Length() > maX)
-            {
-                Normalize();
-                Multiply(maX);
-            }
-            return this;
-        }
-
-        public Vector2D Perp()
-        {
-            return new Vector2D(-this.Y, this.X);
-        }
-        
-        public Vector2D Clone()
-        {
-            return new Vector2D(this.X, this.Y);
-        }
-
-        public Vector2D scaleBy(float scale)
-        {
-            this.X *= scale;
-            this.Y *= scale;
-            return this;
-        }
-
         public static Vector2D operator -(Vector2D v1, Vector2D v2)
         {
             Vector2D result = new Vector2D(v1.X - v2.X, v1.Y - v2.Y);
@@ -136,13 +111,105 @@ namespace RealmOfCollection
 
         public static Vector2D operator /(Vector2D v, float value)
         {
-            if(value == 0)
+            if (value == 0)
             {
                 throw new Exception("do not devide by 0!");
             }
             Vector2D result = new Vector2D(v.X / value, v.Y / value);
             return result;
         }
+
+        public static Vector2D operator*(Vector2D lhs, double rhs)
+        {
+            Vector2D result = lhs;
+            result.Multiply(rhs);
+            return result;
+        }
+
+        public static  Vector2D operator *(double lhs, Vector2D rhs)
+        {
+            Vector2D result = rhs;
+            result.Multiply(lhs);
+            return result;
+        }
+
+        public Vector2D Normalize()
+        {
+            double length = Length();
+            if(length == 0)
+            {
+                length = 1;
+            }
+            this.X = X / length;
+            this.Y = Y / length;
+            return this;
+        }
+
+        public static Vector2D Vec2DNormalize(Vector2D v)
+        {
+            Vector2D vec = v;
+
+            double vector_length = vec.Length();
+
+            vec.X /= vector_length;
+            vec.Y /= vector_length;
+
+            return vec;
+        }
+
+        public double Distance(Vector2D toCheck)
+        {
+            double xSeparation = toCheck.X - X;
+            double ySeparation = toCheck.Y - Y;
+
+            return Math.Sqrt(ySeparation * ySeparation + xSeparation * xSeparation);
+        }
+
+        public double DistanceSqrt(Vector2D toCheck)
+        {
+            double xSeparation = toCheck.X - X;
+            double ySeparation = toCheck.Y - Y;
+
+            return ySeparation * ySeparation + xSeparation * xSeparation;
+        }
+
+        public static double Vec2DDistanceSq(Vector2D v1, Vector2D v2)
+        {
+            double ySeparation = v2.Y - v1.Y;
+            double xSeparation = v2.X - v1.X;
+
+            return ySeparation * ySeparation + xSeparation * xSeparation;
+        }
+
+        public Vector2D truncate(double max)
+        {
+            if (Length() > max)
+            {
+                Normalize();
+                Multiply(max);
+            }
+            return this;
+        }
+
+        public Vector2D Perp()
+        {
+            return new Vector2D(-this.Y, this.X);
+        }
+
+        public Vector2D Clone()
+        {
+            return new Vector2D(this.X, this.Y);
+        }
+
+
+        public Vector2D scaleBy(float scale)
+        {
+            this.X *= scale;
+            this.Y *= scale;
+            return this;
+        }
+
+        
         
         public override string ToString()
         {
@@ -192,7 +259,7 @@ namespace RealmOfCollection
             }
 
         }
-
+        
         public static Vector2D truncate(Vector2D v, float Max)
         {
             Vector2D truncated = v;
@@ -204,6 +271,17 @@ namespace RealmOfCollection
                 truncated *= Max;
             }
             return truncated;
+        }
+
+        public static bool InsideRegion(Vector2D p, Vector2D top_left, Vector2D bot_rgt)
+        {
+            return !((p.X < top_left.X) || (p.X > bot_rgt.X) ||
+                   (p.Y < top_left.Y) || (p.Y > bot_rgt.Y));
+        }
+
+        public static bool InsideRegion(Vector2D p, int left, int top, int right, int bottom)
+        {
+            return !((p.X < left) || (p.X > right) || (p.Y < top) || (p.Y > bottom));
         }
 
     }

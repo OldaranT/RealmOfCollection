@@ -70,8 +70,6 @@ namespace RealmOfCollection.entity
             g.DrawLine(p, (int) Pos.X, (int) Pos.Y, (int) Pos.X + (int)(Velocity.X * 2), (int)Pos.Y + (int)(Velocity.Y * 2));
             if (Player)
             {
-
-                Console.WriteLine(calculateMouseAngle());
                 g.DrawPie(p, new Rectangle((int)(leftCorner - (size / 2)), (int)(rightCorner - (size / 2)), (int)(size + size), (int)(size + size)), calculateMouseAngle(), PieAngle);
             }
         }
