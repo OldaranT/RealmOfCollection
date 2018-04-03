@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace RealmOfCollection
 {
@@ -21,12 +22,9 @@ namespace RealmOfCollection
            // g.FillEllipse(Brushes.Blue, new Rectangle((int) Pos.X,(int) Pos.Y, 10, 10));
         }
         
-
+        
+        
     }
-    
-
-
-    
 
     
 }

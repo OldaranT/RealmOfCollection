@@ -55,13 +55,22 @@ namespace RealmOfCollection
         {
             foreach (BaseGameEntity me in entities)
             {
+                //if(me is MovingEntity)
+                //{
+                //    Console.WriteLine("it works");
+                //}
+
+                if (double.IsNaN(me.Pos.X))
+                {
+                    Console.WriteLine();
+                }
                 var movingEntity = me as MovingEntity;
 
                 if (movingEntity == null)
                     continue;
 
-                //movingEntity.SB = new SeekBehaviour(movingEntity); // restore later
-                movingEntity.SB = new WanderBehaviour(movingEntity, 2500, 50, 0.001, random); // restore later;
+                movingEntity.SB = new SeekBehaviour(movingEntity); // restore later
+                //movingEntity.SB = new WanderBehaviour(movingEntity, 100, 0.01, 200, random); // restore later;
                 //Console.WriteLine("Target Position X: " + Target.Pos.X + " and Y: " + Target.Pos.Y);
                 movingEntity.Update(timeElapsed);
             }  

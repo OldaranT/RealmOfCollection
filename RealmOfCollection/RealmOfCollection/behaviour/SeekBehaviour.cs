@@ -43,6 +43,8 @@ namespace RealmOfCollection.behaviour
             //Console.WriteLine("The Angle * 360: " + theAngle);
 
             //Console.WriteLine("=========================");
+            DesiredVelocity = DesiredVelocity - ME.Velocity;
+
             return DesiredVelocity;
         }
     }

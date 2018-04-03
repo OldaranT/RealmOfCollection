@@ -19,6 +19,10 @@ namespace RealmOfCollection
 
         public Vector2D(double x, double y)
         {
+            if (double.IsNaN(x))
+            {
+                Console.WriteLine();
+            }
             X = x;
             Y = y;
         }
@@ -64,6 +68,10 @@ namespace RealmOfCollection
 
         public Vector2D divide(double value)
         {
+            if(value == 0)
+            {
+                throw new Exception("do not devide by 0!");
+            }
             this.X /= value;
             this.Y /= value;
             return this;
@@ -72,6 +80,10 @@ namespace RealmOfCollection
         public Vector2D Normalize()
         {
             double length = Length();
+            if(length == 0)
+            {
+                length = 1;
+            }
             this.X = X / length;
             this.Y = Y / length;
             return this;
@@ -95,6 +107,41 @@ namespace RealmOfCollection
         public Vector2D Clone()
         {
             return new Vector2D(this.X, this.Y);
+        }
+
+        public Vector2D scaleBy(float scale)
+        {
+            this.X *= scale;
+            this.Y *= scale;
+            return this;
+        }
+
+        public static Vector2D operator -(Vector2D v1, Vector2D v2)
+        {
+            Vector2D result = new Vector2D(v1.X - v2.X, v1.Y - v2.Y);
+            return result;
+        }
+
+        public static Vector2D operator *(Vector2D v, float value)
+        {
+            Vector2D result = new Vector2D(v.X * value, v.Y * value);
+            return result;
+        }
+
+        public static Vector2D operator +(Vector2D v1, Vector2D v2)
+        {
+            Vector2D result = new Vector2D(v1.X + v2.X, v1.Y + v2.Y);
+            return result;
+        }
+
+        public static Vector2D operator /(Vector2D v, float value)
+        {
+            if(value == 0)
+            {
+                throw new Exception("do not devide by 0!");
+            }
+            Vector2D result = new Vector2D(v.X / value, v.Y / value);
+            return result;
         }
         
         public override string ToString()
@@ -144,6 +191,19 @@ namespace RealmOfCollection
                 pos.Y = 0.0;
             }
 
+        }
+
+        public static Vector2D truncate(Vector2D v, float Max)
+        {
+            Vector2D truncated = v;
+            if (v.Length() > Max)
+            {
+
+                truncated.Normalize();
+
+                truncated *= Max;
+            }
+            return truncated;
         }
 
     }
