@@ -11,11 +11,21 @@ namespace RealmOfCollection
     {
         public MovingEntity ME { get; set; }
         public abstract Vector2D Calculate();
+        public Random random { get; set; }
 
         public SteeringBehaviour(MovingEntity me)
         {
             ME = me;
+            random = new Random();
         }
+
+        public SteeringBehaviour(MovingEntity me, Random r)
+        {
+            ME = me;
+            random = r;
+        }
+
+        
     }
 
     

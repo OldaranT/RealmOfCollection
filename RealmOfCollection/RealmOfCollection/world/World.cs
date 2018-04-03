@@ -17,10 +17,13 @@ namespace RealmOfCollection
         public int Height { get; set; }
         public Vector2D CursorPos { get; set; }
 
+        public Random random { get; set; }
+
         public World(int w, int h)
         {
             Width = w;
             Height = h;
+            random = new Random();
             populate();
             CreateObjects();
         }
@@ -57,7 +60,8 @@ namespace RealmOfCollection
                 if (movingEntity == null)
                     continue;
 
-                movingEntity.SB = new SeekBehaviour(movingEntity); // restore later
+                //movingEntity.SB = new SeekBehaviour(movingEntity); // restore later
+                movingEntity.SB = new WanderBehaviour(movingEntity, 2500, 50, 0.001, random); // restore later;
                 //Console.WriteLine("Target Position X: " + Target.Pos.X + " and Y: " + Target.Pos.Y);
                 movingEntity.Update(timeElapsed);
             }  

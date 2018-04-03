@@ -10,8 +10,8 @@ namespace RealmOfCollection.entity
     public abstract class MovingEntity : BaseGameEntity
     {
 
-        protected Vector2D Heading { get; set; }
-        protected Vector2D Side { get; set; }
+        public Vector2D Heading { get; set; }
+        public Vector2D Side { get; set; }
         public Vector2D Velocity { get; set; }
         public float Mass { get; set; }
         public float MaxSpeed { get; set; }
@@ -25,6 +25,9 @@ namespace RealmOfCollection.entity
             Mass = 30;
             MaxSpeed = 150;
             Velocity = new Vector2D();
+            Heading = new Vector2D();
+            Vector2D temp = Heading;
+            Side = temp.Perp();
         }
 
         public override void Update(float timeElapsed)
@@ -52,11 +55,14 @@ namespace RealmOfCollection.entity
             }
 
             //treat the screen as a toroid
-
+            Vector2D.WrapAround(this.Pos, MyWorld.Width, MyWorld.Height);
 
             //Console.WriteLine(ToString());
 
-            
+            if (Pos.X > MyWorld.Width || Pos.X < 50 || Pos.Y > MyWorld.Height || Pos.Y < 50)
+            {
+                Pos = OldPos;
+            }
             // als de positie van deze enitity buiten de muur is. Dan wordt de positie de oude positie
             // pos = old pos
         }
