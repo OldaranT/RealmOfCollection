@@ -36,7 +36,7 @@ namespace RealmOfCollection
             dbPanel1.Invalidate();
         }
 
-        Rectangle Border = new Rectangle(10, 10, 1180, 700);
+        Rectangle Border = new Rectangle(50, 50, 100, 100);
         
         Pen p = new Pen(new SolidBrush(Color.Black) , 5);
         Pen p2 = new Pen(new SolidBrush(Color.LimeGreen), 1);

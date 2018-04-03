@@ -32,7 +32,10 @@ namespace RealmOfCollection.entity
 
         public override void Update(float timeElapsed)
         {
-            OldPos = Pos;
+            if(Vector2D.InsideRegion(this.Pos, 50, 50, 150, 150))
+            {
+                OldPos = Pos;
+            }
             Vector2D SteeringForce = SB.Calculate();
 
             //Acceleration
@@ -57,14 +60,12 @@ namespace RealmOfCollection.entity
             //treat the screen as a toroid
             Vector2D.WrapAround(this.Pos, MyWorld.Width, MyWorld.Height);
 
-            //Console.WriteLine(ToString());
-
-            if (Pos.X > MyWorld.Width || Pos.X < 50 || Pos.Y > MyWorld.Height || Pos.Y < 50)
-            {
-                Pos = OldPos;
-            }
-            // als de positie van deze enitity buiten de muur is. Dan wordt de positie de oude positie
-            // pos = old pos
+            //Console.WriteLine("Old Pos: " + OldPos + " Cur Pos: " + Pos);
+            //if (!Vector2D.InsideRegion(this.Pos, 50,50,150,150))
+            //{
+            //    Console.WriteLine("I am outside");
+            //    this.Pos = OldPos;
+            //}
         }
 
         public override string ToString()

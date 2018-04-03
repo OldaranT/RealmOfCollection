@@ -9,6 +9,7 @@ namespace RealmOfCollection
 {
     public abstract class SteeringBehaviour
     {
+        public enum Deceleration { slow = 3, normal = 2, fast = 1 };
         public MovingEntity ME { get; set; }
         public abstract Vector2D Calculate();
         public Random random { get; set; }

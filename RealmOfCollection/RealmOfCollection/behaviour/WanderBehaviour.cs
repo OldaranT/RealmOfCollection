@@ -27,7 +27,6 @@ namespace RealmOfCollection.behaviour
         public double randomDouble()
         {
             double next = random.NextDouble() - random.NextDouble();
-            Console.WriteLine(next);
             return next;
         }
 
