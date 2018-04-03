@@ -18,7 +18,7 @@ namespace RealmOfCollection.entity
 
         public Vehicle(Vector2D pos, World w, bool Player) : base(pos, w)
         {
-            Velocity = new Vector2D(0, 0);
+            Velocity = new Vector2D(2, 2);
             Scale = 15;
             this.w = w;
             this.Player = Player;

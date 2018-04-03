@@ -59,10 +59,20 @@ namespace RealmOfCollection
         {
             foreach (BaseGameEntity me in entities)
             {
+                //if(me is MovingEntity)
+                //{
+                //    Console.WriteLine("it works");
+                //}
+
+                if (double.IsNaN(me.Pos.X))
+                {
+                    Console.WriteLine();
+                }
                 var movingEntity = me as MovingEntity;
 
                 if (movingEntity == null)
                     continue;
+
 
                 //movingEntity.SB = new SeekBehaviour(movingEntity); // restore later
                 //movingEntity.SB = new WanderBehaviour(movingEntity, 2500, 50, 0.001, random); // restore later;

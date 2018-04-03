@@ -30,7 +30,7 @@ namespace RealmOfCollection.behaviour
             DesiredVelocity = DesiredVelocity.Normalize();
             DesiredVelocity = DesiredVelocity.Multiply(MaxSpeed);
             DesiredVelocity = DesiredVelocity.Sub(ME.Velocity);
-
+            
             return DesiredVelocity;
         }
     }

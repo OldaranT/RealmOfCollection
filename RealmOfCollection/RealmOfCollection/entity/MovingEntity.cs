@@ -15,6 +15,7 @@ namespace RealmOfCollection.entity
         public Vector2D Velocity { get; set; }
         public float Mass { get; set; }
         public float MaxSpeed { get; set; }
+        public float Max_Force { get; set; }
 
         public SteeringBehaviour SB { get; set; }
         public Vector2D OldPos { get; set; }
@@ -23,7 +24,8 @@ namespace RealmOfCollection.entity
         public MovingEntity(Vector2D pos, World w) : base(pos, w)
         {
             Mass = 30;
-            MaxSpeed = 150;
+            MaxSpeed = 25;
+            Max_Force = 5;
             Velocity = new Vector2D();
             Heading = new Vector2D();
             Vector2D temp = Heading;
@@ -38,17 +40,23 @@ namespace RealmOfCollection.entity
             }
             Vector2D SteeringForce = SB.Calculate();
 
+            SteeringForce = Vector2D.truncate(SteeringForce, Max_Force);
+
+            SteeringForce = SteeringForce / Mass;
             //Acceleration
-            Vector2D acceleration = SteeringForce.divide(Mass);
+            //Vector2D acceleration = SteeringForce.divide(Mass);
 
             //Update velocity
-            Velocity.Add(acceleration.Multiply(timeElapsed));
+            //Velocity.Add(acceleration.Multiply(timeElapsed));
+            SteeringForce = SteeringForce.Multiply(timeElapsed);
+            Velocity = Vector2D.truncate(Velocity + SteeringForce, MaxSpeed);
 
             //Check on maxspeed
-            Velocity.truncate(MaxSpeed);
+            //Velocity.truncate(MaxSpeed);
 
             //Update position
-            Pos.Add(Velocity.Multiply(timeElapsed));
+            //Pos.Add(Velocity.Multiply(timeElapsed));
+            Pos = Pos + Velocity;
 
             //Update heading
             if (Velocity.LengthSquared() > 0.00000001)
@@ -59,7 +67,6 @@ namespace RealmOfCollection.entity
 
             //treat the screen as a toroid
             Vector2D.WrapAround(this.Pos, MyWorld.Width, MyWorld.Height);
-
             //Console.WriteLine("Old Pos: " + OldPos + " Cur Pos: " + Pos);
             //if (!Vector2D.InsideRegion(this.Pos, 50,50,150,150))
             //{

@@ -19,6 +19,10 @@ namespace RealmOfCollection
 
         public Vector2D(double x, double y)
         {
+            if (double.IsNaN(x))
+            {
+                Console.WriteLine();
+            }
             X = x;
             Y = y;
         }
@@ -78,6 +82,10 @@ namespace RealmOfCollection
 
         public Vector2D divide(double value)
         {
+            if(value == 0)
+            {
+                throw new Exception("do not devide by 0!");
+            }
             this.X /= value;
             this.Y /= value;
             return this;
@@ -103,6 +111,10 @@ namespace RealmOfCollection
 
         public static Vector2D operator /(Vector2D v, float value)
         {
+            if (value == 0)
+            {
+                throw new Exception("do not devide by 0!");
+            }
             Vector2D result = new Vector2D(v.X / value, v.Y / value);
             return result;
         }
@@ -124,6 +136,10 @@ namespace RealmOfCollection
         public Vector2D Normalize()
         {
             double length = Length();
+            if(length == 0)
+            {
+                length = 1;
+            }
             this.X = X / length;
             this.Y = Y / length;
             return this;
@@ -185,6 +201,16 @@ namespace RealmOfCollection
             return new Vector2D(this.X, this.Y);
         }
 
+
+        public Vector2D scaleBy(float scale)
+        {
+            this.X *= scale;
+            this.Y *= scale;
+            return this;
+        }
+
+        
+        
         public override string ToString()
         {
             return String.Format("({0},{1})", X, Y);
@@ -233,7 +259,19 @@ namespace RealmOfCollection
             }
 
         }
+        
+        public static Vector2D truncate(Vector2D v, float Max)
+        {
+            Vector2D truncated = v;
+            if (v.Length() > Max)
+            {
 
+                truncated.Normalize();
+
+                truncated *= Max;
+            }
+            return truncated;
+        }
 
         public static bool InsideRegion(Vector2D p, Vector2D top_left, Vector2D bot_rgt)
         {

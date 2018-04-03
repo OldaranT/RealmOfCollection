@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace RealmOfCollection
 {
@@ -22,12 +23,9 @@ namespace RealmOfCollection
            g.DrawEllipse(new Pen(Color.Red), new Rectangle((int)Pos.X, (int)Pos.Y, 50, 50));
         }
         
-
+        
+        
     }
-    
-
-
-    
 
     
 }
