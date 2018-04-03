@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RealmOfCollection.behaviour
 {
-    class SeekBehaviour : SteeringBehaviour
+    public class SeekBehaviour : SteeringBehaviour
     {
         public SeekBehaviour(MovingEntity me) : base(me)
         {
@@ -23,19 +23,19 @@ namespace RealmOfCollection.behaviour
             DesiredVelocity = DesiredVelocity.Normalize();
             DesiredVelocity = DesiredVelocity.Multiply(MaxSpeed);
             //DesiredVelocity = DesiredVelocity.Sub(ME.Velocity);
-            Console.WriteLine("=========================");
-            Console.WriteLine("DesiredVelocity X: " + DesiredVelocity.X + " Y: " + DesiredVelocity.Y);
-            Console.WriteLine("My cord X: " + MyPos.X + " Y: " + MyPos.Y);
+            //Console.WriteLine("=========================");
+            //Console.WriteLine("DesiredVelocity X: " + DesiredVelocity.X + " Y: " + DesiredVelocity.Y);
+            //Console.WriteLine("My cord X: " + MyPos.X + " Y: " + MyPos.Y);
             double Aanligende = DesiredVelocity.X;
             double overstaande = DesiredVelocity.Y;
             double schuine = Math.Sqrt(Aanligende * Aanligende + overstaande * overstaande);
 
             double theAngle = Math.Cos(Aanligende / schuine);
-            Console.WriteLine("The Angle: " + theAngle);
+            //Console.WriteLine("The Angle: " + theAngle);
             theAngle = theAngle * 360;
-            Console.WriteLine("The Angle * 360: " + theAngle);
+            //Console.WriteLine("The Angle * 360: " + theAngle);
 
-            Console.WriteLine("=========================");
+            //Console.WriteLine("=========================");
             return DesiredVelocity;
         }
     }

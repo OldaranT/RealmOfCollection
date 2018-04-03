@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace RealmOfCollection.entity
 {
 
-    abstract class MovingEntity : BaseGameEntity
+    public abstract class MovingEntity : BaseGameEntity
     {
 
         protected Vector2D Heading { get; set; }
@@ -17,6 +17,8 @@ namespace RealmOfCollection.entity
         public float MaxSpeed { get; set; }
 
         public SteeringBehaviour SB { get; set; }
+        public Vector2D OldPos { get; set; }
+
 
         public MovingEntity(Vector2D pos, World w) : base(pos, w)
         {
@@ -27,6 +29,7 @@ namespace RealmOfCollection.entity
 
         public override void Update(float timeElapsed)
         {
+            OldPos = Pos;
             Vector2D SteeringForce = SB.Calculate();
 
             //Acceleration
@@ -52,6 +55,10 @@ namespace RealmOfCollection.entity
 
 
             //Console.WriteLine(ToString());
+
+            
+            // als de positie van deze enitity buiten de muur is. Dan wordt de positie de oude positie
+            // pos = old pos
         }
 
         public override string ToString()

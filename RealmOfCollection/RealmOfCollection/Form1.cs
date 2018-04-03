@@ -22,10 +22,11 @@ namespace RealmOfCollection
             InitializeComponent();
 
             world = new World(w: dbPanel1.Width, h: dbPanel1.Height);
+            world.Target.MousePosition = new Vector2D(0, 0);
 
             timer = new System.Timers.Timer();
             timer.Elapsed += Timer_Elapsed;
-            timer.Interval = 5000;
+            timer.Interval = 1;
             timer.Enabled = true;
         }
 
@@ -36,15 +37,13 @@ namespace RealmOfCollection
         }
 
         Rectangle Border = new Rectangle(10, 10, 1180, 700);
-
-        Rectangle Border2 = new Rectangle(200, 200, 100, 100);
+        
         Pen p = new Pen(new SolidBrush(Color.Black) , 5);
         Pen p2 = new Pen(new SolidBrush(Color.LimeGreen), 1);
 
         private void dbPanel1_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawRectangle(p, Border);
-            e.Graphics.DrawRectangle(p2, Border2);
             world.Render(e.Graphics);
         }
 
@@ -55,6 +54,7 @@ namespace RealmOfCollection
 
         private void dbPanel1_MouseMove(object sender, MouseEventArgs e)
         {
+            world.Target.MousePosition = new Vector2D(e.X, e.Y);
         }
     }
 }

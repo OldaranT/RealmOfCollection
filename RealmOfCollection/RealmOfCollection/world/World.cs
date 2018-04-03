@@ -9,51 +9,71 @@ using System.Threading.Tasks;
 
 namespace RealmOfCollection
 {
-    class World
+    public class World
     {
-        private List<MovingEntity> entities = new List<MovingEntity>();
+        private List<BaseGameEntity> entities = new List<BaseGameEntity>();
         public Vehicle Target { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
+        public Vector2D CursorPos { get; set; }
 
         public World(int w, int h)
         {
             Width = w;
             Height = h;
             populate();
+            CreateObjects();
         }
 
         private void populate()
         {
-            Vehicle v = new Vehicle(new Vector2D(10,10), this);
+            Vehicle v = new Vehicle(new Vector2D(10,10), this, false);
             v.VColor = Color.Blue;
-            Vehicle v2 = new Vehicle(new Vector2D(250, 100), this);
+            Vehicle v2 = new Vehicle(new Vector2D(250, 100), this, false);
             v2.VColor = Color.Green;
-            Vehicle v3 = new Vehicle(new Vector2D(100, 100), this);
+            Vehicle v3 = new Vehicle(new Vector2D(100, 100), this, false);
             v3.VColor = Color.Pink;
             entities.Add(v);
             entities.Add(v2);
             entities.Add(v3);
 
-            Target = new Vehicle(new Vector2D(100, 60), this);
+            Target = new Vehicle(new Vector2D(100, 60), this, true);
             Target.VColor = Color.DarkRed;
             //Target.Scale = 50;
             Target.Pos = new Vector2D(200, 100);
         }
 
+        private void CreateObjects()
+        {
+            entities.Add(new SqaureObject(new Vector2D(300, 300), this, new Vector2D(50, 50)));
+        }
+
         public void Update(float timeElapsed)
         {
-            foreach (MovingEntity me in entities)
+            foreach (BaseGameEntity me in entities)
             {
-                me.SB = new SeekBehaviour(me); // restore later
+                var movingEntity = me as MovingEntity;
+
+                if (movingEntity == null)
+                    continue;
+
+                movingEntity.SB = new SeekBehaviour(movingEntity); // restore later
                 //Console.WriteLine("Target Position X: " + Target.Pos.X + " and Y: " + Target.Pos.Y);
-                me.Update(timeElapsed);
+                movingEntity.Update(timeElapsed);
             }  
+        }
+
+        public bool CheckObstruction(Vector2D pos, float size)
+        {
+            throw new NotImplementedException();
+            // foreach door alle static entities
+            // 
         }
 
         public void Render(Graphics g)
         {
             entities.ForEach(e => e.Render(g));
+
             Target.Render(g);
         }
     }

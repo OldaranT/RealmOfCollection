@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RealmOfCollection.behaviour
 {
-    class FleeBehaviour : SteeringBehaviour
+    public class FleeBehaviour : SteeringBehaviour
     {
         public FleeBehaviour(MovingEntity me) : base(me)
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RealmOfCollection.util
 {
-    class Wall2D
+    public class Wall2D
     {
         protected Vector2D A, B, N;
 
@@ -18,6 +18,9 @@ namespace RealmOfCollection.util
 
         public Wall2D(Vector2D A, Vector2D B, Vector2D N)
         {
+            this.A = A;
+            this.B = B;
+            this.N = N;
             CalculateNormal();
         }
 
