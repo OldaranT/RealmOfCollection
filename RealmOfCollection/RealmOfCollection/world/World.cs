@@ -75,15 +75,29 @@ namespace RealmOfCollection
 
 
                 //movingEntity.SB = new SeekBehaviour(movingEntity); // restore later
-                //movingEntity.SB = new WanderBehaviour(movingEntity, 2500, 50, 0.001, random); // restore later;
+                movingEntity.SB = new WanderBehaviour(movingEntity, 2500, 50, 0.001, random); // restore later;
                 //movingEntity.SB = new ArriveBehaviour(movingEntity, Target.Pos, SteeringBehaviour.Deceleration.slow);
                 //movingEntity.SB = new HideBehaviour(movingEntity, Target, Objects);
-                movingEntity.SB = new EvadeBehaviour(movingEntity);
+                //movingEntity.SB = new EvadeBehaviour(movingEntity);
                 //Console.WriteLine("Target Position X: " + Target.Pos.X + " and Y: " + Target.Pos.Y);
+                //double distanceFromTarget = (movingEntity.MyWorld.Target.Pos - movingEntity.Pos).Length();
+                //movingEntity.arriveSpeed = movingEntity.MaxSpeed;
+                //if(distanceFromTarget > 150)
+                //{;
+                //    movingEntity.SB = new WanderBehaviour(movingEntity, 2500, 50, 0.001, random);
+                //}
+                //else if(distanceFromTarget < 75)
+                //{
+                //    movingEntity.SB = new EvadeBehaviour(movingEntity);
+                //}
+                //else
+                //{
+                //    movingEntity.SB = new HideBehaviour(movingEntity, Target, Objects);
+                //}
                 movingEntity.Update(timeElapsed);
-            }  
-            Target.SB = new WanderBehaviour(Target, 2500, 50, 0.001, random); // restore later;
-            Target.Update(timeElapsed);
+            }
+            //Target.SB = new WanderBehaviour(Target, 2500, 50, 0.001, random); // restore later;
+            //Target.Update(timeElapsed);
 
         }
 

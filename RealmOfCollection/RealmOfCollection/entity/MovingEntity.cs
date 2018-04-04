@@ -16,6 +16,7 @@ namespace RealmOfCollection.entity
         public float Mass { get; set; }
         public float MaxSpeed { get; set; }
         public float Max_Force { get; set; }
+        public float arriveSpeed { get; set; }
 
         public SteeringBehaviour SB { get; set; }
         public Vector2D OldPos { get; set; }
@@ -24,8 +25,9 @@ namespace RealmOfCollection.entity
         public MovingEntity(Vector2D pos, World w) : base(pos, w)
         {
             Mass = 30;
-            MaxSpeed = 25;
-            Max_Force = 5;
+            MaxSpeed = 10;
+            arriveSpeed = MaxSpeed;
+            Max_Force = 25;
             Velocity = new Vector2D();
             Heading = new Vector2D();
             Vector2D temp = Heading;
@@ -34,10 +36,10 @@ namespace RealmOfCollection.entity
 
         public override void Update(float timeElapsed)
         {
-            if(Vector2D.InsideRegion(this.Pos, 50, 50, 150, 150))
-            {
-                OldPos = Pos;
-            }
+            //if(Vector2D.InsideRegion(this.Pos, 50, 50, 150, 150))
+            //{
+            //    OldPos = Pos;
+            //}
             Vector2D SteeringForce = SB.Calculate();
 
             SteeringForce = Vector2D.truncate(SteeringForce, Max_Force);
@@ -49,13 +51,17 @@ namespace RealmOfCollection.entity
             //Update velocity
             //Velocity.Add(acceleration.Multiply(timeElapsed));
             SteeringForce = SteeringForce.Multiply(timeElapsed);
-            Velocity = Vector2D.truncate(Velocity + SteeringForce, MaxSpeed);
+            //Console.WriteLine("update steeringForce lenght: " + SteeringForce.Length());
+            //Console.WriteLine("update velocity length before adding steering force: " + Velocity.Length());
+            Velocity = Vector2D.truncate(Velocity + SteeringForce, arriveSpeed);
+            //Console.WriteLine("update velocity length after adding steering force: " + Velocity.Length());
 
             //Check on maxspeed
             //Velocity.truncate(MaxSpeed);
 
             //Update position
             //Pos.Add(Velocity.Multiply(timeElapsed));
+
             Pos = Pos + Velocity;
 
             //Update heading

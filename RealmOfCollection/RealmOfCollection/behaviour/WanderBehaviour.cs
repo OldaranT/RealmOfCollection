@@ -52,13 +52,28 @@ namespace RealmOfCollection.behaviour
         public override Vector2D Calculate()
         {
             Vector2D circleCenter;
-            circleCenter = ME.Velocity.Clone();
-            circleCenter = circleCenter.Normalize();
-            circleCenter = circleCenter.scaleBy(CIRCLE_DISTANCE);
-
+            if (!ME.Velocity.isZero())
+            {
+                circleCenter = ME.Velocity.Clone();
+                circleCenter = circleCenter.Normalize();
+                circleCenter = circleCenter.scaleBy(CIRCLE_DISTANCE);
+            }
+            else
+            {
+                circleCenter = new Vector2D(1, 1);
+                circleCenter = circleCenter.scaleBy(CIRCLE_DISTANCE);
+            }
             Vector2D displacement;
-            displacement = ME.Velocity.Clone().Normalize();
-            displacement = displacement.scaleBy(CIRCLE_RADIUS);
+            if (!ME.Velocity.isZero())
+            {
+                displacement = ME.Velocity.Clone().Normalize();
+                displacement = displacement.scaleBy(CIRCLE_RADIUS);
+            }
+            else
+            {
+                displacement = new Vector2D(1,1);
+                displacement = displacement.scaleBy(CIRCLE_RADIUS);
+            }
 
             //setAngle(displacement, wanderAngle);
 
