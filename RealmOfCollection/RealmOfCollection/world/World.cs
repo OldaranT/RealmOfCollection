@@ -77,6 +77,7 @@ namespace RealmOfCollection
                     continue;
 
 
+                movingEntity.arriveSpeed = movingEntity.MaxSpeed;
                 movingEntity.SteeringBehaviors = new List<SteeringBehaviour>();
                 //movingEntity.SteeringBehaviors.Add(new SeekBehaviour(movingEntity));
                 movingEntity.SteeringBehaviors.Add(new WanderBehaviour(movingEntity, 2500, 50, 0.001, random));
@@ -88,8 +89,6 @@ namespace RealmOfCollection
             Target.SteeringBehaviors = new List<SteeringBehaviour>();
             Target.SteeringBehaviors.Add(new WanderBehaviour(Target, 2500, 50, 0.001, random));
             Target.Update(timeElapsed);
-            //Target.SB = new WanderBehaviour(Target, 2500, 50, 0.001, random); // restore later;
-            //Target.Update(timeElapsed);
 
         }
 

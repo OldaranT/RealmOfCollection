@@ -39,7 +39,6 @@ namespace RealmOfCollection.behaviour
 
             Vector2D DesiredVelocity = Vector2D.Vec2DNormalize(ToTarget) * ME.MaxSpeed;
             ME.arriveSpeed = speed;
-            Console.WriteLine(speed + " this is speed");
             return (DesiredVelocity - ME.Velocity);
 
             //if (dist < slowingradius)

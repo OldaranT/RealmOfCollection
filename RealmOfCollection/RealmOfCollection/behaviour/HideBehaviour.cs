@@ -38,13 +38,21 @@ namespace RealmOfCollection.behaviour
                     
                 }
             }
+            if((hunter.Pos - ME.Pos).Length() > 500)
+            {
+                Console.WriteLine("I Show you the wey");
+                //WanderBehaviour WB = new WanderBehaviour(ME, 2500, 50, 0.001, ME.MyWorld.random);
+                return new Vector2D(0, 0);
+            }
             if(DistToClosest == Double.MaxValue)
             {
+                Console.WriteLine("I am out of here");
                 EvadeBehaviour evade = new EvadeBehaviour(ME);
                 return evade.Calculate();
             }
             else
             {
+                Console.WriteLine("HIDE HIDE HIDE HIDE!");
                 SteeringBehaviour ArriveB = new ArriveBehaviour(ME, BestHidingSpot, Deceleration.fast);
                 //Console.WriteLine(BestHidingSpot.ToString());
 
