@@ -138,7 +138,7 @@ namespace RealmOfCollection
             double length = Length();
             if(length == 0)
             {
-                length = 1;
+                return this;
             }
             this.X = X / length;
             this.Y = Y / length;
@@ -150,7 +150,10 @@ namespace RealmOfCollection
             Vector2D vec = v;
 
             double vector_length = vec.Length();
-
+            if(vector_length == 0)
+            {
+                return vec;
+            }
             vec.X /= vector_length;
             vec.Y /= vector_length;
 
@@ -183,11 +186,15 @@ namespace RealmOfCollection
 
         public Vector2D truncate(double max)
         {
-            if (Length() > max)
-            {
-                Normalize();
-                Multiply(max);
-            }
+            double i;
+            i = max / this.Length();
+            i = i < 1.0 ? i : 1.0;
+            this.scaleBy((float)i);
+            //if (Length() > max)
+            //{
+            //    Normalize();
+            //    Multiply(max);
+            //}
             return this;
         }
 
@@ -271,13 +278,17 @@ namespace RealmOfCollection
         public static Vector2D truncate(Vector2D v, float Max)
         {
             Vector2D truncated = v;
-            if (v.Length() > Max)
-            {
+            float i;
+            i = Max / (float)truncated.Length();
+            i = i < 1.0 ? i : 1.0f;
+            truncated = truncated.scaleBy(i);
+            //if (v.Length() > Max)
+            //{
 
-                truncated.Normalize();
+            //    truncated.Normalize();
 
-                truncated *= Max;
-            }
+            //    truncated *= Max;
+            //}
             return truncated;
         }
 

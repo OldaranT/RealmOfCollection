@@ -38,9 +38,18 @@ namespace RealmOfCollection.behaviour
                     
                 }
             }
-            SteeringBehaviour ArriveB = new ArriveBehaviour(ME, BestHidingSpot, Deceleration.fast);
+            if(DistToClosest == Double.MaxValue)
+            {
+                EvadeBehaviour evade = new EvadeBehaviour(ME);
+                return evade.Calculate();
+            }
+            else
+            {
+                SteeringBehaviour ArriveB = new ArriveBehaviour(ME, BestHidingSpot, Deceleration.fast);
+                //Console.WriteLine(BestHidingSpot.ToString());
 
-            return ArriveB.Calculate();
+                return ArriveB.Calculate();
+            }
         }
 
         public Vector2D GetHidePosition(Vector2D PosOB, double radiusOB, Vector2D posHunter)
