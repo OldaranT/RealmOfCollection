@@ -57,6 +57,72 @@ namespace RealmOfCollection.entity
             return (float)Angle - (PieAngle/2);
         }
 
+        public float calculateTargetAngle()
+        {
+            double Angle = 0;
+            double DetlaX = w.Target.Pos.X - Pos.X;
+            double DeltaY = w.Target.Pos.Y - Pos.Y;
+            double Radiant = 180 / Math.PI;
+            if (DetlaX == 0)
+            {
+                if (DeltaY > 0)
+                {
+                    Angle = 90;
+                }
+                else if (DeltaY < 0)
+                {
+                    Angle = 270;
+                }
+                else
+                {
+                    Angle = 0;
+                }
+            }
+            else if (DeltaY == 0 && DetlaX < 0)
+            {
+                Angle = 180;
+            }
+            else
+            {
+                Angle = Math.Atan2(DeltaY, DetlaX);
+                Angle *= Radiant;
+            }
+            return (float)Angle;
+        }
+
+        public float calculateVelocityAngle()
+        {
+            double Angle = 0;
+            double DetlaX = Velocity.X;
+            double DeltaY = Velocity.Y;
+            double Radiant = 180 / Math.PI;
+            if (DetlaX == 0)
+            {
+                if (DeltaY > 0)
+                {
+                    Angle = 90;
+                }
+                else if (DeltaY < 0)
+                {
+                    Angle = 270;
+                }
+                else
+                {
+                    Angle = 0;
+                }
+            }
+            else if (DeltaY == 0 && DetlaX < 0)
+            {
+                Angle = 180;
+            }
+            else
+            {
+                Angle = Math.Atan2(DeltaY, DetlaX);
+                Angle *= Radiant;
+            }
+            return (float)Angle;
+        }
+
         public override void Render(Graphics g)
         {
             double leftCorner = Pos.X - Scale;
@@ -66,12 +132,22 @@ namespace RealmOfCollection.entity
 
 
             Pen p = new Pen(VColor, 2);
+            Pen PVelocity = new Pen(Color.Gold, 2);
+            Pen PTarget = new Pen(Color.Red, 2);
             g.DrawEllipse(p, new Rectangle((int) leftCorner, (int) rightCorner, (int) size, (int) size));
             g.DrawLine(p, (int) Pos.X, (int) Pos.Y, (int) Pos.X + (int)(Velocity.X * 2), (int)Pos.Y + (int)(Velocity.Y * 2));
             if (Player)
             {
                 g.DrawPie(p, new Rectangle((int)(leftCorner - (size / 2)), (int)(rightCorner - (size / 2)), (int)(size + size), (int)(size + size)), calculateMouseAngle(), PieAngle);
             }
+            else
+            {
+                g.DrawPie(PTarget, new Rectangle((int)(leftCorner - (size / 2)), (int)(rightCorner - (size / 2)), (int)(size + size), (int)(size + size)), calculateTargetAngle(), 1.0f);
+            }
+            g.DrawPie(PVelocity, new Rectangle((int)(leftCorner - (size / 2)), (int)(rightCorner - (size / 2)), (int)(size + size), (int)(size + size)), calculateVelocityAngle(), 1.0f);
+
+
+
         }
     }
 }

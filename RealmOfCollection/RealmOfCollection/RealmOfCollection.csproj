@@ -72,6 +72,8 @@
     <Compile Include="Graphs\Graph.cs" />
     <Compile Include="Graphs\IGraph.cs" />
     <Compile Include="Graphs\IVertex.cs" />
+    <Compile Include="Graphs\Path.cs" />
+    <Compile Include="Graphs\PathPriorityQueue.cs" />
     <Compile Include="Graphs\Vertex.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

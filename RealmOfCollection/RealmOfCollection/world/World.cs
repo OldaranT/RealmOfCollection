@@ -78,14 +78,17 @@ namespace RealmOfCollection
 
 
                 //movingEntity.SB = new SeekBehaviour(movingEntity); // restore later
-                movingEntity.SB = new WanderBehaviour(movingEntity, 2500, 50, 0.001, random); // restore later;
+                //movingEntity.SB = new WanderBehaviour(movingEntity, 2500, 50, 0.001, random); // restore later;
                 //movingEntity.SB = new ArriveBehaviour(movingEntity, Target.Pos, SteeringBehaviour.Deceleration.slow);
                 //movingEntity.SB = new HideBehaviour(movingEntity, Target, Objects);
+                movingEntity.SteeringBehaviors = new List<SteeringBehaviour>();
+                movingEntity.SteeringBehaviors.Add(new HideBehaviour(movingEntity, Target, Objects));
+                movingEntity.SteeringBehaviors.Add(new WanderBehaviour(movingEntity, 2500, 50, 0.001, random));
                 //Console.WriteLine("Target Position X: " + Target.Pos.X + " and Y: " + Target.Pos.Y);
                 movingEntity.Update(timeElapsed);
             }  
-            Target.SB = new WanderBehaviour(Target, 2500, 50, 0.001, random); // restore later;
-            Target.Update(timeElapsed);
+            //Target.SB = new WanderBehaviour(Target, 2500, 50, 0.001, random); // restore later;
+            //Target.Update(timeElapsed);
 
         }
 
@@ -98,8 +101,45 @@ namespace RealmOfCollection
 
         public void GenerateGraph()
         {
-            Graph Graph = new Graph();
+            Console.WriteLine("============== Exercise 1 ==============");
+            Graph graph = new Graph();
+            graph.AddEdge("V0", "V1", 2);
+            graph.AddEdge("V0", "V3", 1);
+            graph.AddEdge("V1", "V3", 3);
+            graph.AddEdge("V1", "V4", 10);
+            graph.AddEdge("V2", "V0", 4);
+            graph.AddEdge("V2", "V5", 5);
+            graph.AddEdge("V3", "V2", 2);
+            graph.AddEdge("V3", "V4", 2);
+            graph.AddEdge("V3", "V5", 8);
+            graph.AddEdge("V3", "V6", 4);
+            graph.AddEdge("V4", "V6", 6);
+            graph.AddEdge("V6", "V5", 1);
 
+            Console.WriteLine(graph.ToString());
+
+            Console.WriteLine("============== Exercise 2 ==============\n");
+            graph.Unweigthed("V0");
+            graph.PrintPath("V6");
+            graph.PrintPath("V2");
+            Console.WriteLine(graph.ToString());
+
+            Console.WriteLine("============== Exercise 3 ==============\n");
+            graph.Dijkstra("V0");
+            graph.PrintPath("V6");
+            graph.PrintPath("V5");
+            graph.PrintPath("V4");
+            graph.PrintPath("V2");
+
+            Console.WriteLine("============== Exercise 4 ==============\n");
+            graph.IsConnected();
+
+            Graph graph2 = new Graph();
+            graph2.AddEdge("V0", "V1", 3);
+            graph2.AddEdge("V1", "V2", 3);
+            graph2.AddEdge("V2", "V0", 3);
+            graph2.IsConnected();
+            
         }
 
         public void Render(Graphics g)

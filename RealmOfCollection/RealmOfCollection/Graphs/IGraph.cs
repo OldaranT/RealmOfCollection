@@ -11,6 +11,5 @@ namespace RealmOfCollection.Graphs
         Vertex GetVertex(String name);
         void AddEdge(String source, String dest, double cost);
         string ToString();
-
     }
 }
