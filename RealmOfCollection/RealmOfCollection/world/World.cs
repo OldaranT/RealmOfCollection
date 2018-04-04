@@ -1,5 +1,6 @@
 ﻿using RealmOfCollection.behaviour;
 using RealmOfCollection.entity;
+using RealmOfCollection.Graphs;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -19,6 +20,7 @@ namespace RealmOfCollection
         public Vector2D CursorPos { get; set; }
 
         public Random random { get; set; }
+        public Graph graph { get; set; }
 
         public World(int w, int h)
         {
@@ -27,6 +29,7 @@ namespace RealmOfCollection
             random = new Random();
             populate();
             CreateObjects();
+            GenerateGraph();
         }
 
         private void populate()
@@ -91,6 +94,12 @@ namespace RealmOfCollection
             throw new NotImplementedException();
             // foreach door alle static entities
             // 
+        }
+
+        public void GenerateGraph()
+        {
+            Graph Graph = new Graph();
+
         }
 
         public void Render(Graphics g)
