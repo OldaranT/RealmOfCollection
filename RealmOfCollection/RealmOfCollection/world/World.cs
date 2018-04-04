@@ -75,9 +75,10 @@ namespace RealmOfCollection
 
 
                 //movingEntity.SB = new SeekBehaviour(movingEntity); // restore later
-                movingEntity.SB = new WanderBehaviour(movingEntity, 2500, 50, 0.001, random); // restore later;
+                //movingEntity.SB = new WanderBehaviour(movingEntity, 2500, 50, 0.001, random); // restore later;
                 //movingEntity.SB = new ArriveBehaviour(movingEntity, Target.Pos, SteeringBehaviour.Deceleration.slow);
                 //movingEntity.SB = new HideBehaviour(movingEntity, Target, Objects);
+                movingEntity.SB = new EvadeBehaviour(movingEntity);
                 //Console.WriteLine("Target Position X: " + Target.Pos.X + " and Y: " + Target.Pos.Y);
                 movingEntity.Update(timeElapsed);
             }  
