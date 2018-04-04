@@ -81,6 +81,7 @@ namespace RealmOfCollection
                 //movingEntity.SB = new WanderBehaviour(movingEntity, 2500, 50, 0.001, random); // restore later;
                 //movingEntity.SB = new ArriveBehaviour(movingEntity, Target.Pos, SteeringBehaviour.Deceleration.slow);
                 //movingEntity.SB = new HideBehaviour(movingEntity, Target, Objects);
+                movingEntity.arriveSpeed = movingEntity.MaxSpeed;
                 movingEntity.SteeringBehaviors = new List<SteeringBehaviour>();
                 movingEntity.SteeringBehaviors.Add(new HideBehaviour(movingEntity, Target, Objects));
                 movingEntity.SteeringBehaviors.Add(new WanderBehaviour(movingEntity, 2500, 50, 0.001, random));
