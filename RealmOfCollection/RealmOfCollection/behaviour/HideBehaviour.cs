@@ -46,7 +46,7 @@ namespace RealmOfCollection.behaviour
         public Vector2D GetHidePosition(Vector2D PosOB, double radiusOB, Vector2D posHunter)
         {
             double DistanceFromBoundry = 30.0;
-            Console.WriteLine("RadiusOB: " + radiusOB);
+            //Console.WriteLine("RadiusOB: " + radiusOB);
             double DistAway = radiusOB + DistanceFromBoundry;
             Vector2D WindFormAdjusment = new Vector2D(radiusOB/2, radiusOB/2);
 

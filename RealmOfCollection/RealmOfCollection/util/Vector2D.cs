@@ -259,6 +259,14 @@ namespace RealmOfCollection
             }
 
         }
+
+        public static Vector2D rotate(Vector2D v, float degrees)
+        {
+            return new Vector2D(
+            (float)(v.X * Math.Cos(degrees) - v.Y * Math.Sin(degrees)),
+            (float)(v.X * Math.Sin(degrees) + v.Y * Math.Cos(degrees))
+        );
+        }
         
         public static Vector2D truncate(Vector2D v, float Max)
         {
