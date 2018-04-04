@@ -77,15 +77,17 @@ namespace RealmOfCollection
                     continue;
 
 
-                //movingEntity.SB = new SeekBehaviour(movingEntity); // restore later
-                //movingEntity.SB = new WanderBehaviour(movingEntity, 2500, 50, 0.001, random); // restore later;
-                //movingEntity.SB = new ArriveBehaviour(movingEntity, Target.Pos, SteeringBehaviour.Deceleration.slow);
-                //movingEntity.SB = new HideBehaviour(movingEntity, Target, Objects);
                 movingEntity.SteeringBehaviors = new List<SteeringBehaviour>();
-                movingEntity.SteeringBehaviors.Add(new HideBehaviour(movingEntity, Target, Objects));
+                //movingEntity.SteeringBehaviors.Add(new SeekBehaviour(movingEntity));
                 movingEntity.SteeringBehaviors.Add(new WanderBehaviour(movingEntity, 2500, 50, 0.001, random));
+                //movingEntity.SteeringBehaviors.Add(new ArriveBehaviour(movingEntity, Target.Pos, SteeringBehaviour.Deceleration.slow));
+                movingEntity.SteeringBehaviors.Add(new HideBehaviour(movingEntity, Target, Objects));
+                //movingEntity.SteeringBehaviors.Add(new EvadeBehaviour(movingEntity));
                 movingEntity.Update(timeElapsed);
-            }  
+            }
+            Target.SteeringBehaviors = new List<SteeringBehaviour>();
+            Target.SteeringBehaviors.Add(new WanderBehaviour(Target, 2500, 50, 0.001, random));
+            Target.Update(timeElapsed);
             //Target.SB = new WanderBehaviour(Target, 2500, 50, 0.001, random); // restore later;
             //Target.Update(timeElapsed);
 
