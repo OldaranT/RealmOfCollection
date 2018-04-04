@@ -16,12 +16,8 @@ namespace RealmOfCollection.entity
         public float Mass { get; set; }
         public float MaxSpeed { get; set; }
         public float Max_Force { get; set; }
-<<<<<<< HEAD
         public Vector2D SteeringForce;
-=======
         public float arriveSpeed { get; set; }
-
->>>>>>> f40e62c1133de0dc9d136b19428acee5ff808e78
         public SteeringBehaviour SB { get; set; }
         public List<SteeringBehaviour> SteeringBehaviors { get; set; }
         public Vector2D OldPos { get; set; }
@@ -43,7 +39,6 @@ namespace RealmOfCollection.entity
 
         public override void Update(float timeElapsed)
         {
-<<<<<<< HEAD
             SteeringForce.Zero();
             if (Vector2D.InsideRegion(this.Pos, 50, 50, 150, 150))
             {
@@ -51,15 +46,8 @@ namespace RealmOfCollection.entity
             }
             foreach (SteeringBehaviour SB in SteeringBehaviors)
             {
-                SteeringForce = SB.Calculate();
+                SteeringForce += SB.Calculate();
             }
-=======
-            //if(Vector2D.InsideRegion(this.Pos, 50, 50, 150, 150))
-            //{
-            //    OldPos = Pos;
-            //}
-            Vector2D SteeringForce = SB.Calculate();
->>>>>>> f40e62c1133de0dc9d136b19428acee5ff808e78
 
             SteeringForce = Vector2D.truncate(SteeringForce, Max_Force);
 
