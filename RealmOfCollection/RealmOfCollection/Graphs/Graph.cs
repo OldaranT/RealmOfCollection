@@ -223,7 +223,7 @@ namespace RealmOfCollection.Graphs
                 if (!entry.Value.drawIt)
                     continue;
 
-                g.FillEllipse(new SolidBrush(Color.Green), new Rectangle((int)x -5, (int)y -5, 10, 10));
+                g.FillEllipse(new SolidBrush(Color.FromArgb(50, 0, 204, 0)), new Rectangle((int)x -5, (int)y -5, 10, 10));
 
                 foreach (Edge e in edges)
                 {
@@ -231,7 +231,7 @@ namespace RealmOfCollection.Graphs
                         continue;
                     double targetX = e.dest.position.X;
                     double targetY = e.dest.position.Y;
-                    g.DrawLine(new Pen(Color.Black, 1), (float)x, (float)y, (float)targetX, (float)targetY);
+                    g.DrawLine(new Pen(Color.FromArgb(50, 0, 0, 0), 1), (float)x, (float)y, (float)targetX, (float)targetY);
                 }
             }
         }
