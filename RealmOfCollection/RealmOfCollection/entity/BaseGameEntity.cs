@@ -19,8 +19,8 @@ namespace RealmOfCollection
 
         public virtual void Render(Graphics g)
         {
-           g.FillEllipse(Brushes.Blue, new Rectangle((int) Pos.X,(int) Pos.Y, 10, 10));
-           g.DrawEllipse(new Pen(Color.Red), new Rectangle((int)Pos.X, (int)Pos.Y, 50, 50));
+           //g.FillEllipse(Brushes.Blue, new Rectangle((int) Pos.X,(int) Pos.Y, 10, 10));
+           //g.DrawEllipse(new Pen(Color.Red), new Rectangle((int)Pos.X, (int)Pos.Y, 50, 50));
         }
         
         

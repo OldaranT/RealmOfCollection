@@ -21,15 +21,19 @@ namespace RealmOfCollection
 
         public Random random { get; set; }
         public Graph graph { get; set; }
+        public bool showGraph { get; set; }
 
         public World(int w, int h)
         {
+            showGraph = false;
             Width = w;
             Height = h;
             random = new Random();
+            graph = new Graph();
             populate();
             CreateObjects();
             GenerateGraph();
+
         }
 
         private void populate()
@@ -53,9 +57,12 @@ namespace RealmOfCollection
         private void CreateObjects()
         {
             //entities.Add(new SqaureObject(new Vector2D(300, 300), this, new Vector2D(50, 50)));
-            Objects.Add(new SqaureObject(new Vector2D(300, 300), this, new Vector2D(50, 50)));
-            Objects.Add(new SqaureObject(new Vector2D(150, 200), this, new Vector2D(50, 50)));
-            Objects.Add(new SqaureObject(new Vector2D(250, 150), this, new Vector2D(50, 50)));
+            for(int i = 0; i <  70; i++)
+            {
+                int rand1 = random.Next(0, Width - 100);
+                int rand2 = random.Next(0, Height - 100);
+                Objects.Add(new SqaureObject(new Vector2D(rand1, rand2), this, new Vector2D(50, 50)));
+            }
         }
 
         public void Update(float timeElapsed)
@@ -101,53 +108,72 @@ namespace RealmOfCollection
 
         public void GenerateGraph()
         {
-            Console.WriteLine("============== Exercise 1 ==============");
-            Graph graph = new Graph();
-            graph.AddEdge("V0", "V1", 2);
-            graph.AddEdge("V0", "V3", 1);
-            graph.AddEdge("V1", "V3", 3);
-            graph.AddEdge("V1", "V4", 10);
-            graph.AddEdge("V2", "V0", 4);
-            graph.AddEdge("V2", "V5", 5);
-            graph.AddEdge("V3", "V2", 2);
-            graph.AddEdge("V3", "V4", 2);
-            graph.AddEdge("V3", "V5", 8);
-            graph.AddEdge("V3", "V6", 4);
-            graph.AddEdge("V4", "V6", 6);
-            graph.AddEdge("V6", "V5", 1);
+            int edgeSize = 20;
+            int cost = 1;
+            int Rows = Height / edgeSize;
+            int Collums = Width / edgeSize;
+            Console.WriteLine("Height: " + Height + " Width: " + Width);
 
-            Console.WriteLine(graph.ToString());
+            for (int i = 0; i < Rows; i++)
+            {
+                for(int j = 0; j < Collums; j++)
+                {
+                    if (j + 1 != Collums)
+                    {
+                        
+                        string s = "P" + j + ":" + i;
+                        string d = "P" + (j + 1) + ":" + i;
+                        Vector2D PosS = new Vector2D(j * edgeSize, i * edgeSize);
+                        Vector2D PosD = new Vector2D((j + 1) * edgeSize, i * edgeSize);
+                        bool drawS = CheckTodraw(PosS);
+                        bool drawD = CheckTodraw(PosD);
+                        graph.AddEdge(s, d, cost, PosS, PosD, drawS, drawD);
+                        graph.AddEdge(d, s, cost, PosD, PosS, drawD, drawS);
+                    }
+                    if (i + 1 != Rows)
+                    {
+                        string s = "P" + j + ":" + i;
+                        string d = "P" + j + ":" + (i + 1);
+                        Vector2D PosS = new Vector2D(j * edgeSize, i * edgeSize);
+                        Vector2D PosD = new Vector2D(j * edgeSize, (i + 1) * edgeSize);
+                        bool drawS = CheckTodraw(PosS);
+                        bool drawD = CheckTodraw(PosD);
+                        graph.AddEdge(s, d, cost, PosS, PosD, drawS, drawD);
+                        graph.AddEdge(d, s, cost, PosD, PosS, drawD, drawS);
+                    }
+                }
+            }
 
-            Console.WriteLine("============== Exercise 2 ==============\n");
-            graph.Unweigthed("V0");
-            graph.PrintPath("V6");
-            graph.PrintPath("V2");
-            Console.WriteLine(graph.ToString());
-
-            Console.WriteLine("============== Exercise 3 ==============\n");
-            graph.Dijkstra("V0");
-            graph.PrintPath("V6");
-            graph.PrintPath("V5");
-            graph.PrintPath("V4");
-            graph.PrintPath("V2");
-
-            Console.WriteLine("============== Exercise 4 ==============\n");
-            graph.IsConnected();
-
-            Graph graph2 = new Graph();
-            graph2.AddEdge("V0", "V1", 3);
-            graph2.AddEdge("V1", "V2", 3);
-            graph2.AddEdge("V2", "V0", 3);
-            graph2.IsConnected();
+            //Console.WriteLine(graph.ToString());
             
+        }
+
+        public bool CheckTodraw(Vector2D pos)
+        {
+
+            bool DrawIt = true;
+            foreach (StaticEntity o in Objects)
+            {
+                if (o.Pos.X < pos.X && pos.X < (o.Pos.X + o.size.X) &&
+                    o.Pos.Y < pos.Y && pos.Y < (o.Pos.Y + o.size.Y))
+                {
+                    DrawIt = false;
+                }
+            }
+            return DrawIt;
         }
 
         public void Render(Graphics g)
         {
-            entities.ForEach(e => e.Render(g));
             Objects.ForEach(e => e.Render(g));
+            if (showGraph)
+            {
+                graph.DrawGraph(g);
+            }
+            entities.ForEach(e => e.Render(g));
 
             Target.Render(g);
+
         }
     }
 }

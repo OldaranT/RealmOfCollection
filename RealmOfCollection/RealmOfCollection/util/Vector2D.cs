@@ -109,6 +109,18 @@ namespace RealmOfCollection
             return result;
         }
 
+        public static Vector2D operator +(Vector2D v1, float v2)
+        {
+            Vector2D result = new Vector2D(v1.X + v2, v1.Y + v2);
+            return result;
+        }
+
+        public static Vector2D operator +(float v2, Vector2D v1)
+        {
+            Vector2D result = new Vector2D(v1.X + v2, v1.Y + v2);
+            return result;
+        }
+
         public static Vector2D operator /(Vector2D v, float value)
         {
             if (value == 0)

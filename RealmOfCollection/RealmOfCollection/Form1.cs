@@ -35,15 +35,12 @@ namespace RealmOfCollection
             world.Update(timeDelta);
             dbPanel1.Invalidate();
         }
-
-        Rectangle Border = new Rectangle(50, 50, 100, 100);
         
         Pen p = new Pen(new SolidBrush(Color.Black) , 5);
         Pen p2 = new Pen(new SolidBrush(Color.LimeGreen), 1);
 
         private void dbPanel1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawRectangle(p, Border);
             world.Render(e.Graphics);
         }
 
@@ -55,6 +52,21 @@ namespace RealmOfCollection
         private void dbPanel1_MouseMove(object sender, MouseEventArgs e)
         {
             world.Target.MousePosition = new Vector2D(e.X, e.Y);
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyData == Keys.G)
+            {
+                if (world.showGraph)
+                {
+                    world.showGraph = false;
+                }
+                else
+                {
+                    world.showGraph = true;
+                }
+            }
         }
     }
 }
