@@ -10,9 +10,11 @@ namespace RealmOfCollection.entity
     public abstract class StaticEntity : BaseGameEntity
     {
         public Vector2D size;
+        public Vector2D center;
         public StaticEntity(Vector2D pos, World w, Vector2D size) : base(pos, w)
         {
             this.size = size;
+            center = pos + (size / 2);
         }
 
         public override bool Equals(object obj)

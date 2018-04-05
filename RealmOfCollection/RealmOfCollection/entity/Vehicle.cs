@@ -12,16 +12,16 @@ namespace RealmOfCollection.entity
         public Color VColor { get; set; }
         public World w { get; set; }
         public Vector2D MousePosition { get; set; }
-        private bool Player;
+        //private bool Player;
 
         private float PieAngle = 45.0f;
 
-        public Vehicle(Vector2D pos, World w, bool Player) : base(pos, w)
+        public Vehicle(Vector2D pos, World w, bool Player) : base(pos, w, Player)
         {
             Velocity = new Vector2D(2, 2);
             Scale = 15;
             this.w = w;
-            this.Player = Player;
+            //this.Player = Player;
             VColor = Color.Black;
         }
 

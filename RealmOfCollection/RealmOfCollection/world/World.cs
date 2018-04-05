@@ -91,11 +91,13 @@ namespace RealmOfCollection
                 //movingEntity.SteeringBehaviors.Add(new ArriveBehaviour(movingEntity, Target.Pos, SteeringBehaviour.Deceleration.slow));
                 movingEntity.SteeringBehaviors.Add(new HideBehaviour(movingEntity, Target, Objects));
                 //movingEntity.SteeringBehaviors.Add(new EvadeBehaviour(movingEntity));
+                movingEntity.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(movingEntity, 20, Objects, 50));
                 movingEntity.Update(timeElapsed);
             }
-            //Target.SteeringBehaviors = new List<SteeringBehaviour>();
+            Target.SteeringBehaviors = new List<SteeringBehaviour>();
             //Target.SteeringBehaviors.Add(new WanderBehaviour(Target, 2500, 50, 0.001, random));
-            //Target.Update(timeElapsed);
+            Target.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(Target, 20, Objects, 25));
+            Target.Update(timeElapsed);
 
         }
 

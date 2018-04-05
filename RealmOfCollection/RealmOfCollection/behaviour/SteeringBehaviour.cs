@@ -17,7 +17,7 @@ namespace RealmOfCollection
         public SteeringBehaviour(MovingEntity me)
         {
             ME = me;
-            random = new Random();
+            random = me.MyWorld.random;
         }
 
         public SteeringBehaviour(MovingEntity me, Random r)

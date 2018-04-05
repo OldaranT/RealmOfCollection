@@ -19,18 +19,16 @@ namespace RealmOfCollection
 
         public Vector2D(double x, double y)
         {
-            if (double.IsNaN(x))
-            {
-                Console.WriteLine();
-            }
             X = x;
             Y = y;
         }
 
-        public void Zero()
+        public Vector2D Zero()
         {
             this.X = 0;
             this.Y = 0;
+
+            return this;
         }
 
         public bool isZero()
