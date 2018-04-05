@@ -29,7 +29,7 @@ namespace RealmOfCollection.behaviour
         private bool lineIntersectsCircle(StaticEntity obj)
         {
             bool intersects = false;
-            if (obj.center.Distance(ahead) <= (obj.size.Length() / 2) || obj.center.Distance(ahead2) <= (obj.size.Length() / 2))
+            if (obj.center.Distance(ahead) <= ((obj.size.Length() / 2) + ME.radius) || obj.center.Distance(ahead2) <= ((obj.size.Length() / 2) + ME.radius))
             {
                 intersects = true;
             }

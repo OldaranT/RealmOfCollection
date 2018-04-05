@@ -23,6 +23,7 @@ namespace RealmOfCollection.entity
             this.w = w;
             //this.Player = Player;
             VColor = Color.Black;
+            radius = Scale;
         }
 
         public float calculateMouseAngle()
