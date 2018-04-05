@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="behaviour\ArriveBehaviour.cs" />
+    <Compile Include="behaviour\CollisionAvoidanceBehaviour.cs" />
     <Compile Include="behaviour\EvadeBehaviour.cs" />
     <Compile Include="behaviour\FleeBehaviour.cs" />
     <Compile Include="behaviour\HideBehaviour.cs" />

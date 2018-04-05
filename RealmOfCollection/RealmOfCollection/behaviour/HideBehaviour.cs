@@ -27,7 +27,8 @@ namespace RealmOfCollection.behaviour
 
             foreach(StaticEntity SE in Objects)
             {
-                Vector2D HidingSpot = GetHidePosition(SE.Pos, SE.size.X, hunter.Pos);
+                //Vector2D HidingSpot = GetHidePosition(SE.Pos, SE.size.Length(), hunter.Pos);
+                Vector2D HidingSpot = GetHidePosition(SE.center, SE.size.Length(), hunter.Pos);
 
                 double dist = Vector2D.Vec2DDistanceSq(HidingSpot, ME.Pos);
 
@@ -65,9 +66,10 @@ namespace RealmOfCollection.behaviour
             double DistanceFromBoundry = 30.0;
             //Console.WriteLine("RadiusOB: " + radiusOB);
             double DistAway = radiusOB + DistanceFromBoundry;
-            Vector2D WindFormAdjusment = new Vector2D(radiusOB/2, radiusOB/2);
+            //Vector2D WindFormAdjusment = new Vector2D(radiusOB/2, radiusOB/2);
 
-            Vector2D ToOB = Vector2D.Vec2DNormalize(PosOB + WindFormAdjusment - posHunter);
+            //Vector2D ToOB = Vector2D.Vec2DNormalize(PosOB + WindFormAdjusment - posHunter);
+            Vector2D ToOB = Vector2D.Vec2DNormalize(PosOB - posHunter);
 
             return (ToOB * DistAway) + PosOB;
         }
