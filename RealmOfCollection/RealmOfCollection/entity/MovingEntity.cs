@@ -21,9 +21,10 @@ namespace RealmOfCollection.entity
         public SteeringBehaviour SB { get; set; }
         public List<SteeringBehaviour> SteeringBehaviors { get; set; }
         public Vector2D OldPos { get; set; }
+        protected bool Player;
 
 
-        public MovingEntity(Vector2D pos, World w) : base(pos, w)
+        public MovingEntity(Vector2D pos, World w, bool player) : base(pos, w)
         {
             Mass = 30;
             MaxSpeed = 10;
@@ -35,18 +36,34 @@ namespace RealmOfCollection.entity
             Side = temp.Perp();
             SteeringBehaviors = new List<SteeringBehaviour>();
             SteeringForce = new Vector2D();
+            this.Player = player;
         }
 
         public override void Update(float timeElapsed)
         {
-            SteeringForce.Zero();
+            SteeringForce = SteeringForce.Zero();
             if (Vector2D.InsideRegion(this.Pos, 50, 50, 150, 150))
             {
                 OldPos = Pos;
             }
-            foreach (SteeringBehaviour SB in SteeringBehaviors)
+
+
+            try
             {
-                SteeringForce += SB.Calculate();
+                foreach (SteeringBehaviour SB in SteeringBehaviors)
+                {
+                    SteeringForce += SB.Calculate();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+
+            if (SteeringForce.isZero())
+            {
+                Velocity = Velocity.Zero();
             }
 
             SteeringForce = Vector2D.truncate(SteeringForce, Max_Force);

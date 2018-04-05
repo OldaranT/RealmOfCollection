@@ -14,10 +14,14 @@ namespace RealmOfCollection.Graphs
         public double dist;
         public Vertex prev;
         public int scratch;
+        public Vector2D position;
+        public bool drawIt;
 
-        public Vertex(string name)
+        public Vertex(string name, Vector2D position, bool drawIt)
         {
             this.name = name;
+            this.position = position;
+            this.drawIt = drawIt;
             adj = new List<Edge>();
             Reset();
         }

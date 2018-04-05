@@ -11,11 +11,13 @@ namespace RealmOfCollection.Graphs
     {
         public Vertex dest;
         public double cost;
+        public bool drawIt;
 
-        public Edge(Vertex destination, double cost)
+        public Edge(Vertex destination, double cost, bool drawIt)
         {
             dest = destination;
             this.cost = cost;
+            this.drawIt = drawIt;
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿using RealmOfCollection.Graphs;
+﻿using RealmOfCollection.entity;
+using RealmOfCollection.Graphs;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,11 +16,15 @@ namespace RealmOfCollection.Graphs
         //They use Map and HashMap in Java
         private Dictionary<string, Vertex> vertexMap = new Dictionary<string, Vertex>();
 
-        public void AddEdge(string source, string dest, double cost)
+        public void AddEdge(string source, string dest, double cost,
+            Vector2D sourcePos, Vector2D destPos, bool sourceDrawIt, bool destDrawIt)
         {
-            Vertex v = GetVertex(source);
-            Vertex w = GetVertex(dest);
-            v.adj.Add(new Edge(w, cost));
+            bool drawIt = false;
+            Vertex v = GetVertex(source,sourcePos, sourceDrawIt);
+            Vertex w = GetVertex(dest, destPos, destDrawIt);
+            if (destDrawIt && sourceDrawIt)
+                drawIt = true;
+            v.adj.Add(new Edge(w, cost, drawIt));
         }
 
         public void PrintPath(string destName)
@@ -38,14 +44,14 @@ namespace RealmOfCollection.Graphs
             }
         }
 
-        public Vertex GetVertex(string name)
+        public Vertex GetVertex(string name, Vector2D position, bool drawIt)
         {
             Vertex v;
             vertexMap.TryGetValue(name, out v);
 
             if (v == null)
             {
-                v = new Vertex(name);
+                v = new Vertex(name,position, drawIt);
                 vertexMap.Add(name, v);
             }
 
@@ -205,6 +211,29 @@ namespace RealmOfCollection.Graphs
                 Console.Write(" to ");
             }
             Console.WriteLine(dest.name);
+        }
+
+        public void DrawGraph(Graphics g)
+        {
+            foreach(KeyValuePair<string,Vertex> entry in vertexMap)
+            {
+                double x = entry.Value.position.X;
+                double y = entry.Value.position.Y;
+                List<Edge> edges = entry.Value.adj;
+                if (!entry.Value.drawIt)
+                    continue;
+
+                g.FillEllipse(new SolidBrush(Color.Green), new Rectangle((int)x -5, (int)y -5, 10, 10));
+
+                foreach (Edge e in edges)
+                {
+                    if (!e.drawIt)
+                        continue;
+                    double targetX = e.dest.position.X;
+                    double targetY = e.dest.position.Y;
+                    g.DrawLine(new Pen(Color.Black, 1), (float)x, (float)y, (float)targetX, (float)targetY);
+                }
+            }
         }
     }
 }

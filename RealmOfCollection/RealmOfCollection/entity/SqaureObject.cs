@@ -25,7 +25,7 @@ namespace RealmOfCollection.entity
 
         public override void Render(Graphics g)
         {
-            g.FillEllipse(new SolidBrush(Color.Pink), new Rectangle((int)Pos.X, (int)Pos.Y, (int)size.X, (int)size.Y));
+            g.FillEllipse(new SolidBrush(Color.Silver), new Rectangle((int)Pos.X, (int)Pos.Y, (int)size.X, (int)size.Y));
             base.Render(g);
         }
 

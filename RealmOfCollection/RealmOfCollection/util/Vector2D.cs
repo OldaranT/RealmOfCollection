@@ -19,18 +19,16 @@ namespace RealmOfCollection
 
         public Vector2D(double x, double y)
         {
-            if (double.IsNaN(x))
-            {
-                Console.WriteLine();
-            }
             X = x;
             Y = y;
         }
 
-        public void Zero()
+        public Vector2D Zero()
         {
             this.X = 0;
             this.Y = 0;
+
+            return this;
         }
 
         public bool isZero()
@@ -106,6 +104,18 @@ namespace RealmOfCollection
         public static Vector2D operator +(Vector2D v1, Vector2D v2)
         {
             Vector2D result = new Vector2D(v1.X + v2.X, v1.Y + v2.Y);
+            return result;
+        }
+
+        public static Vector2D operator +(Vector2D v1, float v2)
+        {
+            Vector2D result = new Vector2D(v1.X + v2, v1.Y + v2);
+            return result;
+        }
+
+        public static Vector2D operator +(float v2, Vector2D v1)
+        {
+            Vector2D result = new Vector2D(v1.X + v2, v1.Y + v2);
             return result;
         }
 

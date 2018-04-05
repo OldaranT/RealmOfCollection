@@ -14,12 +14,21 @@ namespace RealmOfCollection
     {
         World world;
         System.Timers.Timer timer;
+        bool up;
+        bool down;
+        bool left;
+        bool right;
 
         public const float timeDelta = 0.8f;
 
         public Form1()
         {
             InitializeComponent();
+
+            up = false;
+            down = false;
+            left = false;
+            right = false;
 
             world = new World(w: dbPanel1.Width, h: dbPanel1.Height);
             world.Target.MousePosition = new Vector2D(0, 0);
@@ -34,16 +43,33 @@ namespace RealmOfCollection
         {
             world.Update(timeDelta);
             dbPanel1.Invalidate();
-        }
 
-        Rectangle Border = new Rectangle(50, 50, 100, 100);
+            if (up)
+            {
+                world.Target.Pos.Y -= 1;
+            }
+
+            if (down)
+            {
+                world.Target.Pos.Y += 1;
+            }
+
+            if (left)
+            {
+                world.Target.Pos.X -= 1;
+            }
+
+            if (right)
+            {
+                world.Target.Pos.X += 1;
+            }
+        }
         
         Pen p = new Pen(new SolidBrush(Color.Black) , 5);
         Pen p2 = new Pen(new SolidBrush(Color.LimeGreen), 1);
 
         private void dbPanel1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawRectangle(p, Border);
             world.Render(e.Graphics);
         }
 
@@ -55,6 +81,61 @@ namespace RealmOfCollection
         private void dbPanel1_MouseMove(object sender, MouseEventArgs e)
         {
             world.Target.MousePosition = new Vector2D(e.X, e.Y);
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyData == Keys.G)
+            {
+                if (world.showGraph)
+                {
+                    world.showGraph = false;
+                }
+                else
+                {
+                    world.showGraph = true;
+                }
+            }
+
+            if(e.KeyData == Keys.W)
+            {
+                up = true;
+            }
+
+            if (e.KeyData == Keys.S)
+            {
+                down = true;
+            }
+
+            if (e.KeyData == Keys.A)
+            {
+                left = true;
+            }
+
+            if (e.KeyData == Keys.D)
+            {
+                right = true;
+            }
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyData == Keys.W)
+            {
+                up = false;
+            }
+            if (e.KeyData == Keys.S)
+            {
+                down = false;
+            }
+            if (e.KeyData == Keys.A)
+            {
+                left = false;
+            }
+            if (e.KeyData == Keys.D)
+            {
+                right = false;
+            }
         }
     }
 }
