@@ -16,7 +16,8 @@ namespace RealmOfCollection.Graphs
         //They use Map and HashMap in Java
         private Dictionary<string, Vertex> vertexMap = new Dictionary<string, Vertex>();
 
-        public void AddEdge(string source, string dest, double cost, Vector2D sourcePos, Vector2D destPos, bool sourceDrawIt, bool destDrawIt)
+        public void AddEdge(string source, string dest, double cost,
+            Vector2D sourcePos, Vector2D destPos, bool sourceDrawIt, bool destDrawIt)
         {
             bool drawIt = false;
             Vertex v = GetVertex(source,sourcePos, sourceDrawIt);

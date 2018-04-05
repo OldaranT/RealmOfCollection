@@ -93,9 +93,9 @@ namespace RealmOfCollection
                 //movingEntity.SteeringBehaviors.Add(new EvadeBehaviour(movingEntity));
                 movingEntity.Update(timeElapsed);
             }
-            Target.SteeringBehaviors = new List<SteeringBehaviour>();
-            Target.SteeringBehaviors.Add(new WanderBehaviour(Target, 2500, 50, 0.001, random));
-            Target.Update(timeElapsed);
+            //Target.SteeringBehaviors = new List<SteeringBehaviour>();
+            //Target.SteeringBehaviors.Add(new WanderBehaviour(Target, 2500, 50, 0.001, random));
+            //Target.Update(timeElapsed);
 
         }
 
@@ -118,7 +118,7 @@ namespace RealmOfCollection
             {
                 for(int j = 0; j < Collums; j++)
                 {
-                    if (j + 1 != Collums)
+                    if (j + 1 <= Collums)
                     {
                         
                         string s = "P" + j + ":" + i;
@@ -130,7 +130,7 @@ namespace RealmOfCollection
                         graph.AddEdge(s, d, cost, PosS, PosD, drawS, drawD);
                         graph.AddEdge(d, s, cost, PosD, PosS, drawD, drawS);
                     }
-                    if (i + 1 != Rows)
+                    if (i + 1 <= Rows)
                     {
                         string s = "P" + j + ":" + i;
                         string d = "P" + j + ":" + (i + 1);
