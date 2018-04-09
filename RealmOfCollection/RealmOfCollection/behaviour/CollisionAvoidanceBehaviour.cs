@@ -54,6 +54,7 @@ namespace RealmOfCollection.behaviour
 
         public override Vector2D Calculate()
         {
+            pos = ME.Pos;
             ahead = ME.Pos + Vector2D.Vec2DNormalize(ME.Velocity) * MAX_SEE_AHEAD;
             ahead2 = ME.Pos + Vector2D.Vec2DNormalize(ME.Velocity) * MAX_SEE_AHEAD * 0.5;
 

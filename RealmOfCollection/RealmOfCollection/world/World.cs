@@ -22,9 +22,11 @@ namespace RealmOfCollection
         public Random random { get; set; }
         public Graph graph { get; set; }
         public bool showGraph { get; set; }
+        private List<MovingEntity> movingEntities { get; set; }
 
         public World(int w, int h)
         {
+            movingEntities = new List<MovingEntity>();
             showGraph = false;
             Width = w;
             Height = h;
@@ -47,6 +49,9 @@ namespace RealmOfCollection
             entities.Add(v);
             entities.Add(v2);
             entities.Add(v3);
+            movingEntities.Add(v);
+            movingEntities.Add(v2);
+            movingEntities.Add(v3);
 
             Target = new Vehicle(new Vector2D(100, 60), this, true);
             Target.VColor = Color.DarkRed;
@@ -92,6 +97,7 @@ namespace RealmOfCollection
                 movingEntity.SteeringBehaviors.Add(new HideBehaviour(movingEntity, Target, Objects));
                 //movingEntity.SteeringBehaviors.Add(new EvadeBehaviour(movingEntity));
                 movingEntity.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(movingEntity, 20, Objects, 50));
+                movingEntity.SteeringBehaviors.Add(new EntityAvoidanceBehaviour(movingEntity, movingEntities));
                 movingEntity.Update(timeElapsed);
             }
             Target.SteeringBehaviors = new List<SteeringBehaviour>();
