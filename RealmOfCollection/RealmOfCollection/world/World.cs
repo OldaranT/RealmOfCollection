@@ -12,6 +12,8 @@ namespace RealmOfCollection
 {
     public class World
     {
+        private readonly int edgeSize = 20;
+
         private List<BaseGameEntity> entities = new List<BaseGameEntity>();
         private List<StaticEntity> Objects = new List<StaticEntity>();
         public Vehicle Target { get; set; }
@@ -31,10 +33,9 @@ namespace RealmOfCollection
             Width = w;
             Height = h;
             random = new Random();
-            graph = new Graph();
             populate();
             CreateObjects();
-            GenerateGraph();
+            graph = new Graph(this, edgeSize);
 
         }
 
@@ -113,49 +114,9 @@ namespace RealmOfCollection
             // 
         }
 
-        public void GenerateGraph()
-        {
-            int edgeSize = 10;
-            int cost = 1;
-            int Rows = Height / edgeSize;
-            int Collums = Width / edgeSize;
-            Console.WriteLine("Height: " + Height + " Width: " + Width);
 
-            for (int i = 0; i < Rows; i++)
-            {
-                for(int j = 0; j < Collums; j++)
-                {
-                    if (j + 1 <= Collums)
-                    {
-                        
-                        string s = "P" + j + ":" + i;
-                        string d = "P" + (j + 1) + ":" + i;
-                        Vector2D PosS = new Vector2D(j * edgeSize, i * edgeSize);
-                        Vector2D PosD = new Vector2D((j + 1) * edgeSize, i * edgeSize);
-                        bool drawS = CheckTodraw(PosS);
-                        bool drawD = CheckTodraw(PosD);
-                        graph.AddEdge(s, d, cost, PosS, PosD, drawS, drawD);
-                        graph.AddEdge(d, s, cost, PosD, PosS, drawD, drawS);
-                    }
-                    if (i + 1 <= Rows)
-                    {
-                        string s = "P" + j + ":" + i;
-                        string d = "P" + j + ":" + (i + 1);
-                        Vector2D PosS = new Vector2D(j * edgeSize, i * edgeSize);
-                        Vector2D PosD = new Vector2D(j * edgeSize, (i + 1) * edgeSize);
-                        bool drawS = CheckTodraw(PosS);
-                        bool drawD = CheckTodraw(PosD);
-                        graph.AddEdge(s, d, cost, PosS, PosD, drawS, drawD);
-                        graph.AddEdge(d, s, cost, PosD, PosS, drawD, drawS);
-                    }
-                }
-            }
 
-            //Console.WriteLine(graph.ToString());
-            
-        }
-
-        public bool CheckTodraw(Vector2D pos)
+        public bool CheckCollisionWithObject(Vector2D pos)
         {
 
             bool DrawIt = true;

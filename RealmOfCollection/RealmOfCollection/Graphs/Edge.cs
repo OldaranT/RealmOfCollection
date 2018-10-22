@@ -9,15 +9,16 @@ namespace RealmOfCollection.Graphs
 {
     public class Edge
     {
-        public Vertex dest;
+        public Vertex destination;
         public double cost;
-        public bool drawIt;
 
-        public Edge(Vertex destination, double cost, bool drawIt)
+        public Color color { get; set; }
+        public bool drawIt { get; set; }
+
+        public Edge(Vertex destination, double cost)
         {
-            dest = destination;
+            this.destination = destination;
             this.cost = cost;
-            this.drawIt = drawIt;
         }
     }
 }

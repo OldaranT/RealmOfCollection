@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,13 +16,13 @@ namespace RealmOfCollection.Graphs
         public Vertex prev;
         public int scratch;
         public Vector2D position;
-        public bool drawIt;
+        public bool drawIt { get; set; }
+        public Color color { get; set; }
 
-        public Vertex(string name, Vector2D position, bool drawIt)
+        public Vertex(string name, Vector2D position)
         {
             this.name = name;
             this.position = position;
-            this.drawIt = drawIt;
             adj = new List<Edge>();
             Reset();
         }
