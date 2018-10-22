@@ -14,7 +14,7 @@ namespace RealmOfCollection.Graphs
         public static readonly double INFINITY = double.MaxValue;
 
         //They use Map and HashMap in Java
-        private Dictionary<string, Vertex> vertexMap = new Dictionary<string, Vertex>();
+        public Dictionary<string, Vertex> vertexMap = new Dictionary<string, Vertex>();
 
         public void AddEdge(string source, string dest, double cost,
             Vector2D sourcePos, Vector2D destPos, bool sourceDrawIt, bool destDrawIt)
