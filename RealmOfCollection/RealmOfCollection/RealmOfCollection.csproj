@@ -54,6 +54,7 @@
     <Compile Include="behaviour\EvadeBehaviour.cs" />
     <Compile Include="behaviour\FleeBehaviour.cs" />
     <Compile Include="behaviour\HideBehaviour.cs" />
+    <Compile Include="behaviour\PathFollowBehaviour.cs" />
     <Compile Include="behaviour\SeekBehaviour.cs" />
     <Compile Include="behaviour\SteeringBehaviour.cs" />
     <Compile Include="behaviour\WanderBehaviour.cs" />

@@ -12,8 +12,10 @@ namespace RealmOfCollection.behaviour
     {
         public Vector2D TargetPos;
         public Deceleration deceleration;
-        public ArriveBehaviour(MovingEntity me) : base(me)
+        public ArriveBehaviour(MovingEntity me, Vector2D targetPos) : base(me)
         {
+            deceleration = Deceleration.normal;
+            TargetPos = targetPos;
         }
         public ArriveBehaviour(MovingEntity me, Vector2D targetPos, Deceleration deceleration) : base(me)
         {
@@ -22,7 +24,7 @@ namespace RealmOfCollection.behaviour
 
         }
 
-        public Vector2D Arrive(Vector2D TargetPos, Deceleration deceleration)
+        public Vector2D Arrive()
         {
             Vector2D ToTarget = TargetPos - ME.Pos;
             float slowingradius = 100f;
@@ -71,7 +73,7 @@ namespace RealmOfCollection.behaviour
 
         public override Vector2D Calculate()
         {
-            return Arrive(TargetPos, deceleration);
+            return Arrive();
         }
     }
 }

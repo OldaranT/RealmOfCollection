@@ -178,12 +178,12 @@ namespace RealmOfCollection
             return Math.Sqrt(ySeparation * ySeparation + xSeparation * xSeparation);
         }
 
-        public double DistanceSqrt(Vector2D toCheck)
+        public float DistanceSqrt(Vector2D toCheck)
         {
             double xSeparation = toCheck.X - X;
             double ySeparation = toCheck.Y - Y;
 
-            return ySeparation * ySeparation + xSeparation * xSeparation;
+            return (float)(ySeparation * ySeparation + xSeparation * xSeparation);
         }
 
         public static double Vec2DDistanceSq(Vector2D v1, Vector2D v2)

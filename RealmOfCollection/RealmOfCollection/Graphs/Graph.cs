@@ -18,7 +18,7 @@ namespace RealmOfCollection.Graphs
         private readonly Color vertexColor = Color.DarkGray;
 
         //They use Map and HashMap in Java
-        private Dictionary<string, Vertex> vertexMap;
+        public Dictionary<string, Vertex> vertexMap;
         private World gameWorld;
 
         public Graph(World gameWorld, int distanceVertex)
