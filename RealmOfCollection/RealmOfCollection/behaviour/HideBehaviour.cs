@@ -11,6 +11,7 @@ namespace RealmOfCollection.behaviour
     {
         public Vehicle hunter;
         public List<StaticEntity> objects;
+        private int hideDistance = 250;
         public HideBehaviour(MovingEntity me) : base(me)
         {
         }
@@ -39,7 +40,7 @@ namespace RealmOfCollection.behaviour
                     
                 }
             }
-            if((hunter.Pos - ME.Pos).Length() > 500)
+            if((hunter.Pos - ME.Pos).Length() > hideDistance)
             {
                 //Console.WriteLine("I Show you the wey");
                 //WanderBehaviour WB = new WanderBehaviour(ME, 2500, 50, 0.001, ME.MyWorld.random);

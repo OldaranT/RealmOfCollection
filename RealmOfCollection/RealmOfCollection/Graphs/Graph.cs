@@ -223,7 +223,7 @@ namespace RealmOfCollection.Graphs
                 if (!entry.Value.drawIt)
                     continue;
 
-                g.FillEllipse(new SolidBrush(Color.FromArgb(50, 0, 204, 0)), new Rectangle((int)x -5, (int)y -5, 10, 10));
+                g.FillEllipse(new SolidBrush(Color.FromArgb(50, 0, 204, 0)), new Rectangle((int)x -3, (int)y -3, 6, 6));
 
                 foreach (Edge e in edges)
                 {

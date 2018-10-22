@@ -38,15 +38,17 @@ namespace RealmOfCollection
 
         private void populate()
         {
-            Vehicle v = new Vehicle(new Vector2D(75,75), this, false);
-            v.VColor = Color.Blue;
-            Vehicle v2 = new Vehicle(new Vector2D(250, 100), this, false);
-            v2.VColor = Color.Green;
-            Vehicle v3 = new Vehicle(new Vector2D(100, 100), this, false);
-            v3.VColor = Color.Pink;
-            entities.Add(v);
-            entities.Add(v2);
-            entities.Add(v3);
+            for(int i = 0; i < 25; i++)
+            {
+                int X = random.Next(0, Width - 100);
+                int Y = random.Next(0, Height - 100);
+                int R = random.Next(0, 255);
+                int G = random.Next(0, 255);
+                int B = random.Next(0, 255);
+                Vehicle v = new Vehicle(new Vector2D(X, Y), this, false);
+                v.VColor = Color.FromArgb(255,R,G,B);
+                entities.Add(v);
+            }
 
             Target = new Vehicle(new Vector2D(100, 60), this, true);
             Target.VColor = Color.DarkRed;
@@ -57,11 +59,11 @@ namespace RealmOfCollection
         private void CreateObjects()
         {
             //entities.Add(new SqaureObject(new Vector2D(300, 300), this, new Vector2D(50, 50)));
-            for(int i = 0; i <  70; i++)
+            for(int i = 0; i <  100; i++)
             {
-                int rand1 = random.Next(0, Width - 100);
-                int rand2 = random.Next(0, Height - 100);
-                Objects.Add(new SqaureObject(new Vector2D(rand1, rand2), this, new Vector2D(50, 50)));
+                int X = random.Next(0, Width - 100);
+                int Y = random.Next(0, Height - 100);
+                Objects.Add(new SqaureObject(new Vector2D(X, Y), this, new Vector2D(50, 50)));
             }
         }
 
@@ -110,7 +112,7 @@ namespace RealmOfCollection
 
         public void GenerateGraph()
         {
-            int edgeSize = 20;
+            int edgeSize = 10;
             int cost = 1;
             int Rows = Height / edgeSize;
             int Collums = Width / edgeSize;
