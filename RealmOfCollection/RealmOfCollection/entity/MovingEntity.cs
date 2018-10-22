@@ -22,6 +22,7 @@ namespace RealmOfCollection.entity
         public List<SteeringBehaviour> SteeringBehaviors { get; set; }
         public Vector2D OldPos { get; set; }
         protected bool Player;
+        public float radius { get; set; }
 
 
         public MovingEntity(Vector2D pos, World w, bool player) : base(pos, w)
@@ -37,6 +38,7 @@ namespace RealmOfCollection.entity
             SteeringBehaviors = new List<SteeringBehaviour>();
             SteeringForce = new Vector2D();
             this.Player = player;
+            radius = 15;
         }
 
         public override void Update(float timeElapsed)

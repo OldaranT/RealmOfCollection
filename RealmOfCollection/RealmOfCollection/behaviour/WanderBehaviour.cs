@@ -9,11 +9,11 @@ namespace RealmOfCollection.behaviour
 {
     class WanderBehaviour : SteeringBehaviour
     {
-        Vector2D wanderTarget;
-        double wanderRadius { get; set; }
-        double wanderDistance { get; set; }
-        double wanderJitter { get; set; }
-        Vector2D TargetLocation;
+        //Vector2D wanderTarget;
+        //double wanderRadius { get; set; }
+        //double wanderDistance { get; set; }
+        //double wanderJitter { get; set; }
+        //Vector2D TargetLocation;
         float ANGLE_CHANGE = (float)Math.PI;
         float CIRCLE_DISTANCE = 2;
         float CIRCLE_RADIUS = 10;
@@ -21,31 +21,31 @@ namespace RealmOfCollection.behaviour
 
         public WanderBehaviour(MovingEntity me, double radius, double distance, double jitter, Random r) : base(me, r)
         {
-            wanderRadius = radius;
-            wanderDistance = distance;
-            wanderJitter = jitter;
-            float theta = randomFloat();
-            wanderTarget = new Vector2D(wanderRadius * Math.Cos(theta), wanderRadius * Math.Sin(theta));
+            //wanderRadius = radius;
+            //wanderDistance = distance;
+            //wanderJitter = jitter;
+            //float theta = randomFloat();
+            //wanderTarget = new Vector2D(wanderRadius * Math.Cos(theta), wanderRadius * Math.Sin(theta));
             wanderAngle = ((float)random.NextDouble() * ANGLE_CHANGE) - (ANGLE_CHANGE * 0.5f);
         }
 
-        public double randomDouble()
-        {
-            double next = random.NextDouble() - random.NextDouble();
-            return next;
-        }
+        //public double randomDouble()
+        //{
+        //    double next = random.NextDouble() - random.NextDouble();
+        //    return next;
+        //}
 
-        public float randomFloat()
-        {
-            return NextFloat(random);
-        }
+        //public float randomFloat()
+        //{
+        //    return NextFloat(random);
+        //}
 
-        public float NextFloat(Random random)
-        {
-            double mantissa = (random.NextDouble() * 2.0) - 1.0;
-            double exponent = Math.Pow(2.0, random.Next(-126, 128));
-            return (float)(mantissa * exponent);
-        }
+        //public float NextFloat(Random random)
+        //{
+        //    double mantissa = (random.NextDouble() * 2.0) - 1.0;
+        //    double exponent = Math.Pow(2.0, random.Next(-126, 128));
+        //    return (float)(mantissa * exponent);
+        //}
 
         
 
