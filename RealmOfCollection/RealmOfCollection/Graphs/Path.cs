@@ -43,7 +43,7 @@ namespace RealmOfCollection.Graphs
             return bestPath;
         }
 
-        public Vertex getNearestVertex(Vector2D pos)
+        public string getNearestVertex(Vector2D pos)
         {
             // "pos: " + vecX + "-" + vecY;
 
@@ -67,15 +67,15 @@ namespace RealmOfCollection.Graphs
 
                     if (vertexMap.ContainsKey(posMin))
                     {
-                        return vertexMap[posMin];
+                        return posMin;
                     }
                     if (vertexMap.ContainsKey(posMax))
                     {
-                        return vertexMap[posMax];
+                        return posMax;
                     }
                 }
             }
-            return null;
+            return "notfound";
         }
 
         public void Draw(Graphics g)
@@ -94,7 +94,7 @@ namespace RealmOfCollection.Graphs
                 pos = new PointF((float)currVertex.position.X, (float)currVertex.position.Y);
                 foreach(Edge edge in currVertex.adj)
                 {
-                    dest = edge.dest;
+                    dest = edge.destination;
                     pos = new PointF(pos.X, pos.Y);
                     destPos = new PointF((float)dest.position.X, (float)dest.position.Y);
                     g.DrawLine(new Pen(Color.Cyan, 1), pos, destPos);

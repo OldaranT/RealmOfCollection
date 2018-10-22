@@ -313,6 +313,15 @@ namespace RealmOfCollection
             return !((p.X < left) || (p.X > right) || (p.Y < top) || (p.Y > bottom));
         }
 
+        public bool Equals(Vector2D other)
+        {
+            if(other == null)
+            {
+                return false;
+            }
+            return X == other.X && Y == other.Y;
+        }
+
     }
 
 

@@ -1,6 +1,7 @@
 ﻿using RealmOfCollection.behaviour;
 using RealmOfCollection.entity;
 using RealmOfCollection.Graphs;
+using RealmOfCollection.util;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -26,6 +27,9 @@ namespace RealmOfCollection
         public bool showGraph { get; set; }
         private List<MovingEntity> movingEntities { get; set; }
 
+        public List<ExploreTarget> exploreTargets;
+        public ExploreTarget beginning;
+
         public World(int w, int h)
         {
             movingEntities = new List<MovingEntity>();
@@ -36,7 +40,8 @@ namespace RealmOfCollection
             populate();
             CreateObjects();
             graph = new Graph(this, edgeSize);
-
+            exploreTargets = new List<ExploreTarget>();
+            createExploreTargets();
         }
 
         private void populate()
@@ -54,6 +59,9 @@ namespace RealmOfCollection
             }
 
             Target = new Vehicle(new Vector2D(100, 60), this, true);
+
+            beginning = new ExploreTarget(100, 60);
+
             Target.VColor = Color.DarkRed;
             Target.Scale = 15;
             Target.Pos = new Vector2D(200, 100);
@@ -129,6 +137,25 @@ namespace RealmOfCollection
                 }
             }
             return DrawIt;
+        }
+
+        private void createExploreTargets()
+        {
+            List<string> keys = graph.keys;
+            int maxIndex = keys.Count - 1;
+            for(int i = 0; i < 5; i++)
+            {
+                string key = keys[random.Next(0, maxIndex)];
+                Vector2D location = graph.vertexMap[key].position;
+                ExploreTarget target = new ExploreTarget(location.X, location.Y);
+                if (exploreTargets.Contains(target))
+                {
+                    i--;
+                    continue;
+                }
+                exploreTargets.Add(target);
+            }
+            
         }
 
         public void Render(Graphics g)

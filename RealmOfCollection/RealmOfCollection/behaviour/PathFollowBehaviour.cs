@@ -59,7 +59,7 @@ namespace RealmOfCollection.behaviour
             {
                 if(currentTarget.adj.Count > 0)
                 {
-                    currentTarget = currentTarget.adj[0].dest;
+                    currentTarget = currentTarget.adj[0].destination;
                 } else if (!arrived)
                 {
                     arrived = true;

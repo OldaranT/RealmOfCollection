@@ -20,6 +20,7 @@ namespace RealmOfCollection.Graphs
         //They use Map and HashMap in Java
         public Dictionary<string, Vertex> vertexMap;
         private World gameWorld;
+        public List<string> keys = new List<string>();
 
         public Graph(World gameWorld, int distanceVertex)
         {
@@ -81,7 +82,10 @@ namespace RealmOfCollection.Graphs
                     source = positionToString(vecX, vecY);
                     Vector2D posistion = new Vector2D(vecX, vecY);
                     if (gameWorld.CheckCollisionWithObject(posistion))
+                    {
                         AddVertex(source, posistion);
+                        keys.Add(source);
+                    }
                 }
             }
             //Create all edges
