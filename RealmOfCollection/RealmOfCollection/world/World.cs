@@ -17,7 +17,7 @@ namespace RealmOfCollection
         public static readonly int distanceVertex = 10;
 
         private List<BaseGameEntity> entities = new List<BaseGameEntity>();
-        private List<StaticEntity> Objects = new List<StaticEntity>();
+        public List<StaticEntity> Objects = new List<StaticEntity>();
         private List<MovingEntity> movingEntities { get; set; }
         public Player player { get; set; }
         public Hunter hunter { get; set; }

@@ -22,7 +22,8 @@ namespace RealmOfCollection.entity.MovingEntitys
         {
             stamina = 100;
             Velocity = new Vector2D(2, 2);
-            Scale = 15;
+            Scale = 10;
+            radius = 10;
             this.w = w;
             VColor = Color.Black;
             radius = Scale;

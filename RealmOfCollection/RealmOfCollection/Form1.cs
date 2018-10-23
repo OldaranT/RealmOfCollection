@@ -84,6 +84,7 @@ namespace RealmOfCollection
             {
                 Vertex path = world.player.path.FindBestPath(source, destination);
                 world.player.SteeringBehaviors = new List<SteeringBehaviour>();
+                world.player.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(world.player, 20, world.Objects, 25));
                 world.player.SteeringBehaviors.Add(new PathFollowBehaviour(world.player));
             }
 
