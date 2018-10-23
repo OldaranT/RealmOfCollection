@@ -75,6 +75,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Goals\AtomicGoal\Rest.cs" />
+    <Compile Include="Goals\Goal.cs" />
     <Compile Include="util\Graphs\Edge.cs" />
     <Compile Include="util\Graphs\Graph.cs" />
     <Compile Include="util\Graphs\Path.cs" />
@@ -111,6 +113,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Goals\CompositeGoal\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

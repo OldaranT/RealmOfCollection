@@ -127,9 +127,14 @@ namespace RealmOfCollection
                 right = true;
             }
 
-            if (e.KeyData == Keys.W || e.KeyData == Keys.S || e.KeyData == Keys.A || e.KeyData == Keys.D)
+            switch (e.KeyData)
             {
-                world.player.path.bestPath = null;
+                case Keys.W:
+                case Keys.A:
+                case Keys.S:
+                case Keys.D:
+                    world.player.path.bestPath = null;
+                    break;
             }
         }
 

@@ -196,15 +196,16 @@ namespace RealmOfCollection
 
         public Vector2D Truncate(double max)
         {
-            double i;
-            i = max / this.Length();
-            i = i < 1.0 ? i : 1.0;
-            this.ScaleBy((float)i);
-            //if (Length() > max)
-            //{
-            //    Normalize();
-            //    Multiply(max);
-            //}
+            
+            //double i;
+            //i = max / this.Length();
+            //i = i < 1.0 ? i : 1.0;
+            //this.ScaleBy((float)i);
+            if (Length() > max)
+            {
+                Normalize();
+                Multiply(max);
+            }
             return this;
         }
 
@@ -288,17 +289,17 @@ namespace RealmOfCollection
         public static Vector2D truncate(Vector2D v, float Max)
         {
             Vector2D truncated = v;
-            float i;
-            i = Max / (float)truncated.Length();
-            i = i < 1.0 ? i : 1.0f;
-            truncated = truncated.ScaleBy(i);
-            //if (v.Length() > Max)
-            //{
+            //float i;
+            //i = Max / (float)truncated.Length();
+            //i = i < 1.0 ? i : 1.0f;
+            //truncated = truncated.ScaleBy(i);
+            if (v.Length() > Max)
+            {
 
-            //    truncated.Normalize();
+                truncated.Normalize();
 
-            //    truncated *= Max;
-            //}
+                truncated *= Max;
+            }
             return truncated;
         }
 
