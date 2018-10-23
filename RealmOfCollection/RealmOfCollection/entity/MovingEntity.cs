@@ -34,7 +34,7 @@ namespace RealmOfCollection.entity
             Velocity = new Vector2D();
             Heading = new Vector2D();
             Vector2D temp = Heading;
-            Side = temp.Perp();
+            Side = temp.PerpRightHand();
             SteeringBehaviors = new List<SteeringBehaviour>();
             SteeringForce = new Vector2D();
             this.Player = player;
@@ -94,7 +94,7 @@ namespace RealmOfCollection.entity
             if (Velocity.LengthSquared() > 0.00000001)
             {
                 Heading = Velocity.Normalize();
-                Side = Heading.Perp();
+                Side = Heading.PerpRightHand();
             }
 
             //treat the screen as a toroid

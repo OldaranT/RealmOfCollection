@@ -57,7 +57,7 @@ namespace RealmOfCollection
             hunter = new Hunter(new Vector2D(50, 50), this, false);
             //hunter.SB = new PathFollowBehaviour(hunter);
             hunter.SB = new ExploreBahviour(hunter, 100f);
-            //hunter.setCollisionAvoidance(new CollisionAvoidanceBehaviour(hunter, 1, Objects, 5));
+            hunter.setCollisionAvoidance(new CollisionAvoidanceBehaviour(hunter, 1, Objects, 5));
             movingEntities.Add(hunter);
 
             for (int i = 0; i < 25; i++)

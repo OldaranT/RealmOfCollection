@@ -10,22 +10,23 @@ namespace RealmOfCollection.entity.MovingEntitys
 {
     public class Hunter : MovingEntity
     {
-        //public SteeringBehaviour collisionAvoidance;
+        public SteeringBehaviour collisionAvoidance;
         public Hunter(Vector2D pos, World world, bool player) : base(pos, world, player)
         {
             Scale = 10;
+            radius = 10;
             MaxSpeed = 2;
             Max_Force = 25f;
         }
-        //public void setCollisionAvoidance(SteeringBehaviour collisionAvoidance)
-        //{
-        //    this.collisionAvoidance = collisionAvoidance;
-        //}
+        public void setCollisionAvoidance(SteeringBehaviour collisionAvoidance)
+        {
+            this.collisionAvoidance = collisionAvoidance;
+        }
 
         public override void Update(float timeElapsed)
         {
             Vector2D force = SB.Calculate();
-            //force += collisionAvoidance.Calculate();
+            force += collisionAvoidance.Calculate();
             force = Vector2D.truncate(force, Max_Force);
             if (force != null)
             {
@@ -48,7 +49,7 @@ namespace RealmOfCollection.entity.MovingEntitys
             if (Velocity.LengthSquared() > 0.00000001)
             {
                 Heading = Velocity.Clone().Normalize();
-                Side = Heading.Perp();
+                Side = Heading.PerpRightHand();
             }
             
             //treat the screen as a toroid
@@ -66,6 +67,8 @@ namespace RealmOfCollection.entity.MovingEntitys
 
             Pen p = new Pen(Color.Red, 10);
             g.DrawEllipse(p, new Rectangle((int)leftCorner, (int)rightCorner, (int)size, (int)size));
+
+            g.FillEllipse(new SolidBrush(Color.Black), new Rectangle((int)Pos.X - 5, (int)Pos.Y - 5, 10, 10));
 
             SB?.Draw(g);
         }
