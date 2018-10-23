@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace RealmOfCollection.Graphs
 {
-    class Path //Needed for Dijkstra method in Graph
+    public class Path 
     {
         public Vertex bestPath;
         private World world;
         private Graph graph;
-        const int edgeSize = 8;
+        //const int edgeSize = 8;
 
 
         public Vertex dest;
@@ -37,9 +37,9 @@ namespace RealmOfCollection.Graphs
             return cost < otherCost ? -1 : cost > otherCost ? 1 : 0;
         }
 
-        public Vertex FindBestPath(string start, string end)
+        public Vertex FindBestPath(string source, string destination)
         {
-            //bestPath = graph.AStar(graph.vertexMap[start], graph.vertexMap[end]);
+            bestPath = graph.AStar(graph.vertexMap[source], graph.vertexMap[destination]);
             return bestPath;
         }
 
@@ -55,12 +55,12 @@ namespace RealmOfCollection.Graphs
 
             Dictionary<string, Vertex> vertexMap = graph.vertexMap;
 
-            for(int i = 0; i < edgeSize * 2; i++)
+            for(int i = 0; i < World.distanceVertex * 2; i++)
             {
                 string posXMin = prefix + (posX - i) + suffix;
                 string posXMax = prefix + (posX + i) + suffix;
 
-                for(int j = 0; j < edgeSize * 2; j++)
+                for(int j = 0; j < World.distanceVertex * 2; j++)
                 {
                     string posMin = posXMin + (posY - j);
                     string posMax = posXMax + (posY + j);
@@ -78,7 +78,7 @@ namespace RealmOfCollection.Graphs
             return "notfound";
         }
 
-        public void Draw(Graphics g)
+        public void Render(Graphics g)
         {
             PointF pos;
             PointF destPos;

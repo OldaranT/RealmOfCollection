@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RealmOfCollection.behaviour;
+using RealmOfCollection.Graphs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -75,7 +77,16 @@ namespace RealmOfCollection
 
         private void dbPanel1_MouseClick(object sender, MouseEventArgs e)
         {
-            world.Target.Pos = new Vector2D(e.X, e.Y);
+            string source = world.path.getNearestVertex(world.hunter.Pos);
+            string destination = world.path.getNearestVertex(new Vector2D(e.X, e.Y));
+
+            if (source != "notfound" && destination != "notfound")
+            {
+                Vertex path = world.path.FindBestPath(source, destination);
+                world.hunter.SB = new PathFollowBehaviour(world.hunter);
+            }
+
+           world.Target.Pos = new Vector2D(e.X, e.Y);
         }
 
         private void dbPanel1_MouseMove(object sender, MouseEventArgs e)

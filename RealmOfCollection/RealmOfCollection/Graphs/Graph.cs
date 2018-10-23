@@ -18,7 +18,7 @@ namespace RealmOfCollection.Graphs
         private readonly Color vertexColor = Color.DarkGray;
 
         //They use Map and HashMap in Java
-        public Dictionary<string, Vertex> vertexMap;
+        public Dictionary<string, Vertex> vertexMap { get; set; }
         private World gameWorld;
         public List<string> keys = new List<string>();
 
@@ -332,31 +332,109 @@ namespace RealmOfCollection.Graphs
             Console.WriteLine(dest.name);
         }
 
-        //public Vertex AStar(Vertex start, Vertex end)
-        //{
-        //    List<Vertex> closed = new List<Vertex>();
-        //    List<Vertex> open = new List<Vertex> { start };
+        public Vertex AStar(Vertex source, Vertex destination)
+        {
+            //Create list to check and save checked.
+            List<Vertex> checkedVertex = new List<Vertex>();
+            List<Vertex> uncheckedVertex = new List<Vertex> { source };
 
-        //    Dictionary<Vertex, Vertex> lastVertex = new Dictionary<Vertex, Vertex>();
+            //Keep last Vertex in memory.
+            Dictionary<Vertex, Vertex> lastVertex = new Dictionary<Vertex, Vertex>();
 
-        //    Dictionary<Vertex, double> adjcentsCost = new Dictionary<Vertex, double>();
+            //Cost from start to adjacent Vertex.
+            Dictionary<Vertex, double> adjacentCost = new Dictionary<Vertex, double>();
 
-        //    foreach(KeyValuePair<string, Vertex> vertex in vertexMap) 
-        //    {
-        //        adjcentsCost[vertex.Value] = INFINITY;
-        //    }
+            //Set al cost to max.
+            foreach (KeyValuePair<string, Vertex> vertex in vertexMap)
+            {
+                adjacentCost[vertex.Value] = INFINITY;
+            }
 
-        //    adjcentsCost[start] = 0;
+            //Source Vertex is always zero cost.
+            adjacentCost[source] = 0;
 
-        //    Dictionary<Vertex, Double> aStarCost = new Dictionary<Vertex, double>();
+            Dictionary<Vertex, Double> aStarCost = new Dictionary<Vertex, double>();
 
-        //    foreach(KeyValuePair<string, Vertex> vertex in vertexMap)
-        //    {
-        //        aStarCost[vertex.Value] = INFINITY;
-        //    }
+            foreach (KeyValuePair<string, Vertex> vertex in vertexMap)
+            {
+                aStarCost[vertex.Value] = INFINITY;
+            }
 
-        //    aStarCost[start] = 
-        //}
+            aStarCost[source] = CalculateCost(source, destination);
+
+            //Only check unchecked vertex's
+            while (uncheckedVertex.Count > 0)
+            {
+                Vertex current = uncheckedVertex[0];
+                for (int i = 0; i < uncheckedVertex.Count; i++)
+                {
+                    // Get the vertex with the lowest cost of the current list.
+                    if (aStarCost[current] > aStarCost[uncheckedVertex[i]])
+                    {
+                        current = uncheckedVertex[i];
+                    }
+                }
+
+                //Reached destination path can be build now.
+                if (current == destination)
+                {
+                    return buildPath(current, lastVertex);
+                }
+
+                uncheckedVertex.Remove(current);
+                checkedVertex.Add(current);
+
+                foreach (Edge adjacentEdge in current.adj)
+                {
+                    Vertex adjacentVertex = adjacentEdge.destination;
+                    if (checkedVertex.Contains(adjacentVertex))
+                    {
+                        // Neighbour already checked.
+                        continue;
+                    }
+
+                    // Explore a new node
+                    if (!uncheckedVertex.Contains(adjacentVertex))
+                    {
+                        uncheckedVertex.Add(adjacentVertex);
+                    }
+
+                    // Distance from source to adjacent vertex.
+                    int tempAdjacentCost = (int)(adjacentCost[current] + adjacentEdge.cost);
+                    if (tempAdjacentCost >= adjacentCost[adjacentVertex])
+                    {
+                        // This is not a better path
+                        continue;
+                    }
+
+                    // This path is currently the cheapest so we can add it to our lastVertex map to build it later
+                    lastVertex[adjacentVertex] = current;
+                    adjacentCost[adjacentVertex] = tempAdjacentCost;
+                    aStarCost[adjacentVertex] = adjacentCost[adjacentVertex] + CalculateCost(adjacentVertex, destination);
+                }
+            }
+
+            //AStar is not possible. 
+            return null;
+        }
+
+        private Vertex buildPath(Vertex current, Dictionary<Vertex, Vertex> lastVertex)
+        {
+            Vertex definedPath = new Vertex(current.name, current.position);
+
+            while(lastVertex.ContainsKey(current) && lastVertex[current] != null)
+            {
+                current = lastVertex[current];
+                Vertex newVertex = new Vertex(current.name, current.position);
+
+                //Add current cost to total cost.
+                double cost = CalculateCost(newVertex, definedPath);
+                newVertex.adj.Add(new Edge(definedPath, cost));
+                definedPath = newVertex;
+            }
+
+            return definedPath;
+        }
 
         public void DrawGraph(Graphics g)
         {
@@ -365,15 +443,11 @@ namespace RealmOfCollection.Graphs
                 double x = entry.Value.position.X;
                 double y = entry.Value.position.Y;
                 List<Edge> edges = entry.Value.adj;
-                //if (!entry.Value.drawIt)
-                //    continue;
 
                 g.FillEllipse(new SolidBrush(Color.FromArgb(50, 0, 204, 0)), new Rectangle((int)x -3, (int)y -3, 6, 6));
 
                 foreach (Edge e in edges)
                 {
-                    //if (!e.drawIt)
-                    //    continue;
                     double targetX = e.destination.position.X;
                     double targetY = e.destination.position.Y;
                     g.DrawLine(new Pen(Color.FromArgb(50, 0, 0, 0), 1), (float)x, (float)y, (float)targetX, (float)targetY);

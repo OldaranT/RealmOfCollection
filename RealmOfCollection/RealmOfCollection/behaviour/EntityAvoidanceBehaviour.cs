@@ -67,11 +67,11 @@ namespace RealmOfCollection.behaviour
                 avoidance.Y = pos.Y - mostThreatening.Pos.Y;
 
                 avoidance = avoidance.Normalize();
-                avoidance.scaleBy(MAX_AVOID_FORCE);
+                avoidance.ScaleBy(MAX_AVOID_FORCE);
             }
             else
             {
-                avoidance.scaleBy(0); // nullify the avoidance force
+                avoidance.ScaleBy(0); // nullify the avoidance force
             }
 
             return avoidance;

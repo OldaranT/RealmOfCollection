@@ -194,12 +194,12 @@ namespace RealmOfCollection
             return ySeparation * ySeparation + xSeparation * xSeparation;
         }
 
-        public Vector2D truncate(double max)
+        public Vector2D Truncate(double max)
         {
             double i;
             i = max / this.Length();
             i = i < 1.0 ? i : 1.0;
-            this.scaleBy((float)i);
+            this.ScaleBy((float)i);
             //if (Length() > max)
             //{
             //    Normalize();
@@ -219,7 +219,7 @@ namespace RealmOfCollection
         }
 
 
-        public Vector2D scaleBy(float scale)
+        public Vector2D ScaleBy(float scale)
         {
             this.X *= scale;
             this.Y *= scale;
@@ -291,7 +291,7 @@ namespace RealmOfCollection
             float i;
             i = Max / (float)truncated.Length();
             i = i < 1.0 ? i : 1.0f;
-            truncated = truncated.scaleBy(i);
+            truncated = truncated.ScaleBy(i);
             //if (v.Length() > Max)
             //{
 

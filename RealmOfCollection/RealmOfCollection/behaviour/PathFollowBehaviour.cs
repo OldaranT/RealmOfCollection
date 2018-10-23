@@ -1,4 +1,5 @@
 ﻿using RealmOfCollection.entity;
+using RealmOfCollection.entity.MovingEntitys;
 using RealmOfCollection.Graphs;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,13 @@ namespace RealmOfCollection.behaviour
         public PathFollowBehaviour(MovingEntity me) : base(me)
         {
             sb = new SeekBehaviour(me);
-            path = new Path(me.MyWorld);
+            if(me is Hunter)
+            {
+                path = ME.MyWorld.path;
+            } else
+            {
+                path = new Path(ME.MyWorld);
+            }
         }
 
         public PathFollowBehaviour(MovingEntity me, Path path) : base(me)
@@ -71,7 +78,7 @@ namespace RealmOfCollection.behaviour
 
         public override void Draw(Graphics g)
         {
-            path.Draw(g);
+            path.Render(g);
         }
     }
 }
