@@ -29,7 +29,7 @@ namespace RealmOfCollection.behaviour
             Vector2D ToTarget = TargetPos - movingEntity.Pos;
             float slowingradius = 100f;
 
-            double dist = ToTarget.Length();
+            double dist = TargetPos.Distance(movingEntity.Pos);
             float speed = movingEntity.MaxSpeed;
             //Console.WriteLine("dist= " + dist);
             //Console.WriteLine("toTarget normalized lenght before and after: " + dist + " after: " + Vector2D.Vec2DNormalize(ToTarget).Length());

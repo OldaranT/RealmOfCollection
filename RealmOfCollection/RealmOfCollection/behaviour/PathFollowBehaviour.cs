@@ -43,14 +43,15 @@ namespace RealmOfCollection.behaviour
                 return new Vector2D();
             }
 
-            if(followPath.adj.Count == 0 && sb is SeekBehaviour)
+            if(followPath.adj.Count == 0 && movingEntity.Pos.DistanceSqrt(followPath.position) <= 100f)
             {
-                sb = new ArriveBehaviour(movingEntity, followPath.position);
+                movingEntity.Velocity = new Vector2D();
+                return new Vector2D();
             }
 
             Vector2D force = sb.Calculate(followPath.position);
 
-            setNextTarget(ref followPath);
+            followPath = setNextTarget(followPath);
 
             path.bestPath = followPath;
 
@@ -58,7 +59,7 @@ namespace RealmOfCollection.behaviour
 
         }
 
-        public void setNextTarget(ref Vertex currentTarget)
+        public Vertex setNextTarget(Vertex currentTarget)
         {
             float distance = movingEntity.Pos.DistanceSqrt(currentTarget.position);
 
@@ -73,7 +74,7 @@ namespace RealmOfCollection.behaviour
                     sb = new SeekBehaviour(movingEntity);
                 }
             }
-
+            return currentTarget;
         }
 
         public override void Draw(Graphics g)
