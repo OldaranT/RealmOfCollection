@@ -18,7 +18,6 @@ namespace RealmOfCollection.entity
             Velocity = new Vector2D(2, 2);
             Scale = 15;
             this.w = w;
-            //this.Player = Player;
             VColor = Color.Black;
             radius = Scale;
         }

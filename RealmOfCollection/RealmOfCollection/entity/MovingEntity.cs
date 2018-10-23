@@ -1,4 +1,5 @@
 ﻿using RealmOfCollection.behaviour;
+using RealmOfCollection.Graphs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,7 @@ namespace RealmOfCollection.entity
         public List<SteeringBehaviour> SteeringBehaviors { get; set; }
         public Vector2D OldPos { get; set; }
         public float radius { get; set; }
-
-
-        public bool isHiding = true;
+        public Path path { get; set; }
 
 
         public MovingEntity(Vector2D pos, World w) : base(pos, w)
@@ -41,6 +40,7 @@ namespace RealmOfCollection.entity
             SteeringBehaviors = new List<SteeringBehaviour>();
             SteeringForce = new Vector2D();
             radius = 15;
+            path = new Path(MyWorld);
         }
 
         public override void Update(float timeElapsed)

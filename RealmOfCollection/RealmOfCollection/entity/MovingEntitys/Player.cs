@@ -12,7 +12,7 @@ namespace RealmOfCollection.entity.MovingEntitys
         public Color VColor { get; set; }
         public World w { get; set; }
         public Vector2D MousePosition { get; set; }
-        //private bool Player;
+        
 
         private float PieAngle = 45.0f;
 
@@ -21,7 +21,6 @@ namespace RealmOfCollection.entity.MovingEntitys
             Velocity = new Vector2D(2, 2);
             Scale = 15;
             this.w = w;
-            //this.Player = Player;
             VColor = Color.Black;
             radius = Scale;
         }
@@ -75,8 +74,8 @@ namespace RealmOfCollection.entity.MovingEntitys
             
             //Show angle player is looking 
             g.DrawPie(p, new Rectangle((int)(leftCorner - (size / 2)), (int)(rightCorner - (size / 2)), (int)(size + size), (int)(size + size)), calculateMouseAngle(), PieAngle);
-            
-            
+
+            path.Render(g);
             
 
 
