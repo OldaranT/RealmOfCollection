@@ -36,7 +36,7 @@ namespace RealmOfCollection.entity
             Velocity = new Vector2D();
             Heading = new Vector2D();
             Vector2D temp = Heading;
-            Side = temp.Perp();
+            Side = temp.PerpRightHand();
             SteeringBehaviors = new List<SteeringBehaviour>();
             SteeringForce = new Vector2D();
             radius = 15;
@@ -46,10 +46,10 @@ namespace RealmOfCollection.entity
         public override void Update(float timeElapsed)
         {
             SteeringForce = SteeringForce.Zero();
-            if (Vector2D.InsideRegion(this.Pos, 50, 50, 150, 150))
-            {
-                OldPos = Pos;
-            }
+            //if (Vector2D.InsideRegion(this.Pos, 50, 50, 150, 150))
+            //{
+            //    OldPos = Pos;
+            //}
 
 
             try
@@ -96,7 +96,7 @@ namespace RealmOfCollection.entity
             if (Velocity.LengthSquared() > 0.00000001)
             {
                 Heading = Velocity.Normalize();
-                Side = Heading.Perp();
+                Side = Heading.PerpRightHand();
             }
 
             //treat the screen as a toroid

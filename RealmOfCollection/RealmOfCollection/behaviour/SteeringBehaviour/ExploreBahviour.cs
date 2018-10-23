@@ -96,6 +96,7 @@ namespace RealmOfCollection.behaviour
                 {
                     force = new Vector2D();
                     movingEntity.Velocity = new Vector2D();
+                    movingEntity.SteeringBehaviors = new List<SteeringBehaviour>();
                 }
 
                 exploreTarget = null;

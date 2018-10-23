@@ -10,52 +10,54 @@ namespace RealmOfCollection.entity.MovingEntitys
 {
     public class Hunter : MovingEntity
     {
-        //public SteeringBehaviour collisionAvoidance;
+        public SteeringBehaviour collisionAvoidance;
         public Hunter(Vector2D pos, World world) : base(pos, world)
         {
             Scale = 10;
-            MaxSpeed = 2;
+            radius = 10;
+            MaxSpeed = 100;
             Max_Force = 25f;
         }
-        //public void setCollisionAvoidance(SteeringBehaviour collisionAvoidance)
-        //{
-        //    this.collisionAvoidance = collisionAvoidance;
-        //}
-
-        public override void Update(float timeElapsed)
+        public void setCollisionAvoidance(SteeringBehaviour collisionAvoidance)
         {
-            Vector2D force = SB.Calculate();
-            //force += collisionAvoidance.Calculate();
-            force = Vector2D.truncate(force, Max_Force);
-            if (force != null)
-            {
+            this.collisionAvoidance = collisionAvoidance;
+        }
 
-                SteeringForce = force.Clone().divide(Mass);
+        //public override void Update(float timeElapsed)
+        //{
+            
+            //Vector2D force = collisionAvoidance.Calculate();
+            //force += SB.Calculate(); 
+            ////force = Vector2D.truncate(force, Max_Force);
+            //if (force != null)
+            //{
 
-                Velocity.Add(SteeringForce.Clone().Multiply(timeElapsed));
+            //    SteeringForce = force.Clone().divide(Mass);
 
-                Velocity.Truncate(MaxSpeed);
-            }
-            else
-            {
-                force = new Vector2D();
-                Velocity = new Vector2D();
-            }
+            //    Velocity.Add(SteeringForce.Clone().Multiply(timeElapsed));
+
+            //    Velocity.Truncate(MaxSpeed);
+            //}
+            //else
+            //{
+            //    force = new Vector2D();
+            //    Velocity = new Vector2D();
+            //}
 
 
-            Pos.Add(Velocity.Clone().Multiply(timeElapsed));
+            //Pos.Add(Velocity.Clone().Multiply(timeElapsed));
 
-            if (Velocity.LengthSquared() > 0.00000001)
-            {
-                Heading = Velocity.Clone().Normalize();
-                Side = Heading.Perp();
-            }
+            //if (Velocity.LengthSquared() > 0.00000001)
+            //{
+            //    Heading = Velocity.Clone().Normalize();
+            //    Side = Heading.PerpRightHand();
+            //}
             
             //treat the screen as a toroid
             //Vector2D.WrapAround(this.Pos, MyWorld.Width, MyWorld.Height);
 
 
-        }
+        //}
 
         public override void Render(Graphics g)
         {
@@ -67,7 +69,12 @@ namespace RealmOfCollection.entity.MovingEntitys
             Pen p = new Pen(Color.Red, 10);
             g.DrawEllipse(p, new Rectangle((int)leftCorner, (int)rightCorner, (int)size, (int)size));
 
-            SB?.Draw(g);
+            g.FillEllipse(new SolidBrush(Color.Black), new Rectangle((int)Pos.X - 5, (int)Pos.Y - 5, 10, 10));
+            foreach(SteeringBehaviour sb in SteeringBehaviors)
+            {
+                sb.Draw(g);
+            }
+            //SB?.Draw(g);
         }
     }
 }

@@ -209,7 +209,12 @@ namespace RealmOfCollection
             return this;
         }
 
-        public Vector2D Perp()
+        public Vector2D PerpLeftHand()
+        {
+            return new Vector2D(this.Y, -this.X);
+        }
+
+        public Vector2D PerpRightHand()
         {
             return new Vector2D(-this.Y, this.X);
         }

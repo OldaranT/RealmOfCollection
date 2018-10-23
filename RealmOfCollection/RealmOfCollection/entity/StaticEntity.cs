@@ -30,6 +30,7 @@ namespace RealmOfCollection.entity
         public override void Render(Graphics g)
         {
             base.Render(g);
+            g.FillEllipse(new SolidBrush(Color.Black), new Rectangle((int)center.X - 5, (int)center.Y - 5, 10, 10));
         }
 
         public override string ToString()
