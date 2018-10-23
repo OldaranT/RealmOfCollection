@@ -48,7 +48,7 @@ namespace RealmOfCollection.behaviour
                 sb = new ArriveBehaviour(ME, followPath.position);
             }
 
-            Vector2D force = sb.Calculate();
+            Vector2D force = sb.Calculate(followPath.position);
 
             setNextTarget(ref followPath);
 

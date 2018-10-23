@@ -33,5 +33,19 @@ namespace RealmOfCollection.behaviour
             
             return DesiredVelocity;
         }
+
+        public override Vector2D Calculate(Vector2D target)
+        {
+            Vector2D targetPos = target.Clone();
+            Vector2D desired = targetPos.Sub(ME.Pos);
+
+            desired.Normalize();
+            desired.Multiply(ME.MaxSpeed);
+
+            Vector2D force = desired.Sub(ME.Velocity);
+            force.Truncate(ME.Max_Force);
+
+            return force;
+        }
     }
 }

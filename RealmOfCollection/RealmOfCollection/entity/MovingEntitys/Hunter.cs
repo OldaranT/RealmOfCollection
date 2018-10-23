@@ -13,13 +13,16 @@ namespace RealmOfCollection.entity.MovingEntitys
         {
             Scale = 10;
             MaxSpeed = 2;
-            Max_Force = 0.3f;
+            Max_Force = 25f;
         }
 
         public override void Update(float timeElapsed)
         {
             Vector2D force = SB.Calculate();
-
+            if(force == null)
+            {
+                force = new Vector2D();
+            }
             SteeringForce = force.Clone().divide(Mass);
             
             Velocity.Add(SteeringForce.Clone().Multiply(timeElapsed));
