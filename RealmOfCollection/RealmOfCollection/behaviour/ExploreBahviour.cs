@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,7 @@ namespace RealmOfCollection.behaviour
 
             if (exploreTarget != null && findXT)
             {
+                //force = pfBehaviour.Calculate();
                 getForce(ref force);
             }
             return force;
@@ -99,6 +101,11 @@ namespace RealmOfCollection.behaviour
                 exploreTarget = null;
                 pfBehaviour.path.bestPath = null;
             }
+        }
+
+        public override void Draw(Graphics g)
+        {
+            pfBehaviour.Draw(g);
         }
     }
 }

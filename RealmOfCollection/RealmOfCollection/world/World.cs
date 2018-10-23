@@ -57,6 +57,7 @@ namespace RealmOfCollection
             hunter = new Hunter(new Vector2D(50, 50), this, false);
             //hunter.SB = new PathFollowBehaviour(hunter);
             hunter.SB = new ExploreBahviour(hunter, 100f);
+            //hunter.setCollisionAvoidance(new CollisionAvoidanceBehaviour(hunter, 1, Objects, 5));
             movingEntities.Add(hunter);
 
             for (int i = 0; i < 25; i++)
@@ -76,7 +77,8 @@ namespace RealmOfCollection
             Target.Scale = 15;
             Target.Pos = new Vector2D(200, 100);
 
-            beginning = new ExploreTarget(100, 60);
+            beginning = new ExploreTarget(Width/2, Height/2);
+            beginning.visited = false;
 
         }
 
@@ -192,7 +194,8 @@ namespace RealmOfCollection
 
             Target.Render(g);
 
-            exploreTargets.ForEach(e => e.Render(g));
+            exploreTargets.ForEach(e => e.Render(g, Color.Gold));
+            beginning.Render(g, Color.Black);
 
         }
     }

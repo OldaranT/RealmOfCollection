@@ -28,7 +28,7 @@ namespace RealmOfCollection.util
             return position == other.position;
         }
 
-        public void Render(Graphics g)
+        public void Render(Graphics g, Color color)
         {
             double leftCorner = position.X - 15;
             double rightCorner = position.Y - 15;
@@ -36,7 +36,7 @@ namespace RealmOfCollection.util
 
 
 
-            Pen p = new Pen(Color.Gold, 10);
+            Pen p = new Pen(color, 10);
             Pen PVelocity = new Pen(Color.Gold, 2);
             Pen PTarget = new Pen(Color.Red, 2);
             g.DrawEllipse(p, new Rectangle((int)leftCorner, (int)rightCorner, (int)size, (int)size));

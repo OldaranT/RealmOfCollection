@@ -43,7 +43,7 @@ namespace RealmOfCollection.behaviour
                 return new Vector2D();
             }
 
-            if(followPath.adj.Count == 0 && movingEntity.Pos.DistanceSqrt(followPath.position) <= 100f)
+            if(followPath.adj.Count == 0 && movingEntity.Pos.DistanceSqrt(followPath.position) <= 50f)
             {
                 movingEntity.Velocity = new Vector2D();
                 return new Vector2D();
@@ -63,11 +63,12 @@ namespace RealmOfCollection.behaviour
         {
             float distance = movingEntity.Pos.DistanceSqrt(currentTarget.position);
 
-            if(distance < 100)
+            if(distance < 250f)
             {
                 if(currentTarget.adj.Count > 0)
                 {
                     currentTarget = currentTarget.adj[0].destination;
+                    //movingEntity.Velocity = new Vector2D();
                 } else if (!arrived)
                 {
                     arrived = true;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RealmOfCollection.behaviour;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -9,17 +10,24 @@ namespace RealmOfCollection.entity.MovingEntitys
 {
     public class Hunter : MovingEntity
     {
+        //public SteeringBehaviour collisionAvoidance;
         public Hunter(Vector2D pos, World world, bool player) : base(pos, world, player)
         {
             Scale = 10;
             MaxSpeed = 2;
             Max_Force = 25f;
         }
+        //public void setCollisionAvoidance(SteeringBehaviour collisionAvoidance)
+        //{
+        //    this.collisionAvoidance = collisionAvoidance;
+        //}
 
         public override void Update(float timeElapsed)
         {
             Vector2D force = SB.Calculate();
-            if(force != null)
+            //force += collisionAvoidance.Calculate();
+            force = Vector2D.truncate(force, Max_Force);
+            if (force != null)
             {
 
                 SteeringForce = force.Clone().divide(Mass);
@@ -44,7 +52,7 @@ namespace RealmOfCollection.entity.MovingEntitys
             }
             
             //treat the screen as a toroid
-            Vector2D.WrapAround(this.Pos, MyWorld.Width, MyWorld.Height);
+            //Vector2D.WrapAround(this.Pos, MyWorld.Width, MyWorld.Height);
 
 
         }
