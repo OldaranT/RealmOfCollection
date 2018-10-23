@@ -19,15 +19,21 @@ namespace RealmOfCollection.entity.MovingEntitys
         public override void Update(float timeElapsed)
         {
             Vector2D force = SB.Calculate();
-            if(force == null)
+            if(force != null)
+            {
+
+                SteeringForce = force.Clone().divide(Mass);
+
+                Velocity.Add(SteeringForce.Clone().Multiply(timeElapsed));
+
+                Velocity.Truncate(MaxSpeed);
+            }
+            else
             {
                 force = new Vector2D();
+                Velocity = new Vector2D();
             }
-            SteeringForce = force.Clone().divide(Mass);
-            
-            Velocity.Add(SteeringForce.Clone().Multiply(timeElapsed));
 
-            Velocity.Truncate(MaxSpeed);
 
             Pos.Add(Velocity.Clone().Multiply(timeElapsed));
 
@@ -36,8 +42,11 @@ namespace RealmOfCollection.entity.MovingEntitys
                 Heading = Velocity.Clone().Normalize();
                 Side = Heading.Perp();
             }
-           
-           
+            
+            //treat the screen as a toroid
+            Vector2D.WrapAround(this.Pos, MyWorld.Width, MyWorld.Height);
+
+
         }
 
         public override void Render(Graphics g)

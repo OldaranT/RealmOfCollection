@@ -48,10 +48,10 @@ namespace RealmOfCollection
             path = new Path(this);
             hunter = new Hunter(new Vector2D(50, 50), this, false);
             hunter.SB = new PathFollowBehaviour(hunter);
-            movingEntities.Add(hunter);
-            entities.Add(hunter);
+            //movingEntities.Add(hunter);
+            //entities.Add(hunter);
 
-            for(int i = 0; i < 25; i++)
+            for (int i = 0; i < 25; i++)
             {
                 int X = random.Next(0, Width - 100);
                 int Y = random.Next(0, Height - 100);
@@ -110,10 +110,14 @@ namespace RealmOfCollection
                 movingEntity.SteeringBehaviors.Add(new EntityAvoidanceBehaviour(movingEntity, movingEntities));
                 movingEntity.Update(timeElapsed);
             }
+
+            //hunter.SB = new PathFollowBehaviour(hunter, path);
+            hunter.Update(timeElapsed);
             Target.SteeringBehaviors = new List<SteeringBehaviour>();
             //Target.SteeringBehaviors.Add(new WanderBehaviour(Target, 2500, 50, 0.001, random));
             Target.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(Target, 20, Objects, 25));
             Target.Update(timeElapsed);
+
 
         }
 
@@ -149,8 +153,9 @@ namespace RealmOfCollection
                 graph.DrawGraph(g);
             }
             entities.ForEach(e => e.Render(g));
-            
 
+
+            hunter.Render(g);
 
             Target.Render(g);
 

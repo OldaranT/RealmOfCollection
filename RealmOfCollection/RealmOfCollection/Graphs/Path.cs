@@ -47,8 +47,8 @@ namespace RealmOfCollection.Graphs
         {
             // "pos: " + vecX + "-" + vecY;
 
-            double posX = pos.X;
-            double posY = pos.Y;
+            int posX = (int)pos.X;
+            int posY = (int)pos.Y;
 
             string prefix = "pos: ";
             string suffix = "-";
