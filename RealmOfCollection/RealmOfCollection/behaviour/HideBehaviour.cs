@@ -31,7 +31,7 @@ namespace RealmOfCollection.behaviour
                 //Vector2D HidingSpot = GetHidePosition(SE.Pos, SE.size.Length(), hunter.Pos);
                 Vector2D HidingSpot = GetHidePosition(SE.center, SE.size.Length(), hunter.Pos);
 
-                double dist = Vector2D.Vec2DDistanceSq(HidingSpot, ME.Pos);
+                double dist = Vector2D.Vec2DDistanceSq(HidingSpot, movingEntity.Pos);
 
                 if(dist < DistToClosest)
                 {
@@ -40,7 +40,7 @@ namespace RealmOfCollection.behaviour
                     
                 }
             }
-            if((hunter.Pos - ME.Pos).Length() > hideDistance)
+            if((hunter.Pos - movingEntity.Pos).Length() > hideDistance)
             {
                 //Console.WriteLine("I Show you the wey");
                 //WanderBehaviour WB = new WanderBehaviour(ME, 2500, 50, 0.001, ME.MyWorld.random);
@@ -49,13 +49,13 @@ namespace RealmOfCollection.behaviour
             if(DistToClosest == Double.MaxValue)
             {
                 //Console.WriteLine("I am out of here");
-                EvadeBehaviour evade = new EvadeBehaviour(ME);
+                EvadeBehaviour evade = new EvadeBehaviour(movingEntity);
                 return evade.Calculate();
             }
             else
             {
                 //Console.WriteLine("HIDE HIDE HIDE HIDE!");
-                SteeringBehaviour ArriveB = new ArriveBehaviour(ME, BestHidingSpot, Deceleration.fast);
+                SteeringBehaviour ArriveB = new ArriveBehaviour(movingEntity, BestHidingSpot, Deceleration.fast);
                 //Console.WriteLine(BestHidingSpot.ToString());
 
                 return ArriveB.Calculate();

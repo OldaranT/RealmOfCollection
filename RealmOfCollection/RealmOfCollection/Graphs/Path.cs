@@ -97,10 +97,10 @@ namespace RealmOfCollection.Graphs
                     dest = edge.destination;
                     pos = new PointF(pos.X, pos.Y);
                     destPos = new PointF((float)dest.position.X, (float)dest.position.Y);
-                    g.DrawLine(new Pen(Color.Cyan, 1), pos, destPos);
+                    g.DrawLine(new Pen(Color.DarkRed, 4), pos, destPos);
                 }
                 pos = new PointF((float)currVertex.position.X - 1.1f, (float)currVertex.position.Y - 1.1f);
-                g.FillEllipse(Brushes.Cyan, pos.X, pos.Y, 3, 3);
+                g.FillEllipse(Brushes.Black, pos.X, pos.Y, 3, 3);
 
                 if(currVertex.adj.Count == 0)
                 {

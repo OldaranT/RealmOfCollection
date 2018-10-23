@@ -15,9 +15,9 @@ namespace RealmOfCollection.behaviour
 
         public override Vector2D Calculate()
         {
-            Vector2D myPos = ME.Pos;
-            MovingEntity target = ME.MyWorld.Target;
-            float maxSpeed = ME.MaxSpeed;
+            Vector2D myPos = movingEntity.Pos;
+            MovingEntity target = movingEntity.MyWorld.Target;
+            float maxSpeed = movingEntity.MaxSpeed;
 
             Vector2D Distance = target.Pos - myPos;
             int updatesAhead = (int)(Distance.Length() / maxSpeed);
@@ -26,7 +26,7 @@ namespace RealmOfCollection.behaviour
             Vector2D DesiredVelocity = new Vector2D((myPos.X - futurePosition.X), (myPos.Y - futurePosition.Y));
             DesiredVelocity = DesiredVelocity.Normalize();
             DesiredVelocity = DesiredVelocity.Multiply(maxSpeed);
-            DesiredVelocity = DesiredVelocity.Sub(ME.Velocity);
+            DesiredVelocity = DesiredVelocity.Sub(movingEntity.Velocity);
             return DesiredVelocity;
         }
     }

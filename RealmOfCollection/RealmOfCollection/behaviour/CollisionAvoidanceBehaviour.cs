@@ -29,7 +29,7 @@ namespace RealmOfCollection.behaviour
         private bool lineIntersectsCircle(StaticEntity obj)
         {
             bool intersects = false;
-            if (obj.center.Distance(ahead) <= ((obj.size.Length() / 2) + ME.radius) || obj.center.Distance(ahead2) <= ((obj.size.Length() / 2) + ME.radius))
+            if (obj.center.Distance(ahead) <= ((obj.size.Length() / 2) + movingEntity.radius) || obj.center.Distance(ahead2) <= ((obj.size.Length() / 2) + movingEntity.radius))
             {
                 intersects = true;
             }
@@ -54,9 +54,9 @@ namespace RealmOfCollection.behaviour
 
         public override Vector2D Calculate()
         {
-            pos = ME.Pos;
-            ahead = ME.Pos + Vector2D.Vec2DNormalize(ME.Velocity) * MAX_SEE_AHEAD;
-            ahead2 = ME.Pos + Vector2D.Vec2DNormalize(ME.Velocity) * MAX_SEE_AHEAD * 0.5;
+            pos = movingEntity.Pos;
+            ahead = movingEntity.Pos + Vector2D.Vec2DNormalize(movingEntity.Velocity) * MAX_SEE_AHEAD;
+            ahead2 = movingEntity.Pos + Vector2D.Vec2DNormalize(movingEntity.Velocity) * MAX_SEE_AHEAD * 0.5;
 
             StaticEntity mostThreatening = findMostThreatening();
             Vector2D avoidance = new Vector2D(0, 0);

@@ -21,10 +21,10 @@ namespace RealmOfCollection.behaviour
             sb = new SeekBehaviour(me);
             if(me is Hunter)
             {
-                path = ME.MyWorld.path;
+                path = movingEntity.MyWorld.path;
             } else
             {
-                path = new Path(ME.MyWorld);
+                path = new Path(movingEntity.MyWorld);
             }
         }
 
@@ -45,7 +45,7 @@ namespace RealmOfCollection.behaviour
 
             if(followPath.adj.Count == 0 && sb is SeekBehaviour)
             {
-                sb = new ArriveBehaviour(ME, followPath.position);
+                sb = new ArriveBehaviour(movingEntity, followPath.position);
             }
 
             Vector2D force = sb.Calculate(followPath.position);
@@ -60,7 +60,7 @@ namespace RealmOfCollection.behaviour
 
         public void setNextTarget(ref Vertex currentTarget)
         {
-            float distance = ME.Pos.DistanceSqrt(currentTarget.position);
+            float distance = movingEntity.Pos.DistanceSqrt(currentTarget.position);
 
             if(distance < 100)
             {
@@ -70,7 +70,7 @@ namespace RealmOfCollection.behaviour
                 } else if (!arrived)
                 {
                     arrived = true;
-                    sb = new SeekBehaviour(ME);
+                    sb = new SeekBehaviour(movingEntity);
                 }
             }
 

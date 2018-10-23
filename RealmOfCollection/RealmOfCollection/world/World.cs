@@ -13,7 +13,7 @@ namespace RealmOfCollection
 {
     public class World
     {
-        public static readonly int distanceVertex = 20;
+        public static readonly int distanceVertex = 10;
 
         private List<BaseGameEntity> entities = new List<BaseGameEntity>();
         private List<StaticEntity> Objects = new List<StaticEntity>();
@@ -48,8 +48,7 @@ namespace RealmOfCollection
             path = new Path(this);
             hunter = new Hunter(new Vector2D(50, 50), this, false);
             hunter.SB = new PathFollowBehaviour(hunter);
-            //movingEntities.Add(hunter);
-            //entities.Add(hunter);
+            movingEntities.Add(hunter);
 
             for (int i = 0; i < 25; i++)
             {
@@ -111,8 +110,10 @@ namespace RealmOfCollection
                 movingEntity.Update(timeElapsed);
             }
 
-            //hunter.SB = new PathFollowBehaviour(hunter, path);
-            hunter.Update(timeElapsed);
+            foreach (MovingEntity movingEntity in movingEntities)
+            {
+                movingEntity.Update(timeElapsed);
+            }
             Target.SteeringBehaviors = new List<SteeringBehaviour>();
             //Target.SteeringBehaviors.Add(new WanderBehaviour(Target, 2500, 50, 0.001, random));
             Target.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(Target, 20, Objects, 25));
@@ -154,6 +155,7 @@ namespace RealmOfCollection
             }
             entities.ForEach(e => e.Render(g));
 
+            movingEntities.ForEach(e => e.Render(g));
 
             hunter.Render(g);
 

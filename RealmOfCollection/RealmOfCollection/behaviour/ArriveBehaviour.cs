@@ -26,22 +26,22 @@ namespace RealmOfCollection.behaviour
 
         public Vector2D Arrive()
         {
-            Vector2D ToTarget = TargetPos - ME.Pos;
+            Vector2D ToTarget = TargetPos - movingEntity.Pos;
             float slowingradius = 100f;
 
             double dist = ToTarget.Length();
-            float speed = ME.MaxSpeed;
+            float speed = movingEntity.MaxSpeed;
             //Console.WriteLine("dist= " + dist);
             //Console.WriteLine("toTarget normalized lenght before and after: " + dist + " after: " + Vector2D.Vec2DNormalize(ToTarget).Length());
             if (dist < slowingradius)
             {
-                speed = ME.MaxSpeed * (float)(dist / slowingradius);
+                speed = movingEntity.MaxSpeed * (float)(dist / slowingradius);
 
             }
 
-            Vector2D DesiredVelocity = Vector2D.Vec2DNormalize(ToTarget) * ME.MaxSpeed;
-            ME.arriveSpeed = speed;
-            return (DesiredVelocity - ME.Velocity);
+            Vector2D DesiredVelocity = Vector2D.Vec2DNormalize(ToTarget) * movingEntity.MaxSpeed;
+            movingEntity.arriveSpeed = speed;
+            return (DesiredVelocity - movingEntity.Velocity);
 
             //if (dist < slowingradius)
             //{

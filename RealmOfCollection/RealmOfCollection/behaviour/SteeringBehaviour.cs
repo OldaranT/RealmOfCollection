@@ -11,10 +11,10 @@ namespace RealmOfCollection
     public abstract class SteeringBehaviour
     {
         public enum Deceleration { slow = 3, normal = 2, fast = 1 };
-        public MovingEntity ME { get; set; }
+        public MovingEntity movingEntity { get; set; }
         public abstract Vector2D Calculate();
-        
-        public virtual Vector2D Calculate(Vector2D target) { return null; }
+
+        public virtual Vector2D Calculate(Vector2D target) { return new Vector2D(); }
 
         public virtual void Draw(Graphics g) { }
 
@@ -22,13 +22,13 @@ namespace RealmOfCollection
 
         public SteeringBehaviour(MovingEntity me)
         {
-            ME = me;
+            movingEntity = me;
             random = me.MyWorld.random;
         }
 
         public SteeringBehaviour(MovingEntity me, Random r)
         {
-            ME = me;
+            movingEntity = me;
             random = r;
         }
 

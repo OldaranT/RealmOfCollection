@@ -52,9 +52,9 @@ namespace RealmOfCollection.behaviour
         public override Vector2D Calculate()
         {
             Vector2D circleCenter;
-            if (!ME.Velocity.isZero())
+            if (!movingEntity.Velocity.isZero())
             {
-                circleCenter = ME.Velocity.Clone();
+                circleCenter = movingEntity.Velocity.Clone();
                 circleCenter = circleCenter.Normalize();
                 circleCenter = circleCenter.ScaleBy(CIRCLE_DISTANCE);
             }
@@ -64,9 +64,9 @@ namespace RealmOfCollection.behaviour
                 circleCenter = circleCenter.ScaleBy(CIRCLE_DISTANCE);
             }
             Vector2D displacement;
-            if (!ME.Velocity.isZero())
+            if (!movingEntity.Velocity.isZero())
             {
-                displacement = ME.Velocity.Clone().Normalize();
+                displacement = movingEntity.Velocity.Clone().Normalize();
                 displacement = displacement.ScaleBy(CIRCLE_RADIUS);
             }
             else
@@ -99,7 +99,7 @@ namespace RealmOfCollection.behaviour
             //Vector2D DesiredVelocity = new Vector2D((targetWorld.X - MyPos.X), (targetWorld.Y - MyPos.Y));
             //DesiredVelocity = DesiredVelocity.Normalize();
             //DesiredVelocity = DesiredVelocity.Multiply(MaxSpeed);
-            DesiredVelocity = DesiredVelocity.Sub(ME.Velocity);
+            DesiredVelocity = DesiredVelocity.Sub(movingEntity.Velocity);
             return DesiredVelocity;
         }
     }

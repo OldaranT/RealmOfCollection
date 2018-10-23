@@ -24,7 +24,7 @@ namespace RealmOfCollection.behaviour
         private bool intersects(MovingEntity m)
         {
             bool intersects = false;
-            if(m.Pos.Distance(ME.Pos)<= (m.radius + ME.radius))
+            if(m.Pos.Distance(movingEntity.Pos)<= (m.radius + movingEntity.radius))
             {
                 intersects = true;
             }
@@ -37,7 +37,7 @@ namespace RealmOfCollection.behaviour
 
             foreach(MovingEntity m in entities)
             {
-                if(m == ME)
+                if(m == movingEntity)
                 {
                     continue;
                 }
@@ -56,7 +56,7 @@ namespace RealmOfCollection.behaviour
 
         public override Vector2D Calculate()
         {
-            pos = ME.Pos;
+            pos = movingEntity.Pos;
 
             MovingEntity mostThreatening = findMostThreatening();
             Vector2D avoidance = new Vector2D(0, 0);
