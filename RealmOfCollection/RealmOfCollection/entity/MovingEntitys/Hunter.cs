@@ -15,7 +15,7 @@ namespace RealmOfCollection.entity.MovingEntitys
         {
             Scale = 10;
             radius = 10;
-            MaxSpeed = 2;
+            MaxSpeed = 100;
             Max_Force = 25f;
         }
         public void setCollisionAvoidance(SteeringBehaviour collisionAvoidance)
@@ -23,40 +23,41 @@ namespace RealmOfCollection.entity.MovingEntitys
             this.collisionAvoidance = collisionAvoidance;
         }
 
-        public override void Update(float timeElapsed)
-        {
-            Vector2D force = SB.Calculate();
-            force += collisionAvoidance.Calculate();
-            force = Vector2D.truncate(force, Max_Force);
-            if (force != null)
-            {
+        //public override void Update(float timeElapsed)
+        //{
+            
+            //Vector2D force = collisionAvoidance.Calculate();
+            //force += SB.Calculate(); 
+            ////force = Vector2D.truncate(force, Max_Force);
+            //if (force != null)
+            //{
 
-                SteeringForce = force.Clone().divide(Mass);
+            //    SteeringForce = force.Clone().divide(Mass);
 
-                Velocity.Add(SteeringForce.Clone().Multiply(timeElapsed));
+            //    Velocity.Add(SteeringForce.Clone().Multiply(timeElapsed));
 
-                Velocity.Truncate(MaxSpeed);
-            }
-            else
-            {
-                force = new Vector2D();
-                Velocity = new Vector2D();
-            }
+            //    Velocity.Truncate(MaxSpeed);
+            //}
+            //else
+            //{
+            //    force = new Vector2D();
+            //    Velocity = new Vector2D();
+            //}
 
 
-            Pos.Add(Velocity.Clone().Multiply(timeElapsed));
+            //Pos.Add(Velocity.Clone().Multiply(timeElapsed));
 
-            if (Velocity.LengthSquared() > 0.00000001)
-            {
-                Heading = Velocity.Clone().Normalize();
-                Side = Heading.PerpRightHand();
-            }
+            //if (Velocity.LengthSquared() > 0.00000001)
+            //{
+            //    Heading = Velocity.Clone().Normalize();
+            //    Side = Heading.PerpRightHand();
+            //}
             
             //treat the screen as a toroid
             //Vector2D.WrapAround(this.Pos, MyWorld.Width, MyWorld.Height);
 
 
-        }
+        //}
 
         public override void Render(Graphics g)
         {
@@ -69,8 +70,11 @@ namespace RealmOfCollection.entity.MovingEntitys
             g.DrawEllipse(p, new Rectangle((int)leftCorner, (int)rightCorner, (int)size, (int)size));
 
             g.FillEllipse(new SolidBrush(Color.Black), new Rectangle((int)Pos.X - 5, (int)Pos.Y - 5, 10, 10));
-
-            SB?.Draw(g);
+            foreach(SteeringBehaviour sb in SteeringBehaviors)
+            {
+                sb.Draw(g);
+            }
+            //SB?.Draw(g);
         }
     }
 }

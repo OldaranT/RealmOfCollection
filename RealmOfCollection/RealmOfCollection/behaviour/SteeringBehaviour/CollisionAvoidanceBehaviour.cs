@@ -14,9 +14,6 @@ namespace RealmOfCollection.behaviour
         Vector2D ahead { get; set; }
         Vector2D ahead2 { get; set; }
 
-        Vector2D[] antenna;
-        bool[] detecting;
-
         public List<StaticEntity> objects;
 
         float MAX_SEE_AHEAD { get; set; }
@@ -29,23 +26,7 @@ namespace RealmOfCollection.behaviour
             this.objects = objects;
             MAX_AVOID_FORCE = MaxForce;
             pos = me.Pos;
-
-            antenna = new Vector2D[3];
-            detecting = new bool[3];
-
-            createAntenna();
-        }
-        
-
-        private void createAntenna()
-        {
-            float maxSideRangeAdjuster = 1.5f;
-            Vector2D ant = movingEntity.Pos.Clone().Add(movingEntity.Heading.Clone().Multiply(MAX_SEE_AHEAD));
-            antenna[0] = ant.Clone();
-            ant = movingEntity.Velocity.PerpLeftHand().Add(movingEntity.Velocity).Normalize().Multiply(MAX_SEE_AHEAD/maxSideRangeAdjuster);
-            antenna[1] = ant.Clone();
-            ant = movingEntity.Velocity.PerpRightHand().Add(movingEntity.Velocity).Normalize().Multiply(MAX_SEE_AHEAD / maxSideRangeAdjuster);
-            antenna[2] = ant.Clone();
+            
         }
 
         private bool lineIntersectsCircle(StaticEntity obj)
@@ -93,7 +74,7 @@ namespace RealmOfCollection.behaviour
             ahead2 = movingEntity.Pos + Vector2D.Vec2DNormalize(movingEntity.Velocity) * MAX_SEE_AHEAD * 0.5;
 
             StaticEntity mostThreatening = findMostThreatening();
-            Vector2D avoidance = new Vector2D(0, 0);
+            Vector2D avoidance = new Vector2D();
             if (mostThreatening != null)
             {
                 avoidance.X = ahead.X - mostThreatening.center.X;
@@ -101,10 +82,6 @@ namespace RealmOfCollection.behaviour
 
                 avoidance = avoidance.Normalize();
                 avoidance.ScaleBy(MAX_AVOID_FORCE);
-            }
-            else
-            {
-                avoidance.ScaleBy(0); // nullify the avoidance force
             }
 
             return avoidance;
@@ -146,23 +123,6 @@ namespace RealmOfCollection.behaviour
             //    force.Normalize().Multiply(MAX_AVOID_FORCE);
             //}
             //return force;
-        }
-
-        public override void Draw(Graphics g)
-        {
-            base.Draw(g);
-            Pen pen = new Pen(Color.DarkOliveGreen, 4);
-            float centerX = (float)movingEntity.Pos.X;
-            float centerY = (float)movingEntity.Pos.Y;
-            for (int index = 0; index < detecting.Length; index++)
-            {
-                if (detecting[index])
-                {
-                    pen.Color = Color.DarkRed;
-                }
-                g.DrawLine(pen, centerX, centerY, (float)antenna[index].X, (float)antenna[index].Y);
-                pen.Color = Color.DarkOliveGreen;
-            }
         }
     }
 }

@@ -46,10 +46,10 @@ namespace RealmOfCollection.entity
         public override void Update(float timeElapsed)
         {
             SteeringForce = SteeringForce.Zero();
-            if (Vector2D.InsideRegion(this.Pos, 50, 50, 150, 150))
-            {
-                OldPos = Pos;
-            }
+            //if (Vector2D.InsideRegion(this.Pos, 50, 50, 150, 150))
+            //{
+            //    OldPos = Pos;
+            //}
 
 
             try
