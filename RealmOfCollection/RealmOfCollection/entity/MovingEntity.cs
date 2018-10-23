@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RealmOfCollection.behaviour;
+using RealmOfCollection.Graphs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,11 +23,11 @@ namespace RealmOfCollection.entity
         public SteeringBehaviour SB { get; set; }
         public List<SteeringBehaviour> SteeringBehaviors { get; set; }
         public Vector2D OldPos { get; set; }
-        protected bool Player;
         public float radius { get; set; }
+        public Path path { get; set; }
 
 
-        public MovingEntity(Vector2D pos, World w, bool player) : base(pos, w)
+        public MovingEntity(Vector2D pos, World w) : base(pos, w)
         {
             Mass = 30;
             MaxSpeed = 10;
@@ -37,8 +39,8 @@ namespace RealmOfCollection.entity
             Side = temp.PerpRightHand();
             SteeringBehaviors = new List<SteeringBehaviour>();
             SteeringForce = new Vector2D();
-            this.Player = player;
             radius = 15;
+            path = new Path(MyWorld);
         }
 
         public override void Update(float timeElapsed)
@@ -59,7 +61,7 @@ namespace RealmOfCollection.entity
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("MovingEntity: " + e.Message);
             }
 
 

@@ -4,41 +4,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RealmOfCollection.entity;
+using RealmOfCollection.entity.MovingEntitys;
 
 namespace RealmOfCollection.behaviour
 {
     public class HideBehaviour : SteeringBehaviour
     {
-        public Vehicle hunter;
+        public Player hunter;
         public List<StaticEntity> objects;
-        private int hideDistance = 250;
+        private int hideDistance;
         public HideBehaviour(MovingEntity me) : base(me)
         {
         }
-        public HideBehaviour(MovingEntity me, Vehicle hunter, List<StaticEntity> objects) : base(me)
+        public HideBehaviour(MovingEntity me, Player hunter, List<StaticEntity> objects, int hideDistance) : base(me)
         {
             this.hunter = hunter;
+            this.hideDistance = hideDistance;
             this.objects = objects;
         }
 
-        public Vector2D Hide(Vehicle hunter, List<StaticEntity> Objects)
+        public Vector2D Hide(Player hunter, List<StaticEntity> Objects)
         {
             double DistToClosest = Double.MaxValue;
             Vector2D BestHidingSpot = new Vector2D();
-
-            foreach(StaticEntity SE in Objects)
+            try
             {
-                //Vector2D HidingSpot = GetHidePosition(SE.Pos, SE.size.Length(), hunter.Pos);
-                Vector2D HidingSpot = GetHidePosition(SE.center, SE.size.Length(), hunter.Pos);
-
-                double dist = Vector2D.Vec2DDistanceSq(HidingSpot, movingEntity.Pos);
-
-                if(dist < DistToClosest)
+                foreach (StaticEntity SE in Objects)
                 {
-                    DistToClosest = dist;
-                    BestHidingSpot = HidingSpot;
-                    
+                    //Vector2D HidingSpot = GetHidePosition(SE.Pos, SE.size.Length(), hunter.Pos);
+                    Vector2D HidingSpot = GetHidePosition(SE.center, SE.size.Length(), hunter.Pos);
+
+                    double dist = Vector2D.Vec2DDistanceSq(HidingSpot, movingEntity.Pos);
+
+                    if (dist < DistToClosest)
+                    {
+                        DistToClosest = dist;
+                        BestHidingSpot = HidingSpot;
+
+
+                    }
                 }
+            } catch(Exception e)
+            {
+                Console.WriteLine(e.Source);
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("HidingBehavior: " + e.Message);
             }
             if((hunter.Pos - movingEntity.Pos).Length() > hideDistance)
             {

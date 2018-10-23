@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace RealmOfCollection.Graphs
 {
     // Represents a vertex in the graph.
-    public class Vertex : IVertex
+    public class Vertex
     {
         public string name;
         public List<Edge> adj;

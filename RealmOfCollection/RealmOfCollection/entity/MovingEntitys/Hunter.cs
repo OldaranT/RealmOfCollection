@@ -11,7 +11,7 @@ namespace RealmOfCollection.entity.MovingEntitys
     public class Hunter : MovingEntity
     {
         public SteeringBehaviour collisionAvoidance;
-        public Hunter(Vector2D pos, World world, bool player) : base(pos, world, player)
+        public Hunter(Vector2D pos, World world) : base(pos, world)
         {
             Scale = 10;
             radius = 10;

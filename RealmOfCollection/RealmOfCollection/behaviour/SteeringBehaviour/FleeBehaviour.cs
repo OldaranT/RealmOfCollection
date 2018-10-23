@@ -17,7 +17,7 @@ namespace RealmOfCollection.behaviour
         public override Vector2D Calculate()
         {
             Vector2D MyPos = movingEntity.Pos;
-            Vector2D TargetPos = movingEntity.MyWorld.Target.Pos;
+            Vector2D TargetPos = movingEntity.MyWorld.player.Pos;
             float MaxSpeed = movingEntity.MaxSpeed;
 
             Vector2D DesiredVelocity = new Vector2D((MyPos.X -TargetPos.X), (MyPos.Y - TargetPos.Y));

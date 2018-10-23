@@ -33,7 +33,7 @@ namespace RealmOfCollection
             right = false;
 
             world = new World(w: dbPanel1.Width, h: dbPanel1.Height);
-            world.Target.MousePosition = new Vector2D(0, 0);
+            world.player.MousePosition = new Vector2D(0, 0);
 
             timer = new System.Timers.Timer();
             timer.Elapsed += Timer_Elapsed;
@@ -48,22 +48,22 @@ namespace RealmOfCollection
 
             if (up)
             {
-                world.Target.Pos.Y -= 1;
+                world.player.Pos.Y -= 1;
             }
 
             if (down)
             {
-                world.Target.Pos.Y += 1;
+                world.player.Pos.Y += 1;
             }
 
             if (left)
             {
-                world.Target.Pos.X -= 1;
+                world.player.Pos.X -= 1;
             }
 
             if (right)
             {
-                world.Target.Pos.X += 1;
+                world.player.Pos.X += 1;
             }
         }
         
@@ -77,38 +77,37 @@ namespace RealmOfCollection
 
         private void dbPanel1_MouseClick(object sender, MouseEventArgs e)
         {
-            string source = world.path.getNearestVertex(world.hunter.Pos);
-            string destination = world.path.getNearestVertex(new Vector2D(e.X, e.Y));
+            string source = world.player.path.getNearestVertex(world.player.Pos);
+            string destination = world.player.path.getNearestVertex(new Vector2D(e.X, e.Y));
 
             if (source != "notfound" && destination != "notfound")
             {
-                Vertex path = world.path.FindBestPath(source, destination);
-                world.hunter.SB = new PathFollowBehaviour(world.hunter);
+                Vertex path = world.player.path.FindBestPath(source, destination);
+                world.player.SteeringBehaviors = new List<SteeringBehaviour>();
+                world.player.SteeringBehaviors.Add(new PathFollowBehaviour(world.player));
             }
 
-           world.Target.Pos = new Vector2D(e.X, e.Y);
+           //world.player.Pos = new Vector2D(e.X, e.Y);
         }
 
         private void dbPanel1_MouseMove(object sender, MouseEventArgs e)
         {
-            world.Target.MousePosition = new Vector2D(e.X, e.Y);
+            world.player.MousePosition = new Vector2D(e.X, e.Y);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyData == Keys.G)
             {
-                if (world.showGraph)
-                {
-                    world.showGraph = false;
-                }
-                else
-                {
-                    world.showGraph = true;
-                }
+                world.showGraph = !world.showGraph;
             }
 
-            if(e.KeyData == Keys.W)
+            if (e.KeyData == Keys.H)
+            {
+                world.showEntityInfo = !world.showEntityInfo;
+            }
+
+            if (e.KeyData == Keys.W)
             {
                 up = true;
             }
@@ -126,6 +125,11 @@ namespace RealmOfCollection
             if (e.KeyData == Keys.D)
             {
                 right = true;
+            }
+
+            if (e.KeyData == Keys.W || e.KeyData == Keys.S || e.KeyData == Keys.A || e.KeyData == Keys.D)
+            {
+                world.player.path.bestPath = null;
             }
         }
 
