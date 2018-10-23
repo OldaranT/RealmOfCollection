@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,20 @@ namespace RealmOfCollection.util
                 return false;
             }
             return position == other.position;
+        }
+
+        public void Render(Graphics g)
+        {
+            double leftCorner = position.X - 15;
+            double rightCorner = position.Y - 15;
+            double size = 15 * 2;
+
+
+
+            Pen p = new Pen(Color.Gold, 10);
+            Pen PVelocity = new Pen(Color.Gold, 2);
+            Pen PTarget = new Pen(Color.Red, 2);
+            g.DrawEllipse(p, new Rectangle((int)leftCorner, (int)rightCorner, (int)size, (int)size));
         }
     }
 }

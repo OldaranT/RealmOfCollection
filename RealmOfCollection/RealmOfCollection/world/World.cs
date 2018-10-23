@@ -2,6 +2,7 @@
 using RealmOfCollection.entity;
 using RealmOfCollection.entity.MovingEntitys;
 using RealmOfCollection.Graphs;
+using RealmOfCollection.util;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -28,7 +29,10 @@ namespace RealmOfCollection
         public Path path { get; set; }
         public bool showGraph { get; set; }
         public Hunter hunter { get; set; }
-        
+
+        public List<ExploreTarget> exploreTargets;
+        public ExploreTarget beginning;
+
 
         public World(int w, int h)
         {
@@ -41,13 +45,18 @@ namespace RealmOfCollection
             graph = new Graph(this, distanceVertex);
             populate();
 
+            exploreTargets = new List<ExploreTarget>();
+            createExploreTargets();
+
+
         }
 
         private void populate()
         {
             path = new Path(this);
             hunter = new Hunter(new Vector2D(50, 50), this, false);
-            hunter.SB = new PathFollowBehaviour(hunter);
+            //hunter.SB = new PathFollowBehaviour(hunter);
+            hunter.SB = new ExploreBahviour(hunter, 100f);
             movingEntities.Add(hunter);
 
             for (int i = 0; i < 25; i++)
@@ -66,6 +75,9 @@ namespace RealmOfCollection
             Target.VColor = Color.DarkRed;
             Target.Scale = 15;
             Target.Pos = new Vector2D(200, 100);
+
+            beginning = new ExploreTarget(100, 60);
+
         }
 
         private void CreateObjects()
@@ -146,6 +158,25 @@ namespace RealmOfCollection
             return DrawIt;
         }
 
+        private void createExploreTargets()
+        {
+            List<string> keys = graph.keys;
+            int maxIndex = keys.Count - 1;
+            for (int i = 0; i < 5; i++)
+            {
+                string key = keys[random.Next(0, maxIndex)];
+                Vector2D location = graph.vertexMap[key].position;
+                ExploreTarget target = new ExploreTarget(location.X, location.Y);
+                if (exploreTargets.Contains(target))
+                {
+                    i--;
+                    continue;
+                }
+                exploreTargets.Add(target);
+            }
+
+        }
+
         public void Render(Graphics g)
         {
             Objects.ForEach(e => e.Render(g));
@@ -160,6 +191,8 @@ namespace RealmOfCollection
             hunter.Render(g);
 
             Target.Render(g);
+
+            exploreTargets.ForEach(e => e.Render(g));
 
         }
     }

@@ -40,7 +40,7 @@ namespace RealmOfCollection.behaviour
         private void getNextPointOfInterest()
         {
             float oldDist = float.MaxValue;
-            List<ExploreTarget> targets = ME.MyWorld.exploreTargets;
+            List<ExploreTarget> targets = movingEntity.MyWorld.exploreTargets;
 
             foreach(ExploreTarget target in targets)
             {
@@ -49,7 +49,7 @@ namespace RealmOfCollection.behaviour
                     continue;
                 }
 
-                float distance = (float)ME.Pos.Distance(target.position);
+                float distance = (float)movingEntity.Pos.Distance(target.position);
 
                 if(distance < oldDist)
                 {
@@ -59,7 +59,7 @@ namespace RealmOfCollection.behaviour
             }
 
             Path path = pfBehaviour.path;
-            string beginning = path.getNearestVertex(ME.Pos);
+            string beginning = path.getNearestVertex(movingEntity.Pos);
             string destination;
             if(exploreTarget != null)
             {
@@ -67,7 +67,7 @@ namespace RealmOfCollection.behaviour
             }
             else
             {
-                exploreTarget = ME.MyWorld.beginning;
+                exploreTarget = movingEntity.MyWorld.beginning;
                 destination = path.getNearestVertex(exploreTarget.position);
             }
 
@@ -86,14 +86,14 @@ namespace RealmOfCollection.behaviour
                 pfBehaviour.arrived = false;
                 exploreTarget.visited = true;
 
-                if (!ME.MyWorld.beginning.visited)
+                if (!movingEntity.MyWorld.beginning.visited)
                 {
                     findXT = false;
                 }
                 else
                 {
                     force = new Vector2D();
-                    ME.Velocity = new Vector2D();
+                    movingEntity.Velocity = new Vector2D();
                 }
 
                 exploreTarget = null;
