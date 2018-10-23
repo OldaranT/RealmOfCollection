@@ -65,9 +65,10 @@
     <Compile Include="entity\BaseGameEntity.cs" />
     <Compile Include="entity\MovingEntity.cs" />
     <Compile Include="entity\MovingEntitys\Hunter.cs" />
+    <Compile Include="entity\MovingEntitys\Player.cs" />
     <Compile Include="entity\SqaureObject.cs" />
     <Compile Include="entity\StaticEntity.cs" />
-    <Compile Include="entity\Vehicle.cs" />
+    <Compile Include="entity\MovingEntitys\Imp.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,8 +77,6 @@
     </Compile>
     <Compile Include="Graphs\Edge.cs" />
     <Compile Include="Graphs\Graph.cs" />
-    <Compile Include="Graphs\IGraph.cs" />
-    <Compile Include="Graphs\IVertex.cs" />
     <Compile Include="Graphs\Path.cs" />
     <Compile Include="Graphs\PathPriorityQueue.cs" />
     <Compile Include="Graphs\Vertex.cs" />

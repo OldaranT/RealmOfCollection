@@ -19,13 +19,7 @@ namespace RealmOfCollection.behaviour
         public PathFollowBehaviour(MovingEntity me) : base(me)
         {
             sb = new SeekBehaviour(me);
-            if(me is Hunter)
-            {
-                path = movingEntity.MyWorld.path;
-            } else
-            {
-                path = new Path(movingEntity.MyWorld);
-            }
+            path = me.path;
         }
 
         public PathFollowBehaviour(MovingEntity me, Path path) : base(me)

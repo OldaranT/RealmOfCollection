@@ -19,16 +19,16 @@ namespace RealmOfCollection
         private List<BaseGameEntity> entities = new List<BaseGameEntity>();
         private List<StaticEntity> Objects = new List<StaticEntity>();
         private List<MovingEntity> movingEntities { get; set; }
-        public Vehicle Target { get; set; }
+        public Player player { get; set; }
+        public Hunter hunter { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
         public Vector2D CursorPos { get; set; }
-
         public Random random { get; set; }
         public Graph graph { get; set; }
         public Path path { get; set; }
         public bool showGraph { get; set; }
-        public Hunter hunter { get; set; }
+        public bool showEntityInfo { get; set; }
 
         public List<ExploreTarget> exploreTargets;
         public ExploreTarget beginning;
@@ -54,12 +54,22 @@ namespace RealmOfCollection
         private void populate()
         {
             path = new Path(this);
-            hunter = new Hunter(new Vector2D(50, 50), this, false);
+            hunter = new Hunter(new Vector2D(50, 50), this);
             //hunter.SB = new PathFollowBehaviour(hunter);
             hunter.SB = new ExploreBahviour(hunter, 100f);
             //hunter.setCollisionAvoidance(new CollisionAvoidanceBehaviour(hunter, 1, Objects, 5));
             movingEntities.Add(hunter);
 
+            //Player
+            player = new Player(new Vector2D(100, 60), this);
+            player.VColor = Color.DarkRed;
+            player.Scale = 15;
+            player.Pos = new Vector2D(200, 100);
+            player.SteeringBehaviors = new List<SteeringBehaviour>();
+            player.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(player, 20, Objects, 25));
+
+
+            //Add imps
             for (int i = 0; i < 25; i++)
             {
                 int X = random.Next(0, Width - 100);
@@ -67,15 +77,17 @@ namespace RealmOfCollection
                 int R = random.Next(0, 255);
                 int G = random.Next(0, 255);
                 int B = random.Next(0, 255);
-                Vehicle v = new Vehicle(new Vector2D(X, Y), this, false);
-                v.VColor = Color.FromArgb(255,R,G,B);
-                entities.Add(v);
+                Imp imp = new Imp(new Vector2D(X, Y), this);
+                imp.VColor = Color.FromArgb(255,R,G,B);
+                imp.SteeringBehaviors = new List<SteeringBehaviour>();
+                imp.SteeringBehaviors.Add(new WanderBehaviour(imp, 2500, 50, 0.001, random));
+                imp.SteeringBehaviors.Add(new HideBehaviour(imp, player, Objects, 150));
+                imp.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(imp, 20, Objects, 50));
+                imp.SteeringBehaviors.Add(new EntityAvoidanceBehaviour(imp, movingEntities));
+                movingEntities.Add(imp);
             }
-
-            Target = new Vehicle(new Vector2D(100, 60), this, true);
-            Target.VColor = Color.DarkRed;
-            Target.Scale = 15;
-            Target.Pos = new Vector2D(200, 100);
+           
+            movingEntities.Add(player);
 
             beginning = new ExploreTarget(Width/2, Height/2);
             beginning.visited = false;
@@ -95,43 +107,13 @@ namespace RealmOfCollection
 
         public void Update(float timeElapsed)
         {
-            foreach (BaseGameEntity me in entities)
-            {
-                //if(me is MovingEntity)
-                //{
-                //    Console.WriteLine("it works");
-                //}
-
-                if (double.IsNaN(me.Pos.X))
-                {
-                    Console.WriteLine();
-                }
-                var movingEntity = me as MovingEntity;
-
-                if (movingEntity == null)
-                    continue;
-
-
-                movingEntity.arriveSpeed = movingEntity.MaxSpeed;
-                movingEntity.SteeringBehaviors = new List<SteeringBehaviour>();
-                //movingEntity.SteeringBehaviors.Add(new SeekBehaviour(movingEntity));
-                movingEntity.SteeringBehaviors.Add(new WanderBehaviour(movingEntity, 2500, 50, 0.001, random));
-                //movingEntity.SteeringBehaviors.Add(new ArriveBehaviour(movingEntity, Target.Pos, SteeringBehaviour.Deceleration.slow));
-                movingEntity.SteeringBehaviors.Add(new HideBehaviour(movingEntity, Target, Objects));
-                //movingEntity.SteeringBehaviors.Add(new EvadeBehaviour(movingEntity));
-                movingEntity.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(movingEntity, 20, Objects, 50));
-                movingEntity.SteeringBehaviors.Add(new EntityAvoidanceBehaviour(movingEntity, movingEntities));
-                movingEntity.Update(timeElapsed);
-            }
+           
 
             foreach (MovingEntity movingEntity in movingEntities)
             {
                 movingEntity.Update(timeElapsed);
+                
             }
-            Target.SteeringBehaviors = new List<SteeringBehaviour>();
-            //Target.SteeringBehaviors.Add(new WanderBehaviour(Target, 2500, 50, 0.001, random));
-            Target.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(Target, 20, Objects, 25));
-            Target.Update(timeElapsed);
 
 
         }
@@ -192,7 +174,7 @@ namespace RealmOfCollection
 
             hunter.Render(g);
 
-            Target.Render(g);
+            player.Render(g);
 
             exploreTargets.ForEach(e => e.Render(g, Color.Gold));
             beginning.Render(g, Color.Black);
