@@ -9,7 +9,7 @@ namespace RealmOfCollection.entity
 {
     public class Imp : MovingEntity
     {
-        public Color VColor { get; set; }
+        public Color color { get; set; }
         public World w { get; set; }
        
 
@@ -18,7 +18,7 @@ namespace RealmOfCollection.entity
             Velocity = new Vector2D(2, 2);
             Scale = 15;
             this.w = w;
-            VColor = Color.Black;
+            color = Color.Black;
             radius = Scale;
         }
 
@@ -94,7 +94,7 @@ namespace RealmOfCollection.entity
             double rightCorner = Pos.Y - Scale;
             double size = Scale * 2;
 
-            Pen p = new Pen(VColor, 2);
+            Pen p = new Pen(color, 2);
             Pen PVelocity = new Pen(Color.Gold, 2);
             Pen PTarget = new Pen(Color.Red, 2);
             g.DrawEllipse(p, new Rectangle((int)leftCorner, (int)rightCorner, (int)size, (int)size));

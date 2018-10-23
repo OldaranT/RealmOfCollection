@@ -78,7 +78,7 @@ namespace RealmOfCollection
                 int G = random.Next(0, 255);
                 int B = random.Next(0, 255);
                 Imp imp = new Imp(new Vector2D(X, Y), this);
-                imp.VColor = Color.FromArgb(255,R,G,B);
+                imp.color = Color.FromArgb(255,R,G,B);
                 imp.SteeringBehaviors = new List<SteeringBehaviour>();
                 imp.SteeringBehaviors.Add(new WanderBehaviour(imp, 2500, 50, 0.001, random));
                 imp.SteeringBehaviors.Add(new HideBehaviour(imp, player, Objects, 150));
