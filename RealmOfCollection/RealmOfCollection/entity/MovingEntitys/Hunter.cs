@@ -17,6 +17,7 @@ namespace RealmOfCollection.entity.MovingEntitys
         public static readonly double STAMINA_LIMIT = 20;
         public double tinder { get; set; }
         public static readonly double TINDERBOX_CAPACITY = 40;
+        public static double TINDER_USAGE = 10;
         public Brain brain { get; set; }
 
         public Hunter(Vector2D pos, World world) : base(pos, world)
