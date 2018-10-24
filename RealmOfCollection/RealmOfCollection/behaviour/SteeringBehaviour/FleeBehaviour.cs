@@ -9,6 +9,8 @@ namespace RealmOfCollection.behaviour
 {
     public class FleeBehaviour : SteeringBehaviour
     {
+        public FleeBehaviour() : base() { }
+
         public FleeBehaviour(MovingEntity me) : base(me)
         {
 

@@ -13,7 +13,7 @@ namespace RealmOfCollection.behaviour
         public Player hunter;
         public List<StaticEntity> objects;
         private int hideDistance;
-        public HideBehaviour(MovingEntity me) : base(me)
+        public HideBehaviour() : base()
         {
         }
         public HideBehaviour(MovingEntity me, Player hunter, List<StaticEntity> objects, int hideDistance) : base(me)

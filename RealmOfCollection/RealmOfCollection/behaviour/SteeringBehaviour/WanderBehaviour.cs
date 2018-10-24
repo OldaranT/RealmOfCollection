@@ -19,6 +19,8 @@ namespace RealmOfCollection.behaviour
         float CIRCLE_RADIUS = 10;
         float wanderAngle { get; set; }
 
+        public WanderBehaviour() : base() { }
+
         public WanderBehaviour(MovingEntity me, double radius, double distance, double jitter, Random r) : base(me, r)
         {
             //wanderRadius = radius;

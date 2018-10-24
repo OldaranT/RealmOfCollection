@@ -15,6 +15,8 @@ namespace RealmOfCollection.behaviour
 
         private Vector2D pos { get; set; }
 
+        public EntityAvoidanceBehaviour() : base() { }
+
         public EntityAvoidanceBehaviour(MovingEntity me, List<MovingEntity> entities) : base(me)
         {
             this.entities = entities;

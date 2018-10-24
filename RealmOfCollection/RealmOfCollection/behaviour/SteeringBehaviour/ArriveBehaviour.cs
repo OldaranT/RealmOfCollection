@@ -12,6 +12,12 @@ namespace RealmOfCollection.behaviour
     {
         public Vector2D TargetPos;
         public Deceleration deceleration;
+
+        public ArriveBehaviour() : base()
+        {
+
+        }
+
         public ArriveBehaviour(MovingEntity me, Vector2D targetPos) : base(me)
         {
             deceleration = Deceleration.normal;

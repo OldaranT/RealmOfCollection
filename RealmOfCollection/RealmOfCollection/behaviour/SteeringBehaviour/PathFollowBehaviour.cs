@@ -16,6 +16,8 @@ namespace RealmOfCollection.behaviour
         public Path path;
         public bool arrived;
 
+        public PathFollowBehaviour() : base() { }
+
         public PathFollowBehaviour(MovingEntity me) : base(me)
         {
             sb = new SeekBehaviour(me);

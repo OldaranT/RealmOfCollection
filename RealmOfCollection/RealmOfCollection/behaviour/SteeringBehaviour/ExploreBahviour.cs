@@ -17,6 +17,8 @@ namespace RealmOfCollection.behaviour
         private PathFollowBehaviour pfBehaviour;
         private ExploreTarget exploreTarget;
 
+        public ExploreBahviour() : base() { }
+
         public ExploreBahviour(MovingEntity me, float searchRadius) : base(me)
         {
             this.searchRadius = searchRadius;

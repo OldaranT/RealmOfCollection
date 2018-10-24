@@ -11,6 +11,8 @@ namespace RealmOfCollection.behaviour
     {
         Vector2D TargetPos;
 
+        public SeekBehaviour() : base() { }
+
         public SeekBehaviour(MovingEntity me) : base(me, new Random())
         {
         }

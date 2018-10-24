@@ -20,6 +20,8 @@ namespace RealmOfCollection.behaviour
         float MAX_AVOID_FORCE { get; set; }
         private Vector2D pos { get; set; }
 
+        public CollisionAvoidanceBehaviour() : base() { }
+
         public CollisionAvoidanceBehaviour(MovingEntity me, float MaxLookRadius, List<StaticEntity> objects, float MaxForce) : base(me)
         {
             MAX_SEE_AHEAD = MaxLookRadius;

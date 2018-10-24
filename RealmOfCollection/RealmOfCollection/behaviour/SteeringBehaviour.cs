@@ -20,6 +20,11 @@ namespace RealmOfCollection
 
         public Random random { get; set; }
 
+        public SteeringBehaviour()
+        {
+
+        }
+
         public SteeringBehaviour(MovingEntity me)
         {
             movingEntity = me;
