@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealmOfCollection.entity
+namespace RealmOfCollection.entity.StaticEntitys
 {
     public class SqaureObject : StaticEntity
     {

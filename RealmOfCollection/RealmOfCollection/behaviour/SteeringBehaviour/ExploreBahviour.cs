@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RealmOfCollection.entity;
+using RealmOfCollection.entity.StaticEntitys;
 using RealmOfCollection.Graphs;
 using RealmOfCollection.util;
 
@@ -38,6 +39,13 @@ namespace RealmOfCollection.behaviour
                 //force = pfBehaviour.Calculate();
                 getForce(ref force);
             }
+            movingEntity.MyWorld.torches.ForEach(t =>
+            {
+                if (t.Pos.Distance(movingEntity.Pos) <= searchRadius)
+                {
+                    t.onFire = true;
+                }
+            });
             return force;
         }
 
