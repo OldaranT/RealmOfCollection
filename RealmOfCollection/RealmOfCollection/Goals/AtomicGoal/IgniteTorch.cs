@@ -5,15 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using RealmOfCollection.entity.MovingEntitys;
 
-namespace RealmOfCollection.Goals.CompositeGoals
+namespace RealmOfCollection.Goals.AtomicGoal
 {
-    public class LightFire : CompositeGoal
+    public class IgniteTorch : Goal
     {
-        public LightFire(Hunter hunter) : base(hunter)
+        protected IgniteTorch(Hunter hunter) : base(hunter)
         {
         }
 
         public override void Activate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void AddSubgoal(Goal g)
         {
             throw new NotImplementedException();
         }
