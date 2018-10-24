@@ -7,9 +7,9 @@ using RealmOfCollection.entity.MovingEntitys;
 
 namespace RealmOfCollection.Goals.AtomicGoal
 {
-    public class GetItem : Goal
+    public class GetTinderbox : Goal
     {
-        protected GetItem(Hunter hunter) : base(hunter)
+        protected GetTinderbox(Hunter hunter) : base(hunter)
         {
         }
 

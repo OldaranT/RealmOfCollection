@@ -7,9 +7,9 @@ using RealmOfCollection.entity.MovingEntitys;
 
 namespace RealmOfCollection.Goals.CompositeGoals
 {
-    public class LightFire : CompositeGoal
+    public class ManageTorch : CompositeGoal
     {
-        public LightFire(Hunter hunter) : base(hunter)
+        public ManageTorch(Hunter hunter) : base(hunter)
         {
         }
 
