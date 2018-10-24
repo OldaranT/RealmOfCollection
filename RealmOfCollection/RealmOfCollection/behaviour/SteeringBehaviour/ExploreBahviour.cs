@@ -43,7 +43,8 @@ namespace RealmOfCollection.behaviour
             {
                 if (t.Pos.Distance(movingEntity.Pos) <= searchRadius)
                 {
-                    t.onFire = true;
+                    movingEntity.foundTorches.Add(t);
+                    //t.onFire = true;
                 }
             });
             return force;

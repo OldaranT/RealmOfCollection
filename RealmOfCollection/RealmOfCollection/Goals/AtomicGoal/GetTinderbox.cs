@@ -9,13 +9,16 @@ namespace RealmOfCollection.Goals.AtomicGoal
 {
     public class GetTinderbox : Goal
     {
-        protected GetTinderbox(Hunter hunter) : base(hunter)
+        public GetTinderbox(Hunter hunter) : base(hunter)
         {
         }
 
         public override void Activate()
         {
-            throw new NotImplementedException();
+            hunter.RemoveAllMovingBehaviours();
+            hunter.Velocity = new Vector2D();
+            status = Status.Active;
+
         }
 
         public override void AddSubgoal(Goal g)
@@ -30,12 +33,29 @@ namespace RealmOfCollection.Goals.AtomicGoal
 
         public override Status Process()
         {
-            throw new NotImplementedException();
+            ActivateIfInactive();
+            EvaluateTinderBox();
+            return status;
         }
 
         public override void Terminate()
         {
-            throw new NotImplementedException();
+        }
+
+        public void EvaluateTinderBox()
+        {
+            if(hunter.tinder < Hunter.TINDERBOX_CAPACITY)
+            {
+                hunter.tinder += 0.5d;
+            }
+            else
+            {
+                if(hunter.tinder > Hunter.TINDERBOX_CAPACITY)
+                {
+                    hunter.tinder = Hunter.TINDERBOX_CAPACITY;
+                }
+                status = Status.Completed;
+            }
         }
     }
 }
