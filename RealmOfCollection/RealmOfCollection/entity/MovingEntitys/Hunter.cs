@@ -23,7 +23,7 @@ namespace RealmOfCollection.entity.MovingEntitys
         public Hunter(Vector2D pos, World world) : base(pos, world)
         {
             stamina = STAMINA_LIMIT;
-            tinder = TINDERBOX_CAPACITY;
+            tinder = 0;
             Scale = 10;
             radius = 10;
             MaxSpeed = 100;

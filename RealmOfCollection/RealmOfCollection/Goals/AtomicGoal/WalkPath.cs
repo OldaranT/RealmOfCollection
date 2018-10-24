@@ -12,9 +12,9 @@ namespace RealmOfCollection.Goals.AtomicGoal
 {
     public class WalkPath : Goal
     {
-        private ExploreTarget destination;
+        private Vector2D destination;
 
-        public WalkPath(Hunter hunter, ExploreTarget destination) : base(hunter)
+        public WalkPath(Hunter hunter, Vector2D destination) : base(hunter)
         {
             this.destination = destination;
         }
@@ -26,7 +26,7 @@ namespace RealmOfCollection.Goals.AtomicGoal
             hunter.RemoveAllMovingBehaviours();
             Path path = new Path(hunter.MyWorld);
             string start = path.getNearestVertex(hunter.Pos);
-            string dest = path.getNearestVertex(destination.position);
+            string dest = path.getNearestVertex(destination);
             path.bestPath = path.FindBestPath(start, dest);
             hunter.SteeringBehaviors.Add(new PathFollowBehaviour(hunter, path));
 
@@ -46,7 +46,7 @@ namespace RealmOfCollection.Goals.AtomicGoal
         {
             ActivateIfInactive();
 
-            if(hunter.Pos.Distance(destination.position) <= 10)
+            if(hunter.Pos.Distance(destination) <= 10)
             {
                 status = Status.Completed;
             }

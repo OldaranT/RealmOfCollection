@@ -4,18 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RealmOfCollection.entity.MovingEntitys;
+using RealmOfCollection.entity.StaticEntitys;
+using RealmOfCollection.Goals.AtomicGoal;
 
 namespace RealmOfCollection.Goals.CompositeGoals
 {
     public class ManageTorch : CompositeGoal
     {
-        public ManageTorch(Hunter hunter) : base(hunter)
+        private TorchObject torchObject;
+
+        public ManageTorch(Hunter hunter, TorchObject torchObject) : base(hunter)
         {
+            this.torchObject = torchObject;
         }
 
         public override void Activate()
         {
-            throw new NotImplementedException();
+            AddSubgoal(new IgniteTorch(hunter, torchObject));
+
+            AddSubgoal(new WalkPath(hunter, torchObject.Pos));
+
+            if (hunter.tinder < Hunter.TINDER_USAGE) 
+            {
+                AddSubgoal(new GetTinderbox(hunter));
+
+                AddSubgoal(new GetResources(hunter));
+            } else
+            {
+            }
         }
 
         public override bool HandleMessage(string s)

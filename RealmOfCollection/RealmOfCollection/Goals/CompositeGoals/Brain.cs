@@ -85,7 +85,7 @@ namespace RealmOfCollection.Goals.CompositeGoals
             if (!IsPresent<WalkPath>())
             {
                 RemoveAllSubGoals();
-                AddSubgoal(new WalkPath(hunter, hunter.MyWorld.beginning));
+                AddSubgoal(new GetResources(hunter));
 
             }
 
@@ -115,6 +115,7 @@ namespace RealmOfCollection.Goals.CompositeGoals
             
             hunter.stamina -= 2d;
             Console.WriteLine("Hunter Stamina: " + hunter.stamina);
+            Console.WriteLine("Hunter tinder: " + hunter.tinder);
             //Console.WriteLine("Hunter TINDER: " + hunter.tinder);
             //if(hunter.tinder <= 3)
             //{

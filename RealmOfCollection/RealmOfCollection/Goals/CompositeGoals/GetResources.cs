@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RealmOfCollection.entity.MovingEntitys;
+using RealmOfCollection.Goals.AtomicGoal;
 
 namespace RealmOfCollection.Goals.CompositeGoals
 {
@@ -15,7 +16,10 @@ namespace RealmOfCollection.Goals.CompositeGoals
 
         public override void Activate()
         {
-            throw new NotImplementedException();
+            RemoveAllSubGoals();
+            AddSubgoal(new GetTinderbox(hunter));
+            AddSubgoal(new WalkPath(hunter, hunter.MyWorld.beginning.position));
+            status = Status.Active;
         }
 
         public override bool HandleMessage(string s)
@@ -25,12 +29,16 @@ namespace RealmOfCollection.Goals.CompositeGoals
 
         public override Status Process()
         {
-            throw new NotImplementedException();
+            ActivateIfInactive();
+
+            status = ProcessSubgoals();
+
+            return status;
         }
 
         public override void Terminate()
         {
-            throw new NotImplementedException();
+            RemoveAllSubGoals();
         }
     }
 }
