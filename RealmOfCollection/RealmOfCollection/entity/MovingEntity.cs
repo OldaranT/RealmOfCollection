@@ -113,5 +113,10 @@ namespace RealmOfCollection.entity
         {
             return String.Format("{0}", Velocity);
         }
+
+        public void removeSB(SteeringBehaviour type)
+        {
+            SteeringBehaviors.RemoveAll(SB => SB.GetType() == type.GetType());
+        }
     }
 }
