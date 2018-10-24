@@ -51,7 +51,7 @@ namespace RealmOfCollection.Goals.AtomicGoal
 
             if (hunter.stamina < Hunter.STAMINA_LIMIT)
             {
-               // hunter.stamina += 0.5d;
+               hunter.stamina += 0.5d;
             }
             else
             {
