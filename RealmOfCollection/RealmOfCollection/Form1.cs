@@ -1,4 +1,5 @@
 ﻿using RealmOfCollection.behaviour;
+using RealmOfCollection.entity.StaticEntitys;
 using RealmOfCollection.Graphs;
 using System;
 using System.Collections.Generic;
@@ -88,6 +89,9 @@ namespace RealmOfCollection
                 world.player.SteeringBehaviors.Add(new PathFollowBehaviour(world.player));
             }
 
+            //TorchObject torch = new TorchObject(new Vector2D(e.X, e.Y), world, new Vector2D());
+            //world.addTorch(new Vector2D(e.X, e.Y));
+
            //world.player.Pos = new Vector2D(e.X, e.Y);
         }
 
@@ -157,6 +161,11 @@ namespace RealmOfCollection
             {
                 right = false;
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

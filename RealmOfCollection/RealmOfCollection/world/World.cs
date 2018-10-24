@@ -1,6 +1,7 @@
 ﻿using RealmOfCollection.behaviour;
 using RealmOfCollection.entity;
 using RealmOfCollection.entity.MovingEntitys;
+using RealmOfCollection.entity.StaticEntitys;
 using RealmOfCollection.Graphs;
 using RealmOfCollection.util;
 using System;
@@ -32,6 +33,7 @@ namespace RealmOfCollection
 
         public List<ExploreTarget> exploreTargets;
         public ExploreTarget beginning;
+        public List<TorchObject> torches;
 
 
         public World(int w, int h)
@@ -47,7 +49,8 @@ namespace RealmOfCollection
 
             exploreTargets = new List<ExploreTarget>();
             createExploreTargets();
-
+            torches = new List<TorchObject>();
+            CreateTorches();
 
         }
 
@@ -72,6 +75,8 @@ namespace RealmOfCollection
             player.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(player, 20, Objects, 25));
 
 
+
+
             //Add imps
             for (int i = 0; i < 25; i++)
             {
@@ -81,7 +86,7 @@ namespace RealmOfCollection
                 int G = random.Next(0, 255);
                 int B = random.Next(0, 255);
                 Imp imp = new Imp(new Vector2D(X, Y), this);
-                imp.color = Color.FromArgb(255,R,G,B);
+                imp.color = Color.FromArgb(255, R, G, B);
                 imp.SteeringBehaviors = new List<SteeringBehaviour>();
                 imp.SteeringBehaviors.Add(new WanderBehaviour(imp, 2500, 50, 0.001, random));
                 imp.SteeringBehaviors.Add(new HideBehaviour(imp, player, Objects, 150));
@@ -89,18 +94,45 @@ namespace RealmOfCollection
                 imp.SteeringBehaviors.Add(new EntityAvoidanceBehaviour(imp, movingEntities));
                 movingEntities.Add(imp);
             }
-           
+
             movingEntities.Add(player);
 
-            beginning = new ExploreTarget(Width/2, Height/2);
+            beginning = new ExploreTarget(Width / 2, Height / 2);
             beginning.visited = false;
 
+        }
+
+        public void addTorch(Vector2D pos)
+        {
+            TorchObject torch = new TorchObject(pos, this, new Vector2D());
+            entities.Add(torch);
+        }
+
+        public void CreateTorches()
+        {
+
+            List<string> keys = graph.keys;
+            int maxIndex = keys.Count - 1;
+            for (int i = 0; i < 5; i++)
+            {
+
+                string key = keys[random.Next(0, maxIndex)];
+                Vector2D location = graph.vertexMap[key].position;
+                TorchObject torch = new TorchObject(location, this, new Vector2D());
+                if (torches.Contains(torch))
+                {
+                    i--;
+                    continue;
+                }
+                torches.Add(torch);
+
+            }
         }
 
         private void CreateObjects()
         {
             //entities.Add(new SqaureObject(new Vector2D(300, 300), this, new Vector2D(50, 50)));
-            for(int i = 0; i <  100; i++)
+            for (int i = 0; i < 100; i++)
             {
                 int X = random.Next(0, Width - 100);
                 int Y = random.Next(0, Height - 100);
@@ -110,12 +142,12 @@ namespace RealmOfCollection
 
         public void Update(float timeElapsed)
         {
-           
+
 
             foreach (MovingEntity movingEntity in movingEntities)
             {
                 movingEntity.Update(timeElapsed);
-                
+
             }
 
 
@@ -178,7 +210,7 @@ namespace RealmOfCollection
             hunter.Render(g);
 
             player.Render(g);
-
+            torches.ForEach(t => t.Render(g));
             exploreTargets.ForEach(e => e.Render(g, Color.Gold));
             beginning.Render(g, Color.Black);
 
