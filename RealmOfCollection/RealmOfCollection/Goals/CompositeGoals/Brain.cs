@@ -50,15 +50,19 @@ namespace RealmOfCollection.Goals.CompositeGoals
             {
                 Console.WriteLine("Picking a job...");
                 // Choose one of the three strategy-level composite goals at random
-                int randomChoice = World.random.Next(1);
+                int randomChoice = World.random.Next(2);
 
                 // 0 = Explore
                 // 1 = getResources
+                Console.WriteLine("Pick: " + randomChoice);
 
                 switch (randomChoice)
                 {
                     case 0:
                         hunter.brain.AddGoal_Explore();
+                        break;
+                    case 1:
+                        hunter.brain.AddGoal_GetResources();
                         break;
 
                 }
@@ -78,10 +82,10 @@ namespace RealmOfCollection.Goals.CompositeGoals
 
         public void AddGoal_GetResources()
         {
-            if (!IsPresent<GetResources>())
+            if (!IsPresent<WalkPath>())
             {
                 RemoveAllSubGoals();
-                AddSubgoal(new GetResources(hunter));
+                AddSubgoal(new WalkPath(hunter, hunter.MyWorld.beginning));
 
             }
 
