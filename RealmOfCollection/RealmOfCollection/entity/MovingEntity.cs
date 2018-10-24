@@ -25,6 +25,7 @@ namespace RealmOfCollection.entity
         public Vector2D OldPos { get; set; }
         public float radius { get; set; }
         public Path path { get; set; }
+        private List<SteeringBehaviour> movingBehaviours;
 
 
         public MovingEntity(Vector2D pos, World w) : base(pos, w)
@@ -41,6 +42,14 @@ namespace RealmOfCollection.entity
             SteeringForce = new Vector2D();
             radius = 15;
             path = new Path(MyWorld);
+            movingBehaviours = new List<SteeringBehaviour>();
+
+            //List all moving behaviours. 
+            movingBehaviours.Add(new ArriveBehaviour());
+            movingBehaviours.Add(new SeekBehaviour());
+            movingBehaviours.Add(new WanderBehaviour());
+            movingBehaviours.Add(new PathFollowBehaviour());
+            movingBehaviours.Add(new ExploreBahviour());
         }
 
         public override void Update(float timeElapsed)
@@ -114,9 +123,14 @@ namespace RealmOfCollection.entity
             return String.Format("{0}", Velocity);
         }
 
-        public void removeSB(SteeringBehaviour type)
+        public void RemoveSteeringBehaviour(SteeringBehaviour type)
         {
             SteeringBehaviors.RemoveAll(SB => SB.GetType() == type.GetType());
+        }
+
+        public void RemoveAllMovingBehaviours()
+        {
+            movingBehaviours.ForEach(MB => { SteeringBehaviors.RemoveAll(SB => SB.GetType().Equals(MB.GetType())); });
         }
     }
 }

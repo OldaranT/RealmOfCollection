@@ -76,6 +76,12 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Goals\AtomicGoal\Rest.cs" />
+    <Compile Include="Goals\AtomicGoal\WalkPath.cs" />
+    <Compile Include="Goals\CompositeGoal.cs" />
+    <Compile Include="Goals\CompositeGoals\Brain.cs" />
+    <Compile Include="Goals\CompositeGoals\Explore.cs" />
+    <Compile Include="Goals\CompositeGoals\GetResources.cs" />
+    <Compile Include="Goals\CompositeGoals\LightFire.cs" />
     <Compile Include="Goals\Goal.cs" />
     <Compile Include="util\Graphs\Edge.cs" />
     <Compile Include="util\Graphs\Graph.cs" />
@@ -114,8 +120,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Goals\CompositeGoal\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

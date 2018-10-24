@@ -24,7 +24,7 @@ namespace RealmOfCollection
         public int Width { get; set; }
         public int Height { get; set; }
         public Vector2D CursorPos { get; set; }
-        public Random random { get; set; }
+        public static Random random { get; set; }
         public Graph graph { get; set; }
         public Path path { get; set; }
         public bool showGraph { get; set; }
@@ -56,7 +56,7 @@ namespace RealmOfCollection
             path = new Path(this);
             hunter = new Hunter(new Vector2D(50, 50), this);
             hunter.SteeringBehaviors = new List<SteeringBehaviour>();
-            hunter.SteeringBehaviors.Add(new ExploreBahviour(hunter, 100f));
+            //hunter.SteeringBehaviors.Add(new ExploreBahviour(hunter, 100f));
             hunter.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(hunter, 1, Objects, 5));
             //hunter.SB = new PathFollowBehaviour(hunter);
             //hunter.SB = new ExploreBahviour(hunter, 100f);
@@ -117,7 +117,6 @@ namespace RealmOfCollection
                 movingEntity.Update(timeElapsed);
                 
             }
-
 
         }
 

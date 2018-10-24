@@ -28,7 +28,7 @@ namespace RealmOfCollection.behaviour
             //wanderJitter = jitter;
             //float theta = randomFloat();
             //wanderTarget = new Vector2D(wanderRadius * Math.Cos(theta), wanderRadius * Math.Sin(theta));
-            wanderAngle = ((float)random.NextDouble() * ANGLE_CHANGE) - (ANGLE_CHANGE * 0.5f);
+            wanderAngle = ((float)Random.NextDouble() * ANGLE_CHANGE) - (ANGLE_CHANGE * 0.5f);
         }
 
         //public double randomDouble()
@@ -79,7 +79,7 @@ namespace RealmOfCollection.behaviour
 
             //setAngle(displacement, wanderAngle);
 
-            wanderAngle += ((float)random.NextDouble() * ANGLE_CHANGE) - (ANGLE_CHANGE * 0.5f);
+            wanderAngle += ((float)Random.NextDouble() * ANGLE_CHANGE) - (ANGLE_CHANGE * 0.5f);
             //rotate the displacement with the angle
             displacement = Vector2D.rotate(displacement, wanderAngle);
 

@@ -1,4 +1,5 @@
-﻿using RealmOfCollection.entity.MovingEntitys;
+﻿using RealmOfCollection.behaviour;
+using RealmOfCollection.entity.MovingEntitys;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,17 @@ namespace RealmOfCollection.Goals.AtomicGoal
 {
     class Rest : Goal
     {
-        public Rest(Player player) : base(player)
+
+        private int timer;
+        public Rest(Hunter player) : base(player)
         {
 
         }
         public override void Activate()
         {
-            throw new NotImplementedException();
+            hunter.RemoveAllMovingBehaviours();
+            hunter.Velocity = new Vector2D();
+            status = Status.Active;
         }
 
         public override void AddSubgoal(Goal g)
@@ -28,14 +33,34 @@ namespace RealmOfCollection.Goals.AtomicGoal
             throw new NotImplementedException();
         }
 
-        public override int Process()
+        public override Status Process()
         {
-            throw new NotImplementedException();
+            
+            ActivateIfInactive();
+
+            //Check if the hunter is out of stamina. If so rest.
+            EvaluateStamina();
+
+            return status;
         }
 
-        public override void Terminate()
+        public override void Terminate() { }
+
+        public void EvaluateStamina()
         {
-            throw new NotImplementedException();
+
+            if (hunter.stamina < Hunter.STAMINA_LIMIT)
+            {
+               // hunter.stamina += 0.5d;
+            }
+            else
+            {
+                if (hunter.stamina > Hunter.STAMINA_LIMIT)
+                {
+                    hunter.stamina = Hunter.STAMINA_LIMIT;
+                }
+                status = Status.Completed;
+            }
         }
     }
 }

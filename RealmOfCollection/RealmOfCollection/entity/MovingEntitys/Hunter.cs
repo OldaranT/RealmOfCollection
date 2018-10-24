@@ -1,4 +1,5 @@
 ﻿using RealmOfCollection.behaviour;
+using RealmOfCollection.Goals.CompositeGoals;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,13 +12,28 @@ namespace RealmOfCollection.entity.MovingEntitys
     public class Hunter : MovingEntity
     {
         public SteeringBehaviour collisionAvoidance;
+
+        public double stamina { get; set; }
+        public static readonly double STAMINA_LIMIT = 20;
+        public Brain brain { get; set; }
+
         public Hunter(Vector2D pos, World world) : base(pos, world)
         {
+            stamina = STAMINA_LIMIT;
             Scale = 10;
             radius = 10;
             MaxSpeed = 100;
             Max_Force = 25f;
+            brain = new Brain(this);
         }
+
+        public override void Update(float timeElapsed)
+        {
+            brain.Process();
+            base.Update(timeElapsed);
+
+        }
+
         public void setCollisionAvoidance(SteeringBehaviour collisionAvoidance)
         {
             this.collisionAvoidance = collisionAvoidance;

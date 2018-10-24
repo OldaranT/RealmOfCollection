@@ -18,7 +18,7 @@ namespace RealmOfCollection
 
         public virtual void Draw(Graphics g) { }
 
-        public Random random { get; set; }
+        public Random Random { get; set; }
 
         public SteeringBehaviour()
         {
@@ -28,13 +28,13 @@ namespace RealmOfCollection
         public SteeringBehaviour(MovingEntity me)
         {
             movingEntity = me;
-            random = me.MyWorld.random;
+            Random = World.random;
         }
 
         public SteeringBehaviour(MovingEntity me, Random r)
         {
             movingEntity = me;
-            random = r;
+            Random = r;
         }
 
         

@@ -14,23 +14,31 @@ namespace RealmOfCollection.Goals
         Completed = 2,
         Failed = 3   
     }
-    abstract class Goal
+    public abstract class Goal
     {
         public Status status { get; set; }
-        public Player player { get; set; }
-        public Stack<Goal> subgoals { get; set; }
+        protected Hunter hunter { get; set; }
+        protected Stack<Goal> subgoals { get; set; }
 
-        public Goal(Player player)
+        protected Goal(Hunter hunter)
         {
-            this.player = player;
+            this.hunter = hunter;
+            status = Status.Inactive;
         }
 
         public abstract void Activate();
-        public abstract int Process();
+        public abstract Status Process();
         public abstract void Terminate();
         public abstract bool HandleMessage(string s);
         public abstract void AddSubgoal(Goal g);
+        public void ActivateIfInactive()
+        {
+            if (status == Status.Inactive)
+            {
+                Activate();
+            }
+        }
 
-        
+
     }
 }

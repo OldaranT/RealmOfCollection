@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RealmOfCollection.Goals;
+using RealmOfCollection.Goals.AtomicGoal;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -12,15 +14,12 @@ namespace RealmOfCollection.entity.MovingEntitys
         public Color VColor { get; set; }
         public World w { get; set; }
         public Vector2D MousePosition { get; set; }
-
-        public double stamina { get; set; }
         
 
         private float PieAngle = 45.0f;
 
         public Player(Vector2D pos, World w) : base(pos, w)
         {
-            stamina = 100;
             Velocity = new Vector2D(2, 2);
             Scale = 10;
             radius = 10;
