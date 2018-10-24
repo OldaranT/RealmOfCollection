@@ -111,6 +111,13 @@ namespace RealmOfCollection.Goals.CompositeGoals
             
             hunter.stamina -= 2d;
             Console.WriteLine("Hunter Stamina: " + hunter.stamina);
+            //Console.WriteLine("Hunter TINDER: " + hunter.tinder);
+            //if(hunter.tinder <= 3)
+            //{
+            //    subgoals.Peek().status = Status.Inactive;
+            //    AddSubgoal(new GetTinderbox(hunter));
+            //}
+
             if (hunter.stamina <= 3)
             {
                 subgoals.Peek().status = Status.Inactive;
