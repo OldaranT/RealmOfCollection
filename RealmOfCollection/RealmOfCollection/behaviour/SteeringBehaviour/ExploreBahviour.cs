@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RealmOfCollection.entity;
+using RealmOfCollection.entity.MovingEntitys;
 using RealmOfCollection.entity.StaticEntitys;
 using RealmOfCollection.Graphs;
 using RealmOfCollection.util;
@@ -22,7 +23,15 @@ namespace RealmOfCollection.behaviour
 
         public ExploreBahviour(MovingEntity me, float searchRadius) : base(me)
         {
-            this.searchRadius = searchRadius;
+            if (me is Hunter)
+            {
+                Hunter h = (Hunter)me;
+                this.searchRadius = h.searchRadius;
+            }
+            else
+            {
+                this.searchRadius = searchRadius;
+            }
             pfBehaviour = new PathFollowBehaviour(me);
         }
 

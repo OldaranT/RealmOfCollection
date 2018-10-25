@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RealmOfCollection.entity;
+using RealmOfCollection.entity.MovingEntitys;
 
 namespace RealmOfCollection.behaviour
 {
@@ -16,8 +17,10 @@ namespace RealmOfCollection.behaviour
         //Vector2D TargetLocation;
         float ANGLE_CHANGE = (float)Math.PI;
         float CIRCLE_DISTANCE = 2;
-        float CIRCLE_RADIUS = 10;
+        float CIRCLE_RADIUS = 5;
         float wanderAngle { get; set; }
+        bool ishunter;
+        float hunterSearchRadius;
 
         public WanderBehaviour() : base() { }
 
@@ -29,6 +32,12 @@ namespace RealmOfCollection.behaviour
             //float theta = randomFloat();
             //wanderTarget = new Vector2D(wanderRadius * Math.Cos(theta), wanderRadius * Math.Sin(theta));
             wanderAngle = ((float)Random.NextDouble() * ANGLE_CHANGE) - (ANGLE_CHANGE * 0.5f);
+            ishunter = me is Hunter ?  true : false;
+            if (ishunter)
+            {
+                Hunter h = (Hunter)me;
+                hunterSearchRadius = h.searchRadius;
+            }
         }
 
         //public double randomDouble()
@@ -53,6 +62,18 @@ namespace RealmOfCollection.behaviour
 
         public override Vector2D Calculate()
         {
+            if (ishunter)
+            {
+                movingEntity.MyWorld.torches.ForEach(t =>
+                {
+                    if (t.Pos.Distance(movingEntity.Pos) <= hunterSearchRadius)
+                    {
+                        movingEntity.foundTorches.Add(t);
+                        //t.onFire = true;
+                    }
+                });
+            }
+
             Vector2D circleCenter;
             if (!movingEntity.Velocity.isZero())
             {

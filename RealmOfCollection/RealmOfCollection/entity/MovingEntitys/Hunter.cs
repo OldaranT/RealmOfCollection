@@ -19,8 +19,9 @@ namespace RealmOfCollection.entity.MovingEntitys
         public static readonly double TINDERBOX_CAPACITY = 40;
         public static double TINDER_USAGE = 10;
         public Brain brain { get; set; }
+        public float searchRadius { get; set; }
 
-        public Hunter(Vector2D pos, World world) : base(pos, world)
+        public Hunter(Vector2D pos, World world, float searchRadius) : base(pos, world)
         {
             stamina = STAMINA_LIMIT;
             tinder = 0;
@@ -29,6 +30,7 @@ namespace RealmOfCollection.entity.MovingEntitys
             MaxSpeed = 100;
             Max_Force = 25f;
             brain = new Brain(this);
+            this.searchRadius = searchRadius;
         }
 
         public override void Update(float timeElapsed)

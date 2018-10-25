@@ -57,7 +57,7 @@ namespace RealmOfCollection
         private void populate()
         {
             path = new Path(this);
-            hunter = new Hunter(new Vector2D(50, 50), this);
+            hunter = new Hunter(new Vector2D(50, 50), this, 75f);
             hunter.SteeringBehaviors = new List<SteeringBehaviour>();
             //hunter.SteeringBehaviors.Add(new ExploreBahviour(hunter, 100f));
             hunter.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(hunter, 1, Objects, 5));
