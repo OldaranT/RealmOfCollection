@@ -1,5 +1,6 @@
 ﻿using RealmOfCollection.behaviour;
 using RealmOfCollection.entity.StaticEntitys;
+using RealmOfCollection.FuzzyLogic;
 using RealmOfCollection.Goals.CompositeGoals;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,9 @@ namespace RealmOfCollection.entity.MovingEntitys
         public Brain brain { get; set; }
         public float searchRadius { get; set; }
         public List<TorchObject> foundTorches;
+        public double level;
+
+        protected FuzzyModule fuzzyModule;
 
         public Hunter(Vector2D pos, World world, float searchRadius) : base(pos, world)
         {
@@ -34,6 +38,8 @@ namespace RealmOfCollection.entity.MovingEntitys
             brain = new Brain(this);
             this.searchRadius = searchRadius;
             foundTorches = new List<TorchObject>();
+            fuzzyModule = new FuzzyModule();
+            level = 0;
         }
 
         public override void Update(float timeElapsed)
@@ -55,6 +61,11 @@ namespace RealmOfCollection.entity.MovingEntitys
         public void setCollisionAvoidance(SteeringBehaviour collisionAvoidance)
         {
             this.collisionAvoidance = collisionAvoidance;
+        }
+
+        public ref FuzzyModule GetFuzzyModule()
+        {
+            return ref fuzzyModule;
         }
 
         //public override void Update(float timeElapsed)
@@ -92,6 +103,7 @@ namespace RealmOfCollection.entity.MovingEntitys
 
 
         //}
+
 
         public override void Render(Graphics g)
         {

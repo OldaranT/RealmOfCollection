@@ -49,21 +49,21 @@ namespace RealmOfCollection.FuzzyLogic.FuzzySets
             }
         }
 
-        public double getDOM()
+        public double GetDOM()
         {
             return DOM;
         }
-        public void setDOM(double val)
+        public void SetDOM(double val)
         {
             DOM = val;
         }
 
-        public void clearDOM()
+        public void ClearDOM()
         {
             DOM = 0.0;
         }
 
-        public double getRepresentativeValue()
+        public double GetRepresentativeValue()
         {
             return RepresentativeValue;
         }

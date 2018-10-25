@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RealmOfCollection.FuzzyLogic
 {
-    class FuzzyModule
+    public class FuzzyModule
     {
         private Dictionary<string, FuzzyVariable> variables;
 
