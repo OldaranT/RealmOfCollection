@@ -32,12 +32,12 @@ namespace RealmOfCollection.behaviour
             //float theta = randomFloat();
             //wanderTarget = new Vector2D(wanderRadius * Math.Cos(theta), wanderRadius * Math.Sin(theta));
             wanderAngle = ((float)Random.NextDouble() * ANGLE_CHANGE) - (ANGLE_CHANGE * 0.5f);
-            ishunter = me is Hunter ?  true : false;
-            if (ishunter)
-            {
-                Hunter h = (Hunter)me;
-                hunterSearchRadius = h.searchRadius;
-            }
+            //ishunter = me is Hunter ?  true : false;
+            //if (ishunter)
+            //{
+            //    Hunter h = (Hunter)me;
+            //    hunterSearchRadius = h.searchRadius;
+            //}
         }
 
         //public double randomDouble()
@@ -62,17 +62,17 @@ namespace RealmOfCollection.behaviour
 
         public override Vector2D Calculate()
         {
-            if (ishunter)
-            {
-                movingEntity.MyWorld.torches.ForEach(t =>
-                {
-                    if (t.Pos.Distance(movingEntity.Pos) <= hunterSearchRadius)
-                    {
-                        movingEntity.foundTorches.Add(t);
-                        //t.onFire = true;
-                    }
-                });
-            }
+            //if (ishunter)
+            //{
+            //    movingEntity.MyWorld.torches.ForEach(t =>
+            //    {
+            //        if (t.Pos.Distance(movingEntity.Pos) <= hunterSearchRadius)
+            //        {
+            //            movingEntity.foundTorches.Add(t);
+            //            //t.onFire = true;
+            //        }
+            //    });
+            //}
 
             Vector2D circleCenter;
             if (!movingEntity.Velocity.isZero())

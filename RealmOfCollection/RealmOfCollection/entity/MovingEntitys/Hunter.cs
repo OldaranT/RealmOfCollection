@@ -1,4 +1,5 @@
 ﻿using RealmOfCollection.behaviour;
+using RealmOfCollection.entity.StaticEntitys;
 using RealmOfCollection.Goals.CompositeGoals;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace RealmOfCollection.entity.MovingEntitys
         public static double TINDER_USAGE = 10;
         public Brain brain { get; set; }
         public float searchRadius { get; set; }
+        public List<TorchObject> foundTorches;
 
         public Hunter(Vector2D pos, World world, float searchRadius) : base(pos, world)
         {
@@ -31,10 +33,20 @@ namespace RealmOfCollection.entity.MovingEntitys
             Max_Force = 25f;
             brain = new Brain(this);
             this.searchRadius = searchRadius;
+            foundTorches = new List<TorchObject>();
         }
 
         public override void Update(float timeElapsed)
         {
+            MyWorld.torches.ForEach(t =>
+            {
+                if (!t.onFire && !foundTorches.Contains(t) && t.Pos.Distance(Pos) <= searchRadius)
+                {
+                    foundTorches.Add(t);
+                    //t.onFire = true;
+                }
+            });
+
             brain.Process();
             base.Update(timeElapsed);
 

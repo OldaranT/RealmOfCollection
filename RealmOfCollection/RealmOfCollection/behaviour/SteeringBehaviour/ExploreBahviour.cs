@@ -23,15 +23,15 @@ namespace RealmOfCollection.behaviour
 
         public ExploreBahviour(MovingEntity me, float searchRadius) : base(me)
         {
-            if (me is Hunter)
-            {
-                Hunter h = (Hunter)me;
-                this.searchRadius = h.searchRadius;
-            }
-            else
-            {
+            //if (me is Hunter)
+            //{
+            //    Hunter h = (Hunter)me;
+            //    this.searchRadius = h.searchRadius;
+            //}
+            //else
+            //{
                 this.searchRadius = searchRadius;
-            }
+            //}
             pfBehaviour = new PathFollowBehaviour(me);
         }
 
@@ -48,14 +48,14 @@ namespace RealmOfCollection.behaviour
                 //force = pfBehaviour.Calculate();
                 getForce(ref force);
             }
-            movingEntity.MyWorld.torches.ForEach(t =>
-            {
-                if (t.Pos.Distance(movingEntity.Pos) <= searchRadius)
-                {
-                    movingEntity.foundTorches.Add(t);
-                    //t.onFire = true;
-                }
-            });
+            //movingEntity.MyWorld.torches.ForEach(t =>
+            //{
+            //    if (t.Pos.Distance(movingEntity.Pos) <= searchRadius)
+            //    {
+            //        movingEntity.foundTorches.Add(t);
+            //        //t.onFire = true;
+            //    }
+            //});
             return force;
         }
 
