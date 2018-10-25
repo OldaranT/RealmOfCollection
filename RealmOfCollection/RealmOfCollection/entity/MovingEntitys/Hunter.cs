@@ -16,7 +16,7 @@ namespace RealmOfCollection.entity.MovingEntitys
         public SteeringBehaviour collisionAvoidance;
 
         public double stamina { get; set; }
-        public static readonly double STAMINA_LIMIT = 20;
+        public static readonly double STAMINA_LIMIT = 100;
         public double tinder { get; set; }
         public static readonly double TINDERBOX_CAPACITY = 40;
         public static double TINDER_USAGE = 10;
@@ -42,6 +42,7 @@ namespace RealmOfCollection.entity.MovingEntitys
             foundTorches = new List<TorchObject>();
             fuzzyModule = new FuzzyModule();
             level = 0;
+            FuzzyInitializer.InitializeRules(this);
         }
 
         public override void Update(float timeElapsed)

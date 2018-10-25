@@ -8,9 +8,9 @@ namespace RealmOfCollection.FuzzyLogic
 {
     public class FuzzyModule
     {
-        private Dictionary<string, FuzzyVariable> variables;
+        private Dictionary<string, FuzzyVariable> Variables;
 
-        private List<FuzzyRule> rules = new List<FuzzyRule>();
+        private List<FuzzyRule> Rules = new List<FuzzyRule>();
 
         public enum DefuzzyType
         {
@@ -21,34 +21,63 @@ namespace RealmOfCollection.FuzzyLogic
 
         public FuzzyModule()
         {
-            variables = new Dictionary<string, FuzzyVariable>();
+            Variables = new Dictionary<string, FuzzyVariable>();
         }
         
         //  zeros the DOMs of the consequents of each rule. Used by Defuzzify()
         private void SetConfidencesOfConsequentsToZero()
         {
-            rules.ForEach(rule => rule.SetConfidenceOfConsequentToZero());
+            Rules.ForEach(rule => rule.SetConfidenceOfConsequentToZero());
         }
 
         public FuzzyVariable CreateFuzzyVariable(string name)
         {
-            variables.Add(name, new FuzzyVariable());
-            return variables[name];
+            Variables.Add(name, new FuzzyVariable());
+            return Variables[name];
         }
 
         public void AddRule(FuzzyTerm antecedent, FuzzyTerm consequence)
         {
-            rules.Add(new FuzzyRule(antecedent, consequence));
+            Rules.Add(new FuzzyRule(antecedent, consequence));
         }
 
         public void Fuzzify(string variableName, double value)
         {
-
+            if (Variables[variableName] == null)
+            {
+                throw new Exception("<FuzzyModule::Fuzzify>:key not found");
+            };
+            Variables[variableName].Fuzzify(value);
         }
 
         public double DeFuzzify(string variableName)
         {
-            return double.MaxValue;
+            if (Variables[variableName] == null)
+            {
+                throw new Exception("<FuzzyModule::Fuzzify>:key not found");
+            }
+
+
+
+            // Clears the DOMs of all the consequents of all the rules
+            SetConfidencesOfConsequentsToZero();
+
+            // process the rules
+            foreach (var curRule in Rules)
+            {
+                curRule.Calculate();
+            }
+
+            // now defuzzify the resultant conclusion using the MaxAv
+            return Variables[variableName].DeFuzzifyMaxAv();
+        }
+
+        public double CalculateTinderUsage(double stamina, double level)
+        {
+            Fuzzify(FuzzyInitializer.Stamina_Name, stamina);
+            Fuzzify(FuzzyInitializer.Experiance_Name, level);
+
+            return DeFuzzify(FuzzyInitializer.TinderUsage_Name);
         }
     }
 }

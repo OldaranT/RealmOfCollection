@@ -11,11 +11,11 @@ namespace RealmOfCollection.FuzzyLogic
     static class FuzzyInitializer
     {
         private static FuzzyVariable Stamina;
-        private static FuzzyVariable Tinder;
+        private static FuzzyVariable Experiance;
         private static FuzzyVariable TinderUsage;
 
         public static readonly string Stamina_Name = "Stamina";
-        public static readonly string Tinder_Name = "Tinder";
+        public static readonly string Experiance_Name = "Experiance";
         public static readonly string TinderUsage_Name = "TinderUsage";
 
         private static FzSet Stamina_Low;
@@ -47,16 +47,16 @@ namespace RealmOfCollection.FuzzyLogic
             FuzzyModule module = hunter.GetFuzzyModule();
 
             Stamina = module.CreateFuzzyVariable(Stamina_Name);
-            Tinder = module.CreateFuzzyVariable(Tinder_Name);
+            Experiance = module.CreateFuzzyVariable(Experiance_Name);
             TinderUsage = module.CreateFuzzyVariable(TinderUsage_Name);
 
             Stamina_Low = Stamina.AddLeftShoulderSet(Stamina_Low_Name, 0, 25.0, 50.0);
             Stamina_Average = Stamina.AddTriangularSet(Stamina_Average_Name, 25.0, 50.0, 75.0);
             Stamina_High = Stamina.AddRightShoulderSet(Stamina_High_Name, 50.0, 75.0, 100.0);
 
-            Experiance_Low = Tinder.AddLeftShoulderSet(Experiance_Low_Name, 0.0, 25, 50);
-            Experiance_Average = Tinder.AddTriangularSet(Experiance_Average_Name, 25, 50, 75);
-            Experiance_High = Tinder.AddRightShoulderSet(xperiance_High_Name, 50, 75, 100);
+            Experiance_Low = Experiance.AddLeftShoulderSet(Experiance_Low_Name, 0.0, 25, 50);
+            Experiance_Average = Experiance.AddTriangularSet(Experiance_Average_Name, 25, 50, 75);
+            Experiance_High = Experiance.AddRightShoulderSet(xperiance_High_Name, 50, 75, 100);
 
             TinderUsage_Low = TinderUsage.AddLeftShoulderSet(TinderUsage_Low_Name, 0, 2.5, 5);
             TinderUsage_Average = TinderUsage.AddTriangularSet(TinderUsage_Average_Name, 2.5, 5, 7.5);
