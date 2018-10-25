@@ -17,6 +17,7 @@ namespace RealmOfCollection.Goals.AtomicGoal
         public WalkPath(Hunter hunter, Vector2D destination) : base(hunter)
         {
             this.destination = destination;
+            Console.WriteLine("Created WALK PATH goal");
         }
 
         public override void Activate()
@@ -38,11 +39,6 @@ namespace RealmOfCollection.Goals.AtomicGoal
             throw new NotImplementedException();
         }
 
-        public override bool HandleMessage(string s)
-        {
-            throw new NotImplementedException();
-        }
-
         public override Status Process()
         {
 
@@ -60,6 +56,11 @@ namespace RealmOfCollection.Goals.AtomicGoal
         public override void Terminate()
         {
             hunter.RemoveSteeringBehaviour(new PathFollowBehaviour());
+        }
+
+        public override string goalName()
+        {
+            return "WALK PATH";
         }
     }
 }

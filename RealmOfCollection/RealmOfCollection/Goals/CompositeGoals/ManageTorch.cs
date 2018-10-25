@@ -15,15 +15,16 @@ namespace RealmOfCollection.Goals.CompositeGoals
 
         public ManageTorch(Hunter hunter) : base(hunter)
         {
+            Console.WriteLine("Created MANAGE TORCH goal");
         }
 
         public override void Activate()
         {
             //Console.WriteLine("Goal: Manage Torch");
             RemoveAllSubGoals();
-            
-            
-            if( hunter.foundTorches.Count > 0)
+
+
+            if ( hunter.foundTorches.Count > 0)
             {
                 TorchObject torchObject = hunter.foundTorches.First();
 
@@ -38,17 +39,13 @@ namespace RealmOfCollection.Goals.CompositeGoals
                 if (AreAllExplorePointsVisited())
                 {
                     AddSubgoal(new Wander(hunter));
+                } else
+                {
+                    AddSubgoal(new Explore(hunter));
                 }
-
-                AddSubgoal(new Explore(hunter));
             }
 
             status = Status.Active;
-        }
-
-        public override bool HandleMessage(string s)
-        {
-            throw new NotImplementedException();
         }
 
         public override Status Process()
@@ -76,6 +73,11 @@ namespace RealmOfCollection.Goals.CompositeGoals
             }
 
             return true;
+        }
+
+        public override string goalName()
+        {
+            return "MANAGE TORCH";
         }
     }
 }

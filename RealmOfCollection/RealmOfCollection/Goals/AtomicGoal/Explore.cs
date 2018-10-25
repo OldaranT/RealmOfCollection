@@ -13,6 +13,7 @@ namespace RealmOfCollection.Goals.CompositeGoals
     {
         public Explore(Hunter hunter) : base(hunter)
         {
+            Console.WriteLine("Created EXPLORE goal");
         }
 
         public override void Activate()
@@ -29,19 +30,14 @@ namespace RealmOfCollection.Goals.CompositeGoals
             throw new NotImplementedException();
         }
 
-        public override bool HandleMessage(string s)
-        {
-            throw new NotImplementedException();
-        }
-
         public override Status Process()
         {
             ActivateIfInactive();
 
 
-            if (hunter.FoundUnIgnitedTorch())
+            if (hunter.FoundUnIgnitedTorchThatAreFound())
             {
-                status = Status.Completed;
+                //status = Status.Completed;
             }
 
             return status;
@@ -50,6 +46,11 @@ namespace RealmOfCollection.Goals.CompositeGoals
         public override void Terminate()
         {
             hunter.RemoveSteeringBehaviour(new ExploreBahviour());
+        }
+
+        public override string goalName()
+        {
+            return "EXPLORE";
         }
     }
 }

@@ -32,24 +32,23 @@ namespace RealmOfCollection
         public bool showEntityInfo { get; set; }
 
         public List<ExploreTarget> exploreTargets;
-        public ExploreTarget beginning;
+        public ExploreTarget home;
         public List<TorchObject> torches;
 
 
         public World(int w, int h)
         {
             movingEntities = new List<MovingEntity>();
+            exploreTargets = new List<ExploreTarget>();
+            torches = new List<TorchObject>();
+            random = new Random();
             showGraph = false;
             Width = w;
             Height = h;
-            random = new Random();
-            torches = new List<TorchObject>();
             CreateObjects();
             graph = new Graph(this, distanceVertex);
             CreateTorches();
             populate();
-
-            exploreTargets = new List<ExploreTarget>();
             createExploreTargets();
 
         }
@@ -57,7 +56,7 @@ namespace RealmOfCollection
         private void populate()
         {
             path = new Path(this);
-            hunter = new Hunter(new Vector2D(50, 50), this);
+            hunter = new Hunter(new Vector2D(50, 50), this, 75f);
             hunter.SteeringBehaviors = new List<SteeringBehaviour>();
             //hunter.SteeringBehaviors.Add(new ExploreBahviour(hunter, 100f));
             hunter.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(hunter, 1, Objects, 5));
@@ -97,8 +96,8 @@ namespace RealmOfCollection
 
             movingEntities.Add(player);
 
-            beginning = new ExploreTarget(Width / 2, Height / 2);
-            beginning.visited = false;
+            home = new ExploreTarget(Width / 2, Height / 2);
+            home.visited = false;
 
         }
 
@@ -113,7 +112,7 @@ namespace RealmOfCollection
 
             List<string> keys = graph.keys;
             int maxIndex = keys.Count - 1;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 25; i++)
             {
 
                 string key = keys[random.Next(0, maxIndex)];
@@ -180,7 +179,7 @@ namespace RealmOfCollection
         {
             List<string> keys = graph.keys;
             int maxIndex = keys.Count - 1;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 20; i++)
             {
                 string key = keys[random.Next(0, maxIndex)];
                 Vector2D location = graph.vertexMap[key].position;
@@ -191,6 +190,19 @@ namespace RealmOfCollection
                     continue;
                 }
                 exploreTargets.Add(target);
+            }
+            bool created = false;
+            while (!created)
+            {
+                string key = keys[random.Next(0, maxIndex)];
+                Vector2D loc = graph.vertexMap[key].position;
+                ExploreTarget target = new ExploreTarget(loc.X, loc.Y);
+                if (exploreTargets.Contains(target))
+                {
+                    continue;
+                }
+                home = target;
+                created = true;
             }
 
         }
@@ -211,7 +223,7 @@ namespace RealmOfCollection
             player.Render(g);
             torches.ForEach(t => t.Render(g));
             exploreTargets.ForEach(e => e.Render(g, Color.Gold));
-            beginning.Render(g, Color.Black);
+            home.Render(g, Color.Black);
 
         }
     }

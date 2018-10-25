@@ -14,21 +14,17 @@ namespace RealmOfCollection.Goals.AtomicGoal
         private int timer;
         public Rest(Hunter player) : base(player)
         {
-
+            Console.WriteLine("Created REST goal");
         }
         public override void Activate()
         {
             hunter.RemoveAllMovingBehaviours();
+            hunter.RemoveSteeringBehaviour(new CollisionAvoidanceBehaviour());
             hunter.Velocity = new Vector2D();
             status = Status.Active;
         }
 
         public override void AddSubgoal(Goal g)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool HandleMessage(string s)
         {
             throw new NotImplementedException();
         }
@@ -61,6 +57,11 @@ namespace RealmOfCollection.Goals.AtomicGoal
                 }
                 status = Status.Completed;
             }
+        }
+
+        public override string goalName()
+        {
+            return "REST";
         }
     }
 }

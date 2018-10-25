@@ -1,6 +1,7 @@
 ﻿using RealmOfCollection.entity.MovingEntitys;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,13 +30,27 @@ namespace RealmOfCollection.Goals
         public abstract void Activate();
         public abstract Status Process();
         public abstract void Terminate();
-        public abstract bool HandleMessage(string s);
+        public abstract string goalName();
         public abstract void AddSubgoal(Goal g);
         public void ActivateIfInactive()
         {
             if (status == Status.Inactive)
             {
                 Activate();
+            }
+        }
+
+
+        public virtual void Render(Graphics g, Font font, PointF pos)
+        {
+            pos.X += 8;
+            pos.Y += 16;
+
+            g.DrawString(goalName(), font, Brushes.Blue, pos);
+
+            if (subgoals != null && subgoals.Count > 0)
+            {
+                subgoals.Peek().Render(g, font, pos);
             }
         }
 

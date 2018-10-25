@@ -12,6 +12,7 @@ namespace RealmOfCollection.Goals.AtomicGoal
         private int timer;
         public GetTinderbox(Hunter hunter) : base(hunter)
         {
+            Console.WriteLine("Created GET TINDERBOX goal");
         }
 
         public override void Activate()
@@ -23,11 +24,6 @@ namespace RealmOfCollection.Goals.AtomicGoal
         }
 
         public override void AddSubgoal(Goal g)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool HandleMessage(string s)
         {
             throw new NotImplementedException();
         }
@@ -53,7 +49,7 @@ namespace RealmOfCollection.Goals.AtomicGoal
             if (hunter.tinder <= Hunter.TINDERBOX_CAPACITY)
             {
                 Console.WriteLine("Goal: get tinderbox tinder: " + hunter.tinder);
-                hunter.tinder += 0.5d;
+                hunter.tinder += 10d;
             }
             else
             {
@@ -65,6 +61,11 @@ namespace RealmOfCollection.Goals.AtomicGoal
             }
 
             timer = 0;
+        }
+
+        public override string goalName()
+        {
+            return "GET TINDERBOX";
         }
     }
 }

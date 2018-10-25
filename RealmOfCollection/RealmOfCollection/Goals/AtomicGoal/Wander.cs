@@ -13,13 +13,17 @@ namespace RealmOfCollection.Goals.AtomicGoal
     {
         public Wander(Hunter hunter) : base(hunter)
         {
+            Console.WriteLine("Created WANDER goal");
         }
 
         public override void Activate()
         {
+            status = Status.Active;
+
             hunter.RemoveAllMovingBehaviours();
             hunter.Velocity = new Vector2D();
             hunter.SteeringBehaviors.Add(new WanderBehaviour(hunter, 2500, 50, 0.001, World.random));
+            hunter.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(hunter, 20, hunter.MyWorld.Objects, 50));
         }
 
         public override void AddSubgoal(Goal g)
@@ -27,16 +31,10 @@ namespace RealmOfCollection.Goals.AtomicGoal
             throw new NotImplementedException();
         }
 
-        public override bool HandleMessage(string s)
-        {
-            throw new NotImplementedException();
-        }
-
         public override Status Process()
         {
-            Console.WriteLine("Wandering...");
             ActivateIfInactive();
-            if(hunter.FoundUnIgnitedTorch())
+            if(hunter.FoundUnIgnitedTorchThatAreFound())
             {
                 status = Status.Completed;
             }
@@ -47,6 +45,11 @@ namespace RealmOfCollection.Goals.AtomicGoal
         public override void Terminate()
         {
 
+        }
+
+        public override string goalName()
+        {
+            return "WANDER";
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RealmOfCollection.entity;
+using RealmOfCollection.entity.MovingEntitys;
 using RealmOfCollection.entity.StaticEntitys;
 using RealmOfCollection.Graphs;
 using RealmOfCollection.util;
@@ -22,7 +23,15 @@ namespace RealmOfCollection.behaviour
 
         public ExploreBahviour(MovingEntity me, float searchRadius) : base(me)
         {
-            this.searchRadius = searchRadius;
+            //if (me is Hunter)
+            //{
+            //    Hunter h = (Hunter)me;
+            //    this.searchRadius = h.searchRadius;
+            //}
+            //else
+            //{
+                this.searchRadius = searchRadius;
+            //}
             pfBehaviour = new PathFollowBehaviour(me);
         }
 
@@ -39,14 +48,14 @@ namespace RealmOfCollection.behaviour
                 //force = pfBehaviour.Calculate();
                 getForce(ref force);
             }
-            movingEntity.MyWorld.torches.ForEach(t =>
-            {
-                if (!t.onFire && !movingEntity.foundTorches.Contains(t) &&  t.Pos.Distance(movingEntity.Pos) <= searchRadius)
-                {
-                    movingEntity.foundTorches.Add(t);
-                    //t.onFire = true;
-                }
-            });
+            //movingEntity.MyWorld.torches.ForEach(t =>
+            //{
+            //    if (t.Pos.Distance(movingEntity.Pos) <= searchRadius)
+            //    {
+            //        movingEntity.foundTorches.Add(t);
+            //        //t.onFire = true;
+            //    }
+            //});
             return force;
         }
 
@@ -80,7 +89,7 @@ namespace RealmOfCollection.behaviour
             }
             else
             {
-                exploreTarget = movingEntity.MyWorld.beginning;
+                exploreTarget = movingEntity.MyWorld.home;
                 destination = path.getNearestVertex(exploreTarget.position);
             }
 
@@ -99,7 +108,7 @@ namespace RealmOfCollection.behaviour
                 pfBehaviour.arrived = false;
                 exploreTarget.visited = true;
 
-                if (!movingEntity.MyWorld.beginning.visited)
+                if (!movingEntity.MyWorld.home.visited)
                 {
                     findXT = false;
                 }

@@ -12,18 +12,14 @@ namespace RealmOfCollection.Goals.CompositeGoals
     {
         public GetResources(Hunter hunter) : base(hunter)
         {
+            Console.WriteLine("Created GET RESOURCES goal");
         }
 
         public override void Activate()
         {
             AddSubgoal(new GetTinderbox(hunter));
-            AddSubgoal(new WalkPath(hunter, hunter.MyWorld.beginning.position));
+            AddSubgoal(new WalkPath(hunter, hunter.MyWorld.home.position));
             status = Status.Active;
-        }
-
-        public override bool HandleMessage(string s)
-        {
-            throw new NotImplementedException();
         }
 
         public override Status Process()
@@ -45,6 +41,11 @@ namespace RealmOfCollection.Goals.CompositeGoals
         public override void Terminate()
         {
             RemoveAllSubGoals();
+        }
+
+        public override string goalName()
+        {
+            return "GET RESOURCES";
         }
     }
 }

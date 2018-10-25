@@ -27,7 +27,6 @@ namespace RealmOfCollection.entity
         public float radius { get; set; }
         public Path path { get; set; }
         private List<SteeringBehaviour> movingBehaviours;
-        public List<TorchObject> foundTorches;
 
 
         public MovingEntity(Vector2D pos, World w) : base(pos, w)
@@ -53,7 +52,6 @@ namespace RealmOfCollection.entity
             movingBehaviours.Add(new PathFollowBehaviour());
             movingBehaviours.Add(new ExploreBahviour());
 
-            foundTorches = new List<TorchObject>();
         }
 
         public override void Update(float timeElapsed)

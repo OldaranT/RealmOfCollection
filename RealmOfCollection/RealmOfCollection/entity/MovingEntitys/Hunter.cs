@@ -20,8 +20,10 @@ namespace RealmOfCollection.entity.MovingEntitys
         public static readonly double TINDERBOX_CAPACITY = 40;
         public static double TINDER_USAGE = 10;
         public Brain brain { get; set; }
+        public float searchRadius { get; set; }
+        public List<TorchObject> foundTorches;
 
-        public Hunter(Vector2D pos, World world) : base(pos, world)
+        public Hunter(Vector2D pos, World world, float searchRadius) : base(pos, world)
         {
             stamina = STAMINA_LIMIT;
             tinder = 0;
@@ -29,11 +31,22 @@ namespace RealmOfCollection.entity.MovingEntitys
             radius = 10;
             MaxSpeed = 100;
             Max_Force = 25f;
+            foundTorches = new List<TorchObject>();
+            this.searchRadius = searchRadius;
             brain = new Brain(this);
         }
 
         public override void Update(float timeElapsed)
         {
+            MyWorld.torches.ForEach(t =>
+            {
+                if (!t.onFire && !foundTorches.Contains(t) && t.Pos.Distance(Pos) <= searchRadius)
+                {
+                    foundTorches.Add(t);
+                    //t.onFire = true;
+                }
+            });
+
             brain.Process();
             base.Update(timeElapsed);
 
@@ -80,7 +93,21 @@ namespace RealmOfCollection.entity.MovingEntitys
 
         //}
 
-        public bool FoundUnIgnitedTorch()
+        public bool FoundUnIgnitedTorchInWorld()
+        {
+            bool UnIgnited = false;
+            foreach (TorchObject torchObject in MyWorld.torches)
+            {
+                if (!torchObject.onFire)
+                {
+                    UnIgnited = true;
+                }
+            }
+
+            return UnIgnited;
+        }
+
+        public bool FoundUnIgnitedTorchThatAreFound()
         {
             bool UnIgnited = false;
             foreach (TorchObject torchObject in foundTorches)
@@ -109,7 +136,7 @@ namespace RealmOfCollection.entity.MovingEntitys
             clonedList.AddRange(SteeringBehaviors);
             try
             {
-                foreach (SteeringBehaviour sb in clonedList)
+                foreach (SteeringBehaviour sb in SteeringBehaviors)
                 {
                     sb?.Draw(g);
                 }
@@ -118,7 +145,11 @@ namespace RealmOfCollection.entity.MovingEntitys
             {
                 //Console.WriteLine("hunter draw \n" + e.StackTrace);
             }
-            //SB?.Draw(g);
+
+            if(MyWorld.showEntityInfo)
+            {
+                brain.Render(g);
+            }
         }
     }
 }

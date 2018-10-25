@@ -17,6 +17,7 @@ namespace RealmOfCollection.Goals.AtomicGoal
         {
             random = World.random;
             this.torch = torch;
+            Console.WriteLine("Created IGNITE TORCH goal");
         }
 
         public override void Activate()
@@ -31,15 +32,10 @@ namespace RealmOfCollection.Goals.AtomicGoal
             throw new NotImplementedException();
         }
 
-        public override bool HandleMessage(string s)
-        {
-            throw new NotImplementedException();
-        }
-
         public override Status Process()
         {
             ActivateIfInactive();
-            if (hunter.tinder < Hunter.TINDER_USAGE)
+            if (hunter.tinder <= Hunter.TINDER_USAGE)
             {
                 Console.WriteLine("No tinder failed to ignite torch");
                 //Not enough tinder, task failed.
@@ -65,7 +61,7 @@ namespace RealmOfCollection.Goals.AtomicGoal
 
             int hitDice = random.Next(3);
 
-            hunter.tinder -= 10;
+            hunter.tinder -= Hunter.TINDER_USAGE;
             Console.WriteLine("Hunter remeaning tinder: " + hunter.tinder);
             if (hitDice == 0)
             {
@@ -81,6 +77,11 @@ namespace RealmOfCollection.Goals.AtomicGoal
 
             timer = 0;
 
+        }
+
+        public override string goalName()
+        {
+            return "IGNITE TORCH";
         }
     }
 }
