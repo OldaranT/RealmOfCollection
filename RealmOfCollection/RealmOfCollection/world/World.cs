@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace RealmOfCollection
 {
@@ -30,10 +31,17 @@ namespace RealmOfCollection
         public Path path { get; set; }
         public bool showGraph { get; set; }
         public bool showEntityInfo { get; set; }
+        
 
         public List<ExploreTarget> exploreTargets;
         public ExploreTarget home;
         public List<TorchObject> torches;
+
+        private int amountOfImps = 50;
+        private int amountOfObjects = 100;
+        private int amountOfTorches = 50;
+        private int ammounOfTargets = 50;
+
 
 
         public World(int w, int h)
@@ -77,7 +85,7 @@ namespace RealmOfCollection
 
 
             //Add imps
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < amountOfImps; i++)
             {
                 int X = random.Next(0, Width - 100);
                 int Y = random.Next(0, Height - 100);
@@ -112,7 +120,7 @@ namespace RealmOfCollection
 
             List<string> keys = graph.keys;
             int maxIndex = keys.Count - 1;
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < amountOfTorches; i++)
             {
 
                 string key = keys[random.Next(0, maxIndex)];
@@ -131,7 +139,7 @@ namespace RealmOfCollection
         private void CreateObjects()
         {
             //entities.Add(new SqaureObject(new Vector2D(300, 300), this, new Vector2D(50, 50)));
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < amountOfObjects; i++)
             {
                 int X = random.Next(0, Width - 100);
                 int Y = random.Next(0, Height - 100);
@@ -179,7 +187,7 @@ namespace RealmOfCollection
         {
             List<string> keys = graph.keys;
             int maxIndex = keys.Count - 1;
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < ammounOfTargets; i++)
             {
                 string key = keys[random.Next(0, maxIndex)];
                 Vector2D location = graph.vertexMap[key].position;

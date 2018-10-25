@@ -43,8 +43,8 @@ namespace RealmOfCollection.Goals
 
         public virtual void Render(Graphics g, Font font, PointF pos)
         {
-            pos.X += 8;
-            pos.Y += 16;
+            pos.X += 30;
+            pos.Y += 20;
 
             g.DrawString(goalName(), font, Brushes.Blue, pos);
 

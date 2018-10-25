@@ -154,13 +154,13 @@ namespace RealmOfCollection.Goals.CompositeGoals
         public void Render(Graphics g)
         {
             string playerinfo = playerInfo();
-            Font font = new Font("arial", 12);
-            PointF pos = new PointF((float)hunter.Pos.X - 50, (float)hunter.Pos.Y - 50);
+            Font font = new Font("arial", 15, FontStyle.Bold);
+            PointF pos = new PointF((float)hunter.Pos.X - 50, (float)hunter.Pos.Y - 70);
 
             g.DrawString(playerinfo, font, Brushes.Green, pos);
 
             pos = new PointF((float)hunter.Pos.X + 16, (float)hunter.Pos.Y);
-            g.DrawString(goalName(), font, Brushes.Black, pos);
+            g.DrawString(goalName().ToUpper(), font, Brushes.Black, pos);
 
             if (subgoals.Count > 0)
             {
