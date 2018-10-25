@@ -10,20 +10,20 @@ namespace RealmOfCollection.behaviour
 {
     public class HideBehaviour : SteeringBehaviour
     {
-        public Player hunter;
+        public Hunter hunter;
         public List<StaticEntity> objects;
         private int hideDistance;
         public HideBehaviour() : base()
         {
         }
-        public HideBehaviour(MovingEntity me, Player hunter, List<StaticEntity> objects, int hideDistance) : base(me)
+        public HideBehaviour(MovingEntity me, Hunter hunter, List<StaticEntity> objects, int hideDistance) : base(me)
         {
             this.hunter = hunter;
             this.hideDistance = hideDistance;
             this.objects = objects;
         }
 
-        public Vector2D Hide(Player hunter, List<StaticEntity> Objects)
+        public Vector2D Hide(Hunter hunter, List<StaticEntity> Objects)
         {
             double DistToClosest = Double.MaxValue;
             Vector2D BestHidingSpot = new Vector2D();

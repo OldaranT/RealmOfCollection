@@ -77,7 +77,7 @@ namespace RealmOfCollection
 
 
             //Add imps
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < 50; i++)
             {
                 int X = random.Next(0, Width - 100);
                 int Y = random.Next(0, Height - 100);
@@ -88,7 +88,7 @@ namespace RealmOfCollection
                 imp.color = Color.FromArgb(255, R, G, B);
                 imp.SteeringBehaviors = new List<SteeringBehaviour>();
                 imp.SteeringBehaviors.Add(new WanderBehaviour(imp, 2500, 50, 0.001, random));
-                imp.SteeringBehaviors.Add(new HideBehaviour(imp, player, Objects, 150));
+                imp.SteeringBehaviors.Add(new HideBehaviour(imp, hunter, Objects, 150));
                 imp.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(imp, 20, Objects, 50));
                 imp.SteeringBehaviors.Add(new EntityAvoidanceBehaviour(imp, movingEntities));
                 movingEntities.Add(imp);

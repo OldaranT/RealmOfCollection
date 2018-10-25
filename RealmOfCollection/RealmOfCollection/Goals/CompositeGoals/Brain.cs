@@ -155,7 +155,7 @@ namespace RealmOfCollection.Goals.CompositeGoals
         {
             string playerinfo = playerInfo();
             Font font = new Font("arial", 12);
-            PointF pos = new PointF((float)hunter.Pos.X - (playerinfo.Length), (float)hunter.Pos.Y - 25);
+            PointF pos = new PointF((float)hunter.Pos.X - 50, (float)hunter.Pos.Y - 50);
 
             g.DrawString(playerinfo, font, Brushes.Green, pos);
 
@@ -175,7 +175,7 @@ namespace RealmOfCollection.Goals.CompositeGoals
 
         private string playerInfo()
         {
-            return "STAMINA: " + hunter.stamina + " TINDER: " + hunter.tinder;
+            return "STAMINA: " + hunter.stamina + "\nTINDER: " + hunter.tinder;
         }
 
        

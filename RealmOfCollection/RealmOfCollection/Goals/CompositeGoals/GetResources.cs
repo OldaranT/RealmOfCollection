@@ -17,6 +17,7 @@ namespace RealmOfCollection.Goals.CompositeGoals
 
         public override void Activate()
         {
+            RemoveAllSubGoals();
             AddSubgoal(new GetTinderbox(hunter));
             AddSubgoal(new WalkPath(hunter, hunter.MyWorld.home.position));
             status = Status.Active;
@@ -29,6 +30,8 @@ namespace RealmOfCollection.Goals.CompositeGoals
             ActivateIfInactive();
             if (hunter.tinder >= Hunter.TINDERBOX_CAPACITY)
             {
+                hunter.tinder = Hunter.TINDERBOX_CAPACITY;
+
                 status = Status.Completed;
                 return status;
             }

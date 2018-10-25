@@ -25,8 +25,8 @@ namespace RealmOfCollection.entity
         public float calculateTargetAngle()
         {
             double Angle = 0;
-            double DetlaX = w.player.Pos.X - Pos.X;
-            double DeltaY = w.player.Pos.Y - Pos.Y;
+            double DetlaX = w.hunter.Pos.X - Pos.X;
+            double DeltaY = w.hunter.Pos.Y - Pos.Y;
             double Radiant = 180 / Math.PI;
             if (DetlaX == 0)
             {
