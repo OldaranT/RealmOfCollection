@@ -5,24 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using RealmOfCollection.behaviour;
 using RealmOfCollection.entity.MovingEntitys;
+using RealmOfCollection.entity.StaticEntitys;
 
 namespace RealmOfCollection.Goals.CompositeGoals
 {
-    public class Explore : CompositeGoal
+    public class Explore : Goal
     {
         public Explore(Hunter hunter) : base(hunter)
         {
+            Console.WriteLine("Created EXPLORE goal");
         }
 
         public override void Activate()
         {
 
             status = Status.Active;
-
+            hunter.RemoveAllMovingBehaviours();
+            hunter.Velocity = new Vector2D();
             hunter.SteeringBehaviors.Add(new ExploreBahviour(hunter, 75F));
         }
 
-        public override bool HandleMessage(string s)
+        public override void AddSubgoal(Goal g)
         {
             throw new NotImplementedException();
         }
@@ -32,11 +35,22 @@ namespace RealmOfCollection.Goals.CompositeGoals
             ActivateIfInactive();
 
 
+            if (hunter.FoundUnIgnitedTorchThatAreFound())
+            {
+                //status = Status.Completed;
+            }
+
             return status;
         }
 
         public override void Terminate()
         {
+            hunter.RemoveSteeringBehaviour(new ExploreBahviour());
+        }
+
+        public override string goalName()
+        {
+            return "EXPLORE";
         }
     }
 }

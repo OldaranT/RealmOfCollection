@@ -10,13 +10,14 @@ namespace RealmOfCollection.Goals.AtomicGoal
 {
     public class IgniteTorch : Goal
     {
-        Random RNGjesus;
-        int timer = 0;
+        Random random;
+        private int timer;
         TorchObject torch;
         public IgniteTorch(Hunter hunter, TorchObject torch) : base(hunter)
         {
-            RNGjesus = World.random;
+            random = World.random;
             this.torch = torch;
+            Console.WriteLine("Created IGNITE TORCH goal");
         }
 
         public override void Activate()
@@ -31,31 +32,17 @@ namespace RealmOfCollection.Goals.AtomicGoal
             throw new NotImplementedException();
         }
 
-        public override bool HandleMessage(string s)
-        {
-            throw new NotImplementedException();
-        }
-
         public override Status Process()
         {
-            timer++;
-            if (timer != 15) return status;
-
-            if (hunter.tinder < Hunter.TINDER_USAGE)
+            ActivateIfInactive();
+            if (hunter.tinder <= Hunter.TINDER_USAGE)
             {
-                status = Status.Completed;
-                return status;
-            }
-
-            int hitDice = RNGjesus.Next(1, 3);
-
-            hunter.tinder -= 10;
-
-            if (hitDice == 1)
+                Console.WriteLine("No tinder failed to ignite torch");
+                //Not enough tinder, task failed.
+                status = Status.Failed;
+            } else
             {
-                torch.onFire = true;
-                hunter.foundTorches.Remove(torch);
-                status = Status.Completed;
+                IgniteTheTorch();
             }
 
             return status;
@@ -63,6 +50,38 @@ namespace RealmOfCollection.Goals.AtomicGoal
 
         public override void Terminate()
         {
+        }
+
+        public void IgniteTheTorch()
+        {
+
+            timer++;
+            if (timer != 5) return;
+            Console.WriteLine("Lets ignite Tinder: " + hunter.tinder);
+
+            int hitDice = random.Next(3);
+
+            hunter.tinder -= Hunter.TINDER_USAGE;
+            Console.WriteLine("Hunter remeaning tinder: " + hunter.tinder);
+            if (hitDice == 0)
+            {
+                torch.onFire = true;
+                hunter.foundTorches.Remove(torch);
+                status = Status.Completed;
+            }
+            else if( hunter.tinder < Hunter.TINDER_USAGE)
+            {
+                Console.WriteLine("I am stupid i wasted all my tinder" + hitDice);
+                status = Status.Failed;
+            }
+
+            timer = 0;
+
+        }
+
+        public override string goalName()
+        {
+            return "IGNITE TORCH";
         }
     }
 }

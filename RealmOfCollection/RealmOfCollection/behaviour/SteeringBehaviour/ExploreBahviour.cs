@@ -89,7 +89,7 @@ namespace RealmOfCollection.behaviour
             }
             else
             {
-                exploreTarget = movingEntity.MyWorld.beginning;
+                exploreTarget = movingEntity.MyWorld.home;
                 destination = path.getNearestVertex(exploreTarget.position);
             }
 
@@ -108,7 +108,7 @@ namespace RealmOfCollection.behaviour
                 pfBehaviour.arrived = false;
                 exploreTarget.visited = true;
 
-                if (!movingEntity.MyWorld.beginning.visited)
+                if (!movingEntity.MyWorld.home.visited)
                 {
                     findXT = false;
                 }

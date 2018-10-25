@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RealmOfCollection.FuzzyLogic
 {
-    class FzSet : FuzzyTerm
+    public class FzSet : FuzzyTerm
     {
         public FuzzySet Set;
 

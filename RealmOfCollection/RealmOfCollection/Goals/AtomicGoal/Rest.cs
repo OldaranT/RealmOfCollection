@@ -14,11 +14,12 @@ namespace RealmOfCollection.Goals.AtomicGoal
         private int timer;
         public Rest(Hunter player) : base(player)
         {
-
+            Console.WriteLine("Created REST goal");
         }
         public override void Activate()
         {
             hunter.RemoveAllMovingBehaviours();
+            hunter.RemoveSteeringBehaviour(new CollisionAvoidanceBehaviour());
             hunter.Velocity = new Vector2D();
             status = Status.Active;
         }
@@ -28,14 +29,10 @@ namespace RealmOfCollection.Goals.AtomicGoal
             throw new NotImplementedException();
         }
 
-        public override bool HandleMessage(string s)
-        {
-            throw new NotImplementedException();
-        }
-
         public override Status Process()
         {
-            
+
+            //Console.WriteLine("Goal: Resting");
             ActivateIfInactive();
 
             //Check if the hunter is out of stamina. If so rest.
@@ -48,7 +45,6 @@ namespace RealmOfCollection.Goals.AtomicGoal
 
         public void EvaluateStamina()
         {
-
             if (hunter.stamina < Hunter.STAMINA_LIMIT)
             {
                hunter.stamina += 0.5d;
@@ -61,6 +57,11 @@ namespace RealmOfCollection.Goals.AtomicGoal
                 }
                 status = Status.Completed;
             }
+        }
+
+        public override string goalName()
+        {
+            return "REST";
         }
     }
 }

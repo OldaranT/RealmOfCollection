@@ -91,9 +91,10 @@
     <Compile Include="Goals\AtomicGoal\IgniteTorch.cs" />
     <Compile Include="Goals\AtomicGoal\Rest.cs" />
     <Compile Include="Goals\AtomicGoal\WalkPath.cs" />
+    <Compile Include="Goals\AtomicGoal\Wander.cs" />
     <Compile Include="Goals\CompositeGoal.cs" />
     <Compile Include="Goals\CompositeGoals\Brain.cs" />
-    <Compile Include="Goals\CompositeGoals\Explore.cs" />
+    <Compile Include="Goals\AtomicGoal\Explore.cs" />
     <Compile Include="Goals\CompositeGoals\GetResources.cs" />
     <Compile Include="Goals\CompositeGoals\ManageTorch.cs" />
     <Compile Include="Goals\Goal.cs" />

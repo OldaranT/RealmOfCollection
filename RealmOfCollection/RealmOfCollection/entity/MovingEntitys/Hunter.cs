@@ -35,6 +35,8 @@ namespace RealmOfCollection.entity.MovingEntitys
             radius = 10;
             MaxSpeed = 100;
             Max_Force = 25f;
+            foundTorches = new List<TorchObject>();
+            this.searchRadius = searchRadius;
             brain = new Brain(this);
             this.searchRadius = searchRadius;
             foundTorches = new List<TorchObject>();
@@ -70,40 +72,67 @@ namespace RealmOfCollection.entity.MovingEntitys
 
         //public override void Update(float timeElapsed)
         //{
-            
-            //Vector2D force = collisionAvoidance.Calculate();
-            //force += SB.Calculate(); 
-            ////force = Vector2D.truncate(force, Max_Force);
-            //if (force != null)
-            //{
 
-            //    SteeringForce = force.Clone().divide(Mass);
+        //Vector2D force = collisionAvoidance.Calculate();
+        //force += SB.Calculate(); 
+        ////force = Vector2D.truncate(force, Max_Force);
+        //if (force != null)
+        //{
 
-            //    Velocity.Add(SteeringForce.Clone().Multiply(timeElapsed));
+        //    SteeringForce = force.Clone().divide(Mass);
 
-            //    Velocity.Truncate(MaxSpeed);
-            //}
-            //else
-            //{
-            //    force = new Vector2D();
-            //    Velocity = new Vector2D();
-            //}
+        //    Velocity.Add(SteeringForce.Clone().Multiply(timeElapsed));
+
+        //    Velocity.Truncate(MaxSpeed);
+        //}
+        //else
+        //{
+        //    force = new Vector2D();
+        //    Velocity = new Vector2D();
+        //}
 
 
-            //Pos.Add(Velocity.Clone().Multiply(timeElapsed));
+        //Pos.Add(Velocity.Clone().Multiply(timeElapsed));
 
-            //if (Velocity.LengthSquared() > 0.00000001)
-            //{
-            //    Heading = Velocity.Clone().Normalize();
-            //    Side = Heading.PerpRightHand();
-            //}
-            
-            //treat the screen as a toroid
-            //Vector2D.WrapAround(this.Pos, MyWorld.Width, MyWorld.Height);
+        //if (Velocity.LengthSquared() > 0.00000001)
+        //{
+        //    Heading = Velocity.Clone().Normalize();
+        //    Side = Heading.PerpRightHand();
+        //}
+
+        //treat the screen as a toroid
+        //Vector2D.WrapAround(this.Pos, MyWorld.Width, MyWorld.Height);
 
 
         //}
 
+        public bool FoundUnIgnitedTorchInWorld()
+        {
+            bool UnIgnited = false;
+            foreach (TorchObject torchObject in MyWorld.torches)
+            {
+                if (!torchObject.onFire)
+                {
+                    UnIgnited = true;
+                }
+            }
+
+            return UnIgnited;
+        }
+
+        public bool FoundUnIgnitedTorchThatAreFound()
+        {
+            bool UnIgnited = false;
+            foreach (TorchObject torchObject in foundTorches)
+            {
+                if (!torchObject.onFire)
+                {
+                    UnIgnited = true;
+                }
+            }
+
+            return UnIgnited;
+        }
 
         public override void Render(Graphics g)
         {
@@ -116,11 +145,24 @@ namespace RealmOfCollection.entity.MovingEntitys
             g.DrawEllipse(p, new Rectangle((int)leftCorner, (int)rightCorner, (int)size, (int)size));
 
             g.FillEllipse(new SolidBrush(Color.Black), new Rectangle((int)Pos.X - 5, (int)Pos.Y - 5, 10, 10));
-            foreach(SteeringBehaviour sb in SteeringBehaviors)
+            List<SteeringBehaviour> clonedList = new List<SteeringBehaviour>();
+            clonedList.AddRange(SteeringBehaviors);
+            try
             {
-                sb.Draw(g);
+                foreach (SteeringBehaviour sb in SteeringBehaviors)
+                {
+                    sb?.Draw(g);
+                }
             }
-            //SB?.Draw(g);
+            catch(Exception e)
+            {
+                //Console.WriteLine("hunter draw \n" + e.StackTrace);
+            }
+
+            if(MyWorld.showEntityInfo)
+            {
+                brain.Render(g);
+            }
         }
     }
 }
