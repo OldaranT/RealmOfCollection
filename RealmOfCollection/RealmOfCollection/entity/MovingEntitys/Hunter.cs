@@ -145,24 +145,24 @@ namespace RealmOfCollection.entity.MovingEntitys
             Pen p = new Pen(Color.Red, 10);
             g.DrawEllipse(p, new Rectangle((int)leftCorner, (int)rightCorner, (int)size, (int)size));
 
-            g.FillEllipse(new SolidBrush(Color.Black), new Rectangle((int)Pos.X - 5, (int)Pos.Y - 5, 10, 10));
-            List<SteeringBehaviour> clonedList = new List<SteeringBehaviour>();
-            clonedList.AddRange(SteeringBehaviors);
-            try
-            {
-                foreach (SteeringBehaviour sb in SteeringBehaviors)
-                {
-                    sb?.Draw(g);
-                }
-            }
-            catch(Exception e)
-            {
-                //Console.WriteLine("hunter draw \n" + e.StackTrace);
-            }
 
-            if(MyWorld.showEntityInfo)
+            if (MyWorld.showEntityInfo)
             {
                 brain.Render(g);
+                g.FillEllipse(new SolidBrush(Color.Black), new Rectangle((int)Pos.X - 5, (int)Pos.Y - 5, 10, 10));
+                List<SteeringBehaviour> clonedList = new List<SteeringBehaviour>();
+                clonedList.AddRange(SteeringBehaviors);
+                try
+                {
+                    foreach (SteeringBehaviour sb in SteeringBehaviors)
+                    {   
+                        sb?.Draw(g);
+                    }
+                }
+                catch(Exception e)
+                {
+                    //Console.WriteLine("hunter draw \n" + e.StackTrace);
+                }
             }
         }
     }

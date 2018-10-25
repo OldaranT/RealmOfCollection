@@ -20,7 +20,6 @@ namespace RealmOfCollection.Goals.CompositeGoals
 
         public override void Activate()
         {
-            //Console.WriteLine("Goal: Manage Torch");
             RemoveAllSubGoals();
 
 
@@ -31,8 +30,10 @@ namespace RealmOfCollection.Goals.CompositeGoals
                 AddSubgoal(new IgniteTorch(hunter, torchObject));
 
                 AddSubgoal(new WalkPath(hunter, torchObject.Pos));
-
-                AddSubgoal(new GetResources(hunter));
+                if (hunter.tinder < Hunter.TINDER_USAGE)
+                {
+                    AddSubgoal(new GetResources(hunter));
+                }
 
             } else
             {

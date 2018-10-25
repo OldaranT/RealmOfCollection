@@ -74,11 +74,14 @@ namespace RealmOfCollection.entity.MovingEntitys
             Pen PTarget = new Pen(Color.Red, 2);
             g.DrawEllipse(p, new Rectangle((int)leftCorner, (int)rightCorner, (int)size, (int)size));
             g.DrawLine(p, (int)Pos.X, (int)Pos.Y, (int)Pos.X + (int)(Velocity.X * 2), (int)Pos.Y + (int)(Velocity.Y * 2));
-            
-            //Show angle player is looking 
-            g.DrawPie(p, new Rectangle((int)(leftCorner - (size / 2)), (int)(rightCorner - (size / 2)), (int)(size + size), (int)(size + size)), calculateMouseAngle(), PieAngle);
 
-            path.Render(g);
+            if (MyWorld.showEntityInfo)
+            {
+                //Show angle player is looking 
+                g.DrawPie(p, new Rectangle((int)(leftCorner - (size / 2)), (int)(rightCorner - (size / 2)), (int)(size + size), (int)(size + size)), calculateMouseAngle(), PieAngle);
+
+                path.Render(g);
+            }
             
 
 

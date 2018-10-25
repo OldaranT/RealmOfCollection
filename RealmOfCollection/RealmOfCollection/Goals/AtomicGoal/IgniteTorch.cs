@@ -35,7 +35,7 @@ namespace RealmOfCollection.Goals.AtomicGoal
         public override Status Process()
         {
             ActivateIfInactive();
-            if (hunter.tinder <= Hunter.TINDER_USAGE)
+            if (hunter.tinder < Hunter.TINDER_USAGE)
             {
                 Console.WriteLine("No tinder failed to ignite torch");
                 //Not enough tinder, task failed.
