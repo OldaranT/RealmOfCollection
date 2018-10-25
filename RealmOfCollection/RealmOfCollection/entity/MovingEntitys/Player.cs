@@ -70,7 +70,8 @@ namespace RealmOfCollection.entity.MovingEntitys
             Pen p = new Pen(VColor, 2);
             Pen PVelocity = new Pen(Color.Gold, 2);
             Pen PTarget = new Pen(Color.Red, 2);
-            g.DrawEllipse(p, new Rectangle((int)leftCorner, (int)rightCorner, (int)size, (int)size));
+            Brush b = new SolidBrush(Color.DarkGreen);
+            g.FillEllipse(b, new Rectangle((int)leftCorner, (int)rightCorner, (int)size, (int)size));
             g.DrawLine(p, (int)Pos.X, (int)Pos.Y, (int)Pos.X + (int)(Velocity.X * 2), (int)Pos.Y + (int)(Velocity.Y * 2));
 
             if (MyWorld.showEntityInfo)
