@@ -76,6 +76,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FuzzyLogic\FuzzyInitializer.cs" />
     <Compile Include="FuzzyLogic\FuzzyModule.cs" />
     <Compile Include="FuzzyLogic\FuzzyRule.cs" />
     <Compile Include="FuzzyLogic\FuzzySets\FuzzySet.cs" />
@@ -84,6 +85,8 @@
     <Compile Include="FuzzyLogic\FuzzySets\Triangle.cs" />
     <Compile Include="FuzzyLogic\FuzzyTerm.cs" />
     <Compile Include="FuzzyLogic\FuzzyVariable.cs" />
+    <Compile Include="FuzzyLogic\FzSet.cs" />
+    <Compile Include="FuzzyLogic\Operators\FuzzyAND.cs" />
     <Compile Include="Goals\AtomicGoal\GetTinderbox.cs" />
     <Compile Include="Goals\AtomicGoal\IgniteTorch.cs" />
     <Compile Include="Goals\AtomicGoal\Rest.cs" />

@@ -134,7 +134,7 @@ namespace RealmOfCollection.Goals.CompositeGoals
                 subgoals.Peek().status = Status.Inactive;
                 AddSubgoal(new Rest(hunter));
             }
-
+            EstemateTinderUsage();
             //CheckStamina();
 
             timer = 0;
@@ -175,7 +175,13 @@ namespace RealmOfCollection.Goals.CompositeGoals
 
         private string playerInfo()
         {
-            return "STAMINA: " + hunter.stamina + "\nTINDER: " + hunter.tinder;
+            return "STAMINA: " + hunter.stamina + " TINDER: " + hunter.tinder + " TINDER-USAGE: " + Hunter.TINDER_USAGE;
+        }
+
+        private void EstemateTinderUsage()
+        {
+            double tinderUsage = hunter.GetFuzzyModule().CalculateTinderUsage(hunter.stamina, hunter.level);
+            Hunter.TINDER_USAGE = tinderUsage;
         }
 
        

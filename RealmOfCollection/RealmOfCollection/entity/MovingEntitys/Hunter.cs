@@ -1,5 +1,6 @@
 ﻿using RealmOfCollection.behaviour;
 using RealmOfCollection.entity.StaticEntitys;
+using RealmOfCollection.FuzzyLogic;
 using RealmOfCollection.Goals.CompositeGoals;
 using System;
 using System.Collections.Generic;
@@ -15,13 +16,16 @@ namespace RealmOfCollection.entity.MovingEntitys
         public SteeringBehaviour collisionAvoidance;
 
         public double stamina { get; set; }
-        public static readonly double STAMINA_LIMIT = 20;
+        public static readonly double STAMINA_LIMIT = 100;
         public double tinder { get; set; }
         public static readonly double TINDERBOX_CAPACITY = 40;
         public static double TINDER_USAGE = 10;
         public Brain brain { get; set; }
         public float searchRadius { get; set; }
         public List<TorchObject> foundTorches;
+        public double level;
+
+        protected FuzzyModule fuzzyModule;
 
         public Hunter(Vector2D pos, World world, float searchRadius) : base(pos, world)
         {
@@ -34,6 +38,11 @@ namespace RealmOfCollection.entity.MovingEntitys
             foundTorches = new List<TorchObject>();
             this.searchRadius = searchRadius;
             brain = new Brain(this);
+            this.searchRadius = searchRadius;
+            foundTorches = new List<TorchObject>();
+            fuzzyModule = new FuzzyModule();
+            level = 0;
+            FuzzyInitializer.InitializeRules(this);
         }
 
         public override void Update(float timeElapsed)
@@ -55,6 +64,11 @@ namespace RealmOfCollection.entity.MovingEntitys
         public void setCollisionAvoidance(SteeringBehaviour collisionAvoidance)
         {
             this.collisionAvoidance = collisionAvoidance;
+        }
+
+        public ref FuzzyModule GetFuzzyModule()
+        {
+            return ref fuzzyModule;
         }
 
         //public override void Update(float timeElapsed)

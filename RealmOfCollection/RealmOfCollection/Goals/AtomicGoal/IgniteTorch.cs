@@ -42,6 +42,14 @@ namespace RealmOfCollection.Goals.AtomicGoal
                 status = Status.Failed;
             } else
             {
+                if(hunter.level < 100)
+                {
+                    hunter.level += random.Next(1, 5);
+                    if(hunter.level > 100)
+                    {
+                        hunter.level = 100;
+                    }
+                }
                 IgniteTheTorch();
             }
 
