@@ -129,13 +129,13 @@ namespace RealmOfCollection.Goals.CompositeGoals
             //Console.WriteLine("Hunter tinder: " + hunter.tinder);
             //Console.WriteLine("Hunter TINDER: " + hunter.tinder);
 
-            if (hunter.stamina <= 3)
-            {
-                subgoals.Peek().status = Status.Inactive;
-                AddSubgoal(new Rest(hunter));
-            }
+            //if (hunter.stamina <= 3)
+            //{
+            //    subgoals.Peek().status = Status.Inactive;
+            //    AddSubgoal(new Rest(hunter));
+            //}
             EstemateTinderUsage();
-            //CheckStamina();
+            CheckStamina();
 
             timer = 0;
 
@@ -155,7 +155,7 @@ namespace RealmOfCollection.Goals.CompositeGoals
         {
             string playerinfo = playerInfo();
             Font font = new Font("arial", 15, FontStyle.Bold);
-            PointF pos = new PointF((float)hunter.Pos.X - 50, (float)hunter.Pos.Y - 70);
+            PointF pos = new PointF((float)hunter.Pos.X - 50, (float)hunter.Pos.Y - 90);
 
             g.DrawString(playerinfo, font, Brushes.Green, pos);
 
@@ -175,7 +175,7 @@ namespace RealmOfCollection.Goals.CompositeGoals
 
         private string playerInfo()
         {
-            return "STAMINA: " + hunter.stamina + " TINDER: " + hunter.tinder + " TINDER-USAGE: " + Hunter.TINDER_USAGE;
+            return "STAMINA: " + hunter.stamina + "\nTINDER: " + hunter.tinder + "\nTINDER-USAGE: " + Hunter.TINDER_USAGE;
         }
 
         private void EstemateTinderUsage()
