@@ -35,7 +35,8 @@ namespace RealmOfCollection.Goals.AtomicGoal
 
         public override Status Process()
         {
-            
+
+            //Console.WriteLine("Goal: Resting");
             ActivateIfInactive();
 
             //Check if the hunter is out of stamina. If so rest.
@@ -48,7 +49,6 @@ namespace RealmOfCollection.Goals.AtomicGoal
 
         public void EvaluateStamina()
         {
-
             if (hunter.stamina < Hunter.STAMINA_LIMIT)
             {
                hunter.stamina += 0.5d;

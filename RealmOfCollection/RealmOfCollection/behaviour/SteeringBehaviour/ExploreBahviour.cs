@@ -41,7 +41,7 @@ namespace RealmOfCollection.behaviour
             }
             movingEntity.MyWorld.torches.ForEach(t =>
             {
-                if (t.Pos.Distance(movingEntity.Pos) <= searchRadius)
+                if (!t.onFire && !movingEntity.foundTorches.Contains(t) &&  t.Pos.Distance(movingEntity.Pos) <= searchRadius)
                 {
                     movingEntity.foundTorches.Add(t);
                     //t.onFire = true;

@@ -43,14 +43,14 @@ namespace RealmOfCollection
             Width = w;
             Height = h;
             random = new Random();
+            torches = new List<TorchObject>();
             CreateObjects();
             graph = new Graph(this, distanceVertex);
+            CreateTorches();
             populate();
 
             exploreTargets = new List<ExploreTarget>();
             createExploreTargets();
-            torches = new List<TorchObject>();
-            CreateTorches();
 
         }
 

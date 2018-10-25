@@ -6,32 +6,44 @@ using System.Threading.Tasks;
 using RealmOfCollection.entity.MovingEntitys;
 using RealmOfCollection.entity.StaticEntitys;
 using RealmOfCollection.Goals.AtomicGoal;
+using RealmOfCollection.util;
 
 namespace RealmOfCollection.Goals.CompositeGoals
 {
     public class ManageTorch : CompositeGoal
     {
-        private TorchObject torchObject;
 
-        public ManageTorch(Hunter hunter, TorchObject torchObject) : base(hunter)
+        public ManageTorch(Hunter hunter) : base(hunter)
         {
-            this.torchObject = torchObject;
         }
 
         public override void Activate()
         {
-            AddSubgoal(new IgniteTorch(hunter, torchObject));
-
-            AddSubgoal(new WalkPath(hunter, torchObject.Pos));
-
-            if (hunter.tinder < Hunter.TINDER_USAGE) 
+            //Console.WriteLine("Goal: Manage Torch");
+            RemoveAllSubGoals();
+            
+            
+            if( hunter.foundTorches.Count > 0)
             {
-                AddSubgoal(new GetTinderbox(hunter));
+                TorchObject torchObject = hunter.foundTorches.First();
+
+                AddSubgoal(new IgniteTorch(hunter, torchObject));
+
+                AddSubgoal(new WalkPath(hunter, torchObject.Pos));
 
                 AddSubgoal(new GetResources(hunter));
+
             } else
             {
+                if (AreAllExplorePointsVisited())
+                {
+                    AddSubgoal(new Wander(hunter));
+                }
+
+                AddSubgoal(new Explore(hunter));
             }
+
+            status = Status.Active;
         }
 
         public override bool HandleMessage(string s)
@@ -41,12 +53,29 @@ namespace RealmOfCollection.Goals.CompositeGoals
 
         public override Status Process()
         {
-            throw new NotImplementedException();
+            ActivateIfInactive();
+
+            status = ProcessSubgoals();
+
+            return status;
         }
 
         public override void Terminate()
         {
-            throw new NotImplementedException();
+            RemoveAllSubGoals();
+        }
+
+        private bool AreAllExplorePointsVisited()
+        {
+            foreach (ExploreTarget exploreTarget in hunter.MyWorld.exploreTargets)
+            {
+                if(!exploreTarget.visited)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

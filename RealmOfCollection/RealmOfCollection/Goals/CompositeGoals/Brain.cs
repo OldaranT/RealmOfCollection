@@ -50,16 +50,16 @@ namespace RealmOfCollection.Goals.CompositeGoals
             {
                 Console.WriteLine("Picking a job...");
                 // Choose one of the three strategy-level composite goals at random
-                int randomChoice = World.random.Next(2);
+                int randomPick = World.random.Next(2);
 
                 // 0 = Explore
                 // 1 = getResources
-                Console.WriteLine("Pick: " + randomChoice);
+                Console.WriteLine("Pick: " + randomPick);
 
-                switch (randomChoice)
+                switch (randomPick)
                 {
                     case 0:
-                        hunter.brain.AddGoal_Explore();
+                        hunter.brain.AddGoal_Managatorch();
                         break;
                     case 1:
                         hunter.brain.AddGoal_GetResources();
@@ -69,12 +69,12 @@ namespace RealmOfCollection.Goals.CompositeGoals
             }
         }
 
-        public void AddGoal_Explore()
+        public void AddGoal_Managatorch()
         {
-            if (!IsPresent<Explore>())
+            if (!IsPresent<ManageTorch>())
             {
                 RemoveAllSubGoals();
-                AddSubgoal(new Explore(hunter));
+                AddSubgoal(new ManageTorch(hunter));
 
             }
 
@@ -114,14 +114,9 @@ namespace RealmOfCollection.Goals.CompositeGoals
             if (timer != 30) return;
             
             hunter.stamina -= 2d;
-            Console.WriteLine("Hunter Stamina: " + hunter.stamina);
-            Console.WriteLine("Hunter tinder: " + hunter.tinder);
+            //Console.WriteLine("Hunter Stamina: " + hunter.stamina);
+            //Console.WriteLine("Hunter tinder: " + hunter.tinder);
             //Console.WriteLine("Hunter TINDER: " + hunter.tinder);
-            //if(hunter.tinder <= 3)
-            //{
-            //    subgoals.Peek().status = Status.Inactive;
-            //    AddSubgoal(new GetTinderbox(hunter));
-            //}
 
             if (hunter.stamina <= 3)
             {
@@ -137,7 +132,7 @@ namespace RealmOfCollection.Goals.CompositeGoals
 
         public void CheckStamina()
         {
-            Console.WriteLine("Hunter Stamina: " + hunter.stamina);
+            //Console.WriteLine("Hunter Stamina: " + hunter.stamina);
             if (hunter.stamina <= 3)
             {
                 subgoals.Peek().status = Status.Inactive;

@@ -3,34 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RealmOfCollection.behaviour;
 using RealmOfCollection.entity.MovingEntitys;
-using RealmOfCollection.Graphs;
-using RealmOfCollection.util;
+using RealmOfCollection.behaviour;
+using RealmOfCollection.entity.StaticEntitys;
 
 namespace RealmOfCollection.Goals.AtomicGoal
 {
-    public class WalkPath : Goal
+    public class Wander : Goal
     {
-        private Vector2D destination;
-
-        public WalkPath(Hunter hunter, Vector2D destination) : base(hunter)
+        public Wander(Hunter hunter) : base(hunter)
         {
-            this.destination = destination;
         }
 
         public override void Activate()
         {
-            status = Status.Active;
-            
             hunter.RemoveAllMovingBehaviours();
             hunter.Velocity = new Vector2D();
-            Path path = new Path(hunter.MyWorld);
-            string start = path.getNearestVertex(hunter.Pos);
-            string dest = path.getNearestVertex(destination);
-            path.bestPath = path.FindBestPath(start, dest);
-            hunter.SteeringBehaviors.Add(new PathFollowBehaviour(hunter, path));
-
+            hunter.SteeringBehaviors.Add(new WanderBehaviour(hunter, 2500, 50, 0.001, World.random));
         }
 
         public override void AddSubgoal(Goal g)
@@ -45,21 +34,19 @@ namespace RealmOfCollection.Goals.AtomicGoal
 
         public override Status Process()
         {
-
-            //Console.WriteLine("Goal: Walk Path");
+            Console.WriteLine("Wandering...");
             ActivateIfInactive();
-
-            if(hunter.Pos.Distance(destination) < 15d)
+            if(hunter.FoundUnIgnitedTorch())
             {
                 status = Status.Completed;
             }
-
             return status;
+
         }
 
         public override void Terminate()
         {
-            hunter.RemoveSteeringBehaviour(new PathFollowBehaviour());
+
         }
     }
 }

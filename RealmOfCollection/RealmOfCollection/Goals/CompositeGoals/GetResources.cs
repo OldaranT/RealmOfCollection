@@ -16,7 +16,6 @@ namespace RealmOfCollection.Goals.CompositeGoals
 
         public override void Activate()
         {
-            RemoveAllSubGoals();
             AddSubgoal(new GetTinderbox(hunter));
             AddSubgoal(new WalkPath(hunter, hunter.MyWorld.beginning.position));
             status = Status.Active;
@@ -29,7 +28,14 @@ namespace RealmOfCollection.Goals.CompositeGoals
 
         public override Status Process()
         {
+
+            //Console.WriteLine("Goal: Get resources");
             ActivateIfInactive();
+            if (hunter.tinder >= Hunter.TINDERBOX_CAPACITY)
+            {
+                status = Status.Completed;
+                return status;
+            }
 
             status = ProcessSubgoals();
 
