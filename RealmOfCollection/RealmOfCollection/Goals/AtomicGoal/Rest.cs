@@ -10,12 +10,7 @@ namespace RealmOfCollection.Goals.AtomicGoal
 {
     class Rest : Goal
     {
-
-        private int timer;
-        public Rest(Hunter player) : base(player)
-        {
-            Console.WriteLine("Created REST goal");
-        }
+        public Rest(Hunter player) : base(player) { }
         public override void Activate()
         {
             hunter.RemoveAllMovingBehaviours();
@@ -31,8 +26,6 @@ namespace RealmOfCollection.Goals.AtomicGoal
 
         public override Status Process()
         {
-
-            //Console.WriteLine("Goal: Resting");
             ActivateIfInactive();
 
             //Check if the hunter is out of stamina. If so rest.

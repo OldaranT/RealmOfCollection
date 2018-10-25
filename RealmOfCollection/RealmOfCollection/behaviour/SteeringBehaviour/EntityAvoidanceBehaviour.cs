@@ -26,7 +26,7 @@ namespace RealmOfCollection.behaviour
         private bool intersects(MovingEntity m)
         {
             bool intersects = false;
-            if(m.Pos.Distance(movingEntity.Pos)<= (m.radius + movingEntity.radius))
+            if (m.Pos.Distance(movingEntity.Pos) <= (m.radius + movingEntity.radius))
             {
                 intersects = true;
             }
@@ -37,9 +37,9 @@ namespace RealmOfCollection.behaviour
         {
             MovingEntity mostThreatening = null;
 
-            foreach(MovingEntity m in entities)
+            foreach (MovingEntity m in entities)
             {
-                if(m == movingEntity)
+                if (m == movingEntity)
                 {
                     continue;
                 }
@@ -73,7 +73,8 @@ namespace RealmOfCollection.behaviour
             }
             else
             {
-                avoidance.ScaleBy(0); // nullify the avoidance force
+                // nullify the avoidance force
+                avoidance.ScaleBy(0);
             }
 
             return avoidance;

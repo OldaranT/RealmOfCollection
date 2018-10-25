@@ -15,7 +15,6 @@ namespace RealmOfCollection.behaviour
         private SteeringBehaviour sb;
         public Path path;
         public bool arrived;
-
         public PathFollowBehaviour() : base() { }
 
         public PathFollowBehaviour(MovingEntity me) : base(me)
@@ -52,7 +51,6 @@ namespace RealmOfCollection.behaviour
             path.bestPath = followPath;
 
             return force;
-
         }
 
         public Vertex setNextTarget(Vertex currentTarget)

@@ -12,7 +12,6 @@ namespace RealmOfCollection.entity
 
     public abstract class MovingEntity : BaseGameEntity
     {
-
         public Vector2D Heading { get; set; }
         public Vector2D Side { get; set; }
         public Vector2D Velocity { get; set; }
@@ -57,11 +56,6 @@ namespace RealmOfCollection.entity
         public override void Update(float timeElapsed)
         {
             SteeringForce = SteeringForce.Zero();
-            //if (Vector2D.InsideRegion(this.Pos, 50, 50, 150, 150))
-            //{
-            //    OldPos = Pos;
-            //}
-
 
             try
             {
@@ -84,22 +78,10 @@ namespace RealmOfCollection.entity
             SteeringForce = Vector2D.truncate(SteeringForce, Max_Force);
 
             SteeringForce = SteeringForce / Mass;
-            //Acceleration
-            //Vector2D acceleration = SteeringForce.divide(Mass);
-
-            //Update velocity
-            //Velocity.Add(acceleration.Multiply(timeElapsed));
             SteeringForce = SteeringForce.Multiply(timeElapsed);
-            //Console.WriteLine("update steeringForce lenght: " + SteeringForce.Length());
-            //Console.WriteLine("update velocity length before adding steering force: " + Velocity.Length());
+
+            //Update velocity and truncate
             Velocity = Vector2D.truncate(Velocity + SteeringForce, arriveSpeed);
-            //Console.WriteLine("update velocity length after adding steering force: " + Velocity.Length());
-
-            //Check on maxspeed
-            //Velocity.truncate(MaxSpeed);
-
-            //Update position
-            //Pos.Add(Velocity.Multiply(timeElapsed));
 
             Pos = Pos + Velocity;
 
@@ -112,12 +94,6 @@ namespace RealmOfCollection.entity
 
             //treat the screen as a toroid
             Vector2D.WrapAround(this.Pos, MyWorld.Width, MyWorld.Height);
-            //Console.WriteLine("Old Pos: " + OldPos + " Cur Pos: " + Pos);
-            //if (!Vector2D.InsideRegion(this.Pos, 50,50,150,150))
-            //{
-            //    Console.WriteLine("I am outside");
-            //    this.Pos = OldPos;
-            //}
         }
 
         public override string ToString()

@@ -12,9 +12,7 @@ namespace RealmOfCollection.entity.StaticEntitys
     {
         public bool onFire = false;
 
-        public TorchObject(Vector2D pos, World w, Vector2D size) : base(pos, w, size)
-        {
-        }
+        public TorchObject(Vector2D pos, World w, Vector2D size) : base(pos, w, size) { }
 
         public bool Equals(TorchObject other)
         {
@@ -44,11 +42,6 @@ namespace RealmOfCollection.entity.StaticEntitys
                     g.FillEllipse(brush, x + i, y + j, size, size);
                     size -= 2;
                 }
-                //g.FillEllipse(brush, x - 2, y - 2, 16f, 16f);
-                //g.FillEllipse(brush, x + 2, y - 6, 14f, 14f);
-                //g.FillEllipse(brush, x + 6, y - 10, 12f, 12f);
-                //g.FillEllipse(brush, x + 10, y - 14, 10f, 10f);
-                //g.FillEllipse(brush, x + 14, y - 18, 8f, 8f);
 
             }
         }

@@ -48,24 +48,16 @@ namespace RealmOfCollection
             dbPanel1.Invalidate();
 
             if (up)
-            {
                 world.player.Pos.Y -= 1;
-            }
 
             if (down)
-            {
                 world.player.Pos.Y += 1;
-            }
 
             if (left)
-            {
                 world.player.Pos.X -= 1;
-            }
 
             if (right)
-            {
                 world.player.Pos.X += 1;
-            }
         }
         
         Pen p = new Pen(new SolidBrush(Color.Black) , 5);
@@ -88,11 +80,6 @@ namespace RealmOfCollection
                 world.player.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(world.player, 20, world.Objects, 25));
                 world.player.SteeringBehaviors.Add(new PathFollowBehaviour(world.player));
             }
-
-            //TorchObject torch = new TorchObject(new Vector2D(e.X, e.Y), world, new Vector2D());
-            //world.addTorch(new Vector2D(e.X, e.Y));
-
-           //world.player.Pos = new Vector2D(e.X, e.Y);
         }
 
         private void dbPanel1_MouseMove(object sender, MouseEventArgs e)
@@ -102,35 +89,23 @@ namespace RealmOfCollection
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyData == Keys.G)
-            {
+            if (e.KeyData == Keys.G)
                 world.showGraph = !world.showGraph;
-            }
 
             if (e.KeyData == Keys.H)
-            {
                 world.showEntityInfo = !world.showEntityInfo;
-            }
 
             if (e.KeyData == Keys.W)
-            {
                 up = true;
-            }
 
             if (e.KeyData == Keys.S)
-            {
                 down = true;
-            }
 
             if (e.KeyData == Keys.A)
-            {
                 left = true;
-            }
 
             if (e.KeyData == Keys.D)
-            {
                 right = true;
-            }
 
             switch (e.KeyData)
             {
@@ -146,26 +121,18 @@ namespace RealmOfCollection
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
             if(e.KeyData == Keys.W)
-            {
                 up = false;
-            }
+
             if (e.KeyData == Keys.S)
-            {
                 down = false;
-            }
+
             if (e.KeyData == Keys.A)
-            {
                 left = false;
-            }
+
             if (e.KeyData == Keys.D)
-            {
                 right = false;
-            }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void Form1_Load(object sender, EventArgs e) { }
     }
 }

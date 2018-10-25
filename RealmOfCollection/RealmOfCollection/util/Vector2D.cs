@@ -12,10 +12,7 @@ namespace RealmOfCollection
     {
         public double X { get; set; }
         public double Y { get; set; }
-
-        public Vector2D() : this(0, 0)
-        {
-        }
+        public Vector2D() : this(0, 0) { }
 
         public Vector2D(double x, double y)
         {
@@ -196,11 +193,6 @@ namespace RealmOfCollection
 
         public Vector2D Truncate(double max)
         {
-            
-            //double i;
-            //i = max / this.Length();
-            //i = i < 1.0 ? i : 1.0;
-            //this.ScaleBy((float)i);
             if (Length() > max)
             {
                 Normalize();
@@ -294,10 +286,7 @@ namespace RealmOfCollection
         public static Vector2D truncate(Vector2D v, float Max)
         {
             Vector2D truncated = v;
-            //float i;
-            //i = Max / (float)truncated.Length();
-            //i = i < 1.0 ? i : 1.0f;
-            //truncated = truncated.ScaleBy(i);
+
             if (v.Length() > Max)
             {
 

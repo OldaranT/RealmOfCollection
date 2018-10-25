@@ -13,13 +13,9 @@ namespace RealmOfCollection.behaviour
 
         public SeekBehaviour() : base() { }
 
-        public SeekBehaviour(MovingEntity me) : base(me, new Random())
-        {
-        }
+        public SeekBehaviour(MovingEntity me) : base(me, new Random()) { }
 
-        public SeekBehaviour(MovingEntity me, Random r) : base(me, r)
-        {
-        }
+        public SeekBehaviour(MovingEntity me, Random r) : base(me, r) { }
 
         public override Vector2D Calculate()
         {

@@ -52,7 +52,6 @@ namespace RealmOfCollection.entity.MovingEntitys
                 if (!t.onFire && !foundTorches.Contains(t) && t.Pos.Distance(Pos) <= searchRadius)
                 {
                     foundTorches.Add(t);
-                    //t.onFire = true;
                 }
             });
 
@@ -70,42 +69,6 @@ namespace RealmOfCollection.entity.MovingEntitys
         {
             return ref fuzzyModule;
         }
-
-        //public override void Update(float timeElapsed)
-        //{
-
-        //Vector2D force = collisionAvoidance.Calculate();
-        //force += SB.Calculate(); 
-        ////force = Vector2D.truncate(force, Max_Force);
-        //if (force != null)
-        //{
-
-        //    SteeringForce = force.Clone().divide(Mass);
-
-        //    Velocity.Add(SteeringForce.Clone().Multiply(timeElapsed));
-
-        //    Velocity.Truncate(MaxSpeed);
-        //}
-        //else
-        //{
-        //    force = new Vector2D();
-        //    Velocity = new Vector2D();
-        //}
-
-
-        //Pos.Add(Velocity.Clone().Multiply(timeElapsed));
-
-        //if (Velocity.LengthSquared() > 0.00000001)
-        //{
-        //    Heading = Velocity.Clone().Normalize();
-        //    Side = Heading.PerpRightHand();
-        //}
-
-        //treat the screen as a toroid
-        //Vector2D.WrapAround(this.Pos, MyWorld.Width, MyWorld.Height);
-
-
-        //}
 
         public bool FoundUnIgnitedTorchInWorld()
         {
@@ -145,7 +108,6 @@ namespace RealmOfCollection.entity.MovingEntitys
             Pen p = new Pen(Color.Red, 10);
             g.DrawEllipse(p, new Rectangle((int)leftCorner, (int)rightCorner, (int)size, (int)size));
 
-
             if (MyWorld.showEntityInfo)
             {
                 brain.Render(g);
@@ -161,7 +123,7 @@ namespace RealmOfCollection.entity.MovingEntitys
                 }
                 catch(Exception e)
                 {
-                    //Console.WriteLine("hunter draw \n" + e.StackTrace);
+                    Console.WriteLine(e.StackTrace);
                 }
             }
         }

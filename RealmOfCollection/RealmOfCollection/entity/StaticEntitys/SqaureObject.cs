@@ -9,9 +9,7 @@ namespace RealmOfCollection.entity.StaticEntitys
 {
     public class SqaureObject : StaticEntity
     {
-        public SqaureObject(Vector2D pos, World w, Vector2D size) : base(pos, w, size)
-        {
-        }
+        public SqaureObject(Vector2D pos, World w, Vector2D size) : base(pos, w, size) { }
 
         public override bool Equals(object obj)
         {

@@ -11,10 +11,7 @@ namespace RealmOfCollection.behaviour
     {
         public FleeBehaviour() : base() { }
 
-        public FleeBehaviour(MovingEntity me) : base(me)
-        {
-
-        }
+        public FleeBehaviour(MovingEntity me) : base(me) { }
 
         public override Vector2D Calculate()
         {

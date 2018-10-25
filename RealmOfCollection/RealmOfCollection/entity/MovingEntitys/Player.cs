@@ -12,10 +12,8 @@ namespace RealmOfCollection.entity.MovingEntitys
     public class Player : MovingEntity
     {
         public Color VColor { get; set; }
-        public World w { get; set; }
+        public World World { get; set; }
         public Vector2D MousePosition { get; set; }
-        
-
         private float PieAngle = 45.0f;
 
         public Player(Vector2D pos, World w) : base(pos, w)
@@ -23,7 +21,7 @@ namespace RealmOfCollection.entity.MovingEntitys
             Velocity = new Vector2D(2, 2);
             Scale = 10;
             radius = 10;
-            this.w = w;
+            this.World = w;
             VColor = Color.Black;
             radius = Scale;
         }

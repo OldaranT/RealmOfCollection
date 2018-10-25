@@ -23,15 +23,7 @@ namespace RealmOfCollection.behaviour
 
         public ExploreBahviour(MovingEntity me, float searchRadius) : base(me)
         {
-            //if (me is Hunter)
-            //{
-            //    Hunter h = (Hunter)me;
-            //    this.searchRadius = h.searchRadius;
-            //}
-            //else
-            //{
-                this.searchRadius = searchRadius;
-            //}
+            this.searchRadius = searchRadius;
             pfBehaviour = new PathFollowBehaviour(me);
         }
 
@@ -40,31 +32,22 @@ namespace RealmOfCollection.behaviour
             Vector2D force = new Vector2D();
             if (!findXT)
             {
-                getNextPointOfInterest();
+                getNextExploreTarget();
             }
 
             if (exploreTarget != null && findXT)
             {
-                //force = pfBehaviour.Calculate();
                 getForce(ref force);
             }
-            //movingEntity.MyWorld.torches.ForEach(t =>
-            //{
-            //    if (t.Pos.Distance(movingEntity.Pos) <= searchRadius)
-            //    {
-            //        movingEntity.foundTorches.Add(t);
-            //        //t.onFire = true;
-            //    }
-            //});
             return force;
         }
 
-        private void getNextPointOfInterest()
+        private void getNextExploreTarget()
         {
             float oldDist = float.MaxValue;
             List<ExploreTarget> targets = movingEntity.MyWorld.exploreTargets;
 
-            foreach(ExploreTarget target in targets)
+            foreach (ExploreTarget target in targets)
             {
                 if (target.visited)
                 {
@@ -73,7 +56,7 @@ namespace RealmOfCollection.behaviour
 
                 float distance = (float)movingEntity.Pos.Distance(target.position);
 
-                if(distance < oldDist)
+                if (distance < oldDist)
                 {
                     exploreTarget = target;
                     oldDist = distance;
@@ -83,7 +66,7 @@ namespace RealmOfCollection.behaviour
             Path path = pfBehaviour.path;
             string beginning = path.getNearestVertex(movingEntity.Pos);
             string destination;
-            if(exploreTarget != null)
+            if (exploreTarget != null)
             {
                 destination = path.getNearestVertex(exploreTarget.position);
             }
@@ -93,7 +76,7 @@ namespace RealmOfCollection.behaviour
                 destination = path.getNearestVertex(exploreTarget.position);
             }
 
-            if(beginning != "notfound" && destination != "notfound")
+            if (beginning != "notfound" && destination != "notfound")
             {
                 path.bestPath = path.FindBestPath(beginning, destination);
                 findXT = true;

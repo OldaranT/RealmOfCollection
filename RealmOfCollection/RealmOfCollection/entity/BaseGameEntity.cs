@@ -17,11 +17,7 @@ namespace RealmOfCollection
 
         public abstract void Update(float delta);
 
-        public virtual void Render(Graphics g)
-        {
-           //g.FillEllipse(Brushes.Blue, new Rectangle((int) Pos.X,(int) Pos.Y, 10, 10));
-           //g.DrawEllipse(new Pen(Color.Red), new Rectangle((int)Pos.X, (int)Pos.Y, 50, 50));
-        }
+        public virtual void Render(Graphics g) { }
         
         
         

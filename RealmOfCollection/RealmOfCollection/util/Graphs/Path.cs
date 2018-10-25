@@ -12,7 +12,6 @@ namespace RealmOfCollection.Graphs
         public Vertex bestPath;
         private World world;
         private Graph graph;
-        //const int edgeSize = 8;
 
 
         public Vertex dest;
@@ -45,8 +44,6 @@ namespace RealmOfCollection.Graphs
 
         public string getNearestVertex(Vector2D pos)
         {
-            // "pos: " + vecX + "-" + vecY;
-
             int posX = (int)pos.X;
             int posY = (int)pos.Y;
 

@@ -11,14 +11,10 @@ namespace RealmOfCollection.Goals.CompositeGoals
 {
     public class Explore : Goal
     {
-        public Explore(Hunter hunter) : base(hunter)
-        {
-            Console.WriteLine("Created EXPLORE goal");
-        }
+        public Explore(Hunter hunter) : base(hunter) { }
 
         public override void Activate()
         {
-
             status = Status.Active;
             hunter.RemoveAllMovingBehaviours();
             hunter.Velocity = new Vector2D();
@@ -34,10 +30,9 @@ namespace RealmOfCollection.Goals.CompositeGoals
         {
             ActivateIfInactive();
 
-
             if (hunter.FoundUnIgnitedTorchThatAreFound())
             {
-                //status = Status.Completed;
+                status = Status.Completed;
             }
 
             return status;

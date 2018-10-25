@@ -11,10 +11,7 @@ namespace RealmOfCollection.util
     {
         protected Vector2D A, B, N;
 
-        public Wall2D()
-        {
-
-        }
+        public Wall2D() { }
 
         public Wall2D(Vector2D A, Vector2D B, Vector2D N)
         {

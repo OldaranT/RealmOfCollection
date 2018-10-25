@@ -13,11 +13,9 @@ namespace RealmOfCollection.Goals.AtomicGoal
     public class WalkPath : Goal
     {
         private Vector2D destination;
-
         public WalkPath(Hunter hunter, Vector2D destination) : base(hunter)
         {
             this.destination = destination;
-            Console.WriteLine("Created WALK PATH goal");
         }
 
         public override void Activate()
@@ -26,10 +24,12 @@ namespace RealmOfCollection.Goals.AtomicGoal
             
             hunter.RemoveAllMovingBehaviours();
             hunter.Velocity = new Vector2D();
+
             Path path = new Path(hunter.MyWorld);
             string start = path.getNearestVertex(hunter.Pos);
             string dest = path.getNearestVertex(destination);
             path.bestPath = path.FindBestPath(start, dest);
+
             hunter.SteeringBehaviors.Add(new PathFollowBehaviour(hunter, path));
 
         }
@@ -41,8 +41,6 @@ namespace RealmOfCollection.Goals.AtomicGoal
 
         public override Status Process()
         {
-
-            //Console.WriteLine("Goal: Walk Path");
             ActivateIfInactive();
 
             if(hunter.Pos.Distance(destination) < 15d)

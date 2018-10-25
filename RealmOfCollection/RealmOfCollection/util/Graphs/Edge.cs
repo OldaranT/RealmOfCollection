@@ -11,10 +11,8 @@ namespace RealmOfCollection.Graphs
     {
         public Vertex destination;
         public double cost;
-
         public Color color { get; set; }
         public bool drawIt { get; set; }
-
         public Edge(Vertex destination, double cost)
         {
             this.destination = destination;

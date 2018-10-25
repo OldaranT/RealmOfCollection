@@ -11,10 +11,7 @@ namespace RealmOfCollection.Goals.AtomicGoal
 {
     public class Wander : Goal
     {
-        public Wander(Hunter hunter) : base(hunter)
-        {
-            Console.WriteLine("Created WANDER goal");
-        }
+        public Wander(Hunter hunter) : base(hunter) { }
 
         public override void Activate()
         {
@@ -22,7 +19,7 @@ namespace RealmOfCollection.Goals.AtomicGoal
 
             hunter.RemoveAllMovingBehaviours();
             hunter.Velocity = new Vector2D();
-            hunter.SteeringBehaviors.Add(new WanderBehaviour(hunter, 2500, 50, 0.001, World.random));
+            hunter.SteeringBehaviors.Add(new WanderBehaviour(hunter, World.random));
             hunter.SteeringBehaviors.Add(new CollisionAvoidanceBehaviour(hunter, 20, hunter.MyWorld.Objects, 50));
         }
 
@@ -38,14 +35,11 @@ namespace RealmOfCollection.Goals.AtomicGoal
             {
                 status = Status.Completed;
             }
+
             return status;
-
         }
 
-        public override void Terminate()
-        {
-
-        }
+        public override void Terminate() { }
 
         public override string goalName()
         {

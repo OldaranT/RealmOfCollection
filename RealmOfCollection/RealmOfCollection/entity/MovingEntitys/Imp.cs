@@ -11,8 +11,6 @@ namespace RealmOfCollection.entity
     {
         public Color color { get; set; }
         public World w { get; set; }
-       
-
         public Imp(Vector2D pos, World w) : base(pos, w)
         {
             Velocity = new Vector2D(2, 2);

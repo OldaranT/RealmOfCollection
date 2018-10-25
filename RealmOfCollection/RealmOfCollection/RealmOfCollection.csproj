@@ -101,7 +101,6 @@
     <Compile Include="util\Graphs\Edge.cs" />
     <Compile Include="util\Graphs\Graph.cs" />
     <Compile Include="util\Graphs\Path.cs" />
-    <Compile Include="util\Graphs\PathPriorityQueue.cs" />
     <Compile Include="util\Graphs\Vertex.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
