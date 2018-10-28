@@ -211,13 +211,13 @@ namespace RealmOfCollection
 
             movingEntities.ForEach(e => e.Render(g));
 
-            hunter.Render(g);
 
             player.Render(g);
             torches.ForEach(t => t.Render(g));
             exploreTargets.ForEach(e => e.Render(g, Color.Gold));
             home.Render(g, Color.Black);
 
+            hunter.Render(g);
         }
     }
 }
