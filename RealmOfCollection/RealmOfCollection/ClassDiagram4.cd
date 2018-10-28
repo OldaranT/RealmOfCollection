@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RealmOfCollection.behaviour.ArriveBehaviour">
+    <Position X="17.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAACAAAgAAAEAAAAAAAAA=</HashCode>
+      <FileName>behaviour\SteeringBehaviour\ArriveBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.behaviour.CollisionAvoidanceBehaviour">
+    <Position X="15" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAgIQAASAAAAQAAAAAAAAAAIA=</HashCode>
+      <FileName>behaviour\SteeringBehaviour\CollisionAvoidanceBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.behaviour.EntityAvoidanceBehaviour">
+    <Position X="15.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAIQAACAAAQAAAAAAgAAAAAA=</HashCode>
+      <FileName>behaviour\SteeringBehaviour\EntityAvoidanceBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.behaviour.EvadeBehaviour">
+    <Position X="17.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>behaviour\SteeringBehaviour\EvadeBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.behaviour.ExploreBahviour">
+    <Position X="13.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAgAAABAEIAAAACAAAAAAAAIAAAAAAAI=</HashCode>
+      <FileName>behaviour\SteeringBehaviour\ExploreBahviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.behaviour.FleeBehaviour">
+    <Position X="11.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>behaviour\SteeringBehaviour\FleeBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.behaviour.HideBehaviour">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAQAAAASAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>behaviour\SteeringBehaviour\HideBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.behaviour.PathFollowBehaviour">
+    <Position X="24" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAgADAAACAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>behaviour\SteeringBehaviour\PathFollowBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.behaviour.SeekBehaviour">
+    <Position X="17.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>behaviour\SteeringBehaviour\SeekBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.behaviour.WanderBehaviour">
+    <Position X="11.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAABAAAAAAAAAAACAAAAAAAAAAAAAECAA=</HashCode>
+      <FileName>behaviour\SteeringBehaviour\WanderBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.SteeringBehaviour">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="RealmOfCollection.SteeringBehaviour.Deceleration" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>behaviour\SteeringBehaviour.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAACAAAAAAAACAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>behaviour\SteeringBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.DBPanel" Collapsed="true">
+    <Position X="25.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DBPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.BaseGameEntity">
+    <Position X="5.5" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAACAAAAAAAAAAIAAAAAAACAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>entity\BaseGameEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Form1" Collapsed="true">
+    <Position X="31" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQIEBAAADACAEAAAACAAAACABEIAAAAAERAAgAAgAA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Program" Collapsed="true">
+    <Position X="25.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Vector2D" Collapsed="true">
+    <Position X="31" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAIAABAQQAAgEE8AURAAFAAQABAABAAAAgAAACZBQ=</HashCode>
+      <FileName>util\Vector2D.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.World" Collapsed="true">
+    <Position X="27.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AA4AAgABBAAAAgAAAAAaQEACCAAFASEFABQiAAgAAgA=</HashCode>
+      <FileName>world\World.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.entity.MovingEntity" Collapsed="true">
+    <Position X="2.25" Y="18.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAAAAASAAggAAFQAAGAAAAAAAAAAAQACEAAKCEAAA=</HashCode>
+      <FileName>entity\MovingEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.entity.Imp" Collapsed="true">
+    <Position X="0.75" Y="20.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgEAAAAAAAAAAAAAAAAAAAAACAABgAAAAAAAA=</HashCode>
+      <FileName>entity\MovingEntitys\Imp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.entity.StaticEntity" Collapsed="true">
+    <Position X="8.75" Y="19" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAAAAAAAAAAAAEgIAAAAAAAAAAAIAAABAAAAAAAAA=</HashCode>
+      <FileName>entity\StaticEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.entity.MovingEntitys.Hunter" Collapsed="true">
+    <Position X="3" Y="20.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEBEAAAAQAAAgEAAQAAAGAAACAgBAAgABAQAA=</HashCode>
+      <FileName>entity\MovingEntitys\Hunter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.entity.MovingEntitys.Player" Collapsed="true">
+    <Position X="5.25" Y="20.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAQAAAAAAAAABAAAIACAAg=</HashCode>
+      <FileName>entity\MovingEntitys\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.entity.StaticEntitys.SqaureObject" Collapsed="true">
+    <Position X="7.5" Y="20.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAEgAAAAAAAAAAAAIAAABAAAAAAAAA=</HashCode>
+      <FileName>entity\StaticEntitys\SqaureObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.entity.StaticEntitys.TorchObject" Collapsed="true">
+    <Position X="9.75" Y="20.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAEAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>entity\StaticEntitys\TorchObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.FuzzyLogic.FuzzyInitializer" Collapsed="true">
+    <Position X="24" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAADAABAAAgIQQAAAIgBgAAAEAgIABAACCAgAFgAAg=</HashCode>
+      <FileName>FuzzyLogic\FuzzyInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.FuzzyLogic.FuzzyModule" Collapsed="true">
+    <Position X="25.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAIAACAIEAAAAAAAAAAAAAAAAAAAAAAAQAAAACgAI=</HashCode>
+      <FileName>FuzzyLogic\FuzzyModule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.FuzzyLogic.FuzzyRule" Collapsed="true">
+    <Position X="27.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAQAAAAAAAAAACAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>FuzzyLogic\FuzzyRule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.FuzzyLogic.FuzzyTerm">
+    <Position X="19.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAACAAgAABA=</HashCode>
+      <FileName>FuzzyLogic\FuzzyTerm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.FuzzyLogic.FuzzyVariable" Collapsed="true">
+    <Position X="29.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEIAAQBAAIAAAAAAAAAAAAQQEAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>FuzzyLogic\FuzzyVariable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.FuzzyLogic.FzSet">
+    <Position X="21" Y="19" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAACAAgAABA=</HashCode>
+      <FileName>FuzzyLogic\FzSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.FuzzyLogic.FuzzySets.FuzzySet">
+    <Position X="14.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAACAAABAAgAAAIAAAAAIAAAAQIAEACAAgAAAA=</HashCode>
+      <FileName>FuzzyLogic\FuzzySets\FuzzySet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.FuzzyLogic.FuzzySets.LeftShoulder">
+    <Position X="16.75" Y="19" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>FuzzyLogic\FuzzySets\LeftShoulder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.FuzzyLogic.FuzzySets.RightShoulder">
+    <Position X="12.25" Y="19" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>FuzzyLogic\FuzzySets\RightShoulder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.FuzzyLogic.FuzzySets.Triangle">
+    <Position X="14.5" Y="19" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>FuzzyLogic\FuzzySets\Triangle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.FuzzyLogic.Operators.FuzzyAND">
+    <Position X="18.75" Y="19" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAABAAAAAAAAAAAAAAAAAAAAAACAAgAABA=</HashCode>
+      <FileName>FuzzyLogic\Operators\FuzzyAND.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Goals.CompositeGoals.Explore">
+    <Position X="1" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAABAAgAAAAAAAAAIAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Goals\AtomicGoal\Explore.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Goals.CompositeGoals.Brain">
+    <Position X="6.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAEAFgAABAAgAAEAAAEAAAAJAAABAEAAAAAAA=</HashCode>
+      <FileName>Goals\CompositeGoals\Brain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Goals.CompositeGoals.GetResources">
+    <Position X="8.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAABAAgAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Goals\CompositeGoals\GetResources.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Goals.CompositeGoals.ManageTorch">
+    <Position X="8.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAARAAgAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Goals\CompositeGoals\ManageTorch.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Goals.AtomicGoal.GetTinderbox">
+    <Position X="4.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAEAAABAAgAAAAAAAAAIAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Goals\AtomicGoal\GetTinderbox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Goals.AtomicGoal.IgniteTorch">
+    <Position X="3" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAEAAABAAgAAAAAAAAAIAAAAGAQEAAAAAAA=</HashCode>
+      <FileName>Goals\AtomicGoal\IgniteTorch.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Goals.AtomicGoal.Rest">
+    <Position X="4.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAEAAABAAgAAAAAAAAAIAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Goals\AtomicGoal\Rest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Goals.AtomicGoal.WalkPath">
+    <Position X="1.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAABAAgAAAAAAAAAIAAAAAAAEBAAAAAA=</HashCode>
+      <FileName>Goals\AtomicGoal\WalkPath.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Goals.AtomicGoal.Wander">
+    <Position X="2.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAABAAgAAAAAAAAAIAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Goals\AtomicGoal\Wander.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Goals.CompositeGoal">
+    <Position X="6.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAEIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Goals\CompositeGoal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Goals.Goal">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAEAAABAggAAQAAAAAAIAAAQABAEAAAAAAA=</HashCode>
+      <FileName>Goals\Goal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Properties.Resources" Collapsed="true">
+    <Position X="27.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Properties.Settings" Collapsed="true">
+    <Position X="29.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.util.C2DMatrix" Collapsed="true">
+    <Position X="24" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABBAAAAAAABAAIIAAAAEAAEAIAAAEAEAAAAAAA=</HashCode>
+      <FileName>util\C2DMatrix.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.util.ExploreTarget" Collapsed="true">
+    <Position X="29.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAgAAAIAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>util\ExploreTarget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.util.Wall2D" Collapsed="true">
+    <Position X="25.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAABAAIBEAAAA=</HashCode>
+      <FileName>util\Wall2D.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Graphs.Edge">
+    <Position X="28.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAQAACAAAAABAAAAAA=</HashCode>
+      <FileName>util\Graphs\Edge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Graphs.Graph">
+    <Position X="26.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAACAACwAAIAABGDABAAAAgAQAAACAAAAAACAAAAAA=</HashCode>
+      <FileName>util\Graphs\Graph.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Graphs.Path">
+    <Position X="24" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAkAAAAAAAAAQAAAAAAAAACAgQCEAAABAAAAAAAAA=</HashCode>
+      <FileName>util\Graphs\Path.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RealmOfCollection.Graphs.Vertex">
+    <Position X="28.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAEAAABAAAAAAAIAAAAAAEAACAgABAAAACAAA=</HashCode>
+      <FileName>util\Graphs\Vertex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="RealmOfCollection.Goals.Status" Collapsed="true">
+    <Position X="27.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAIAAAAAAAAAAAAAAAAgABAAAAAAAAA=</HashCode>
+      <FileName>Goals\Goal.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
