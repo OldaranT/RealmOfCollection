@@ -1,5 +1,5 @@
 # RealmOfCollection
-Find more information [here](https://drive.google.com/drive/folders/1O9aq8cD3LQ-ez4_-a6fRHVDJQf2OVYVQ?usp=sharing)
+Find more information [here](https://docs.google.com/document/d/1HRye0Be9yBUBHijvnMQRd7fjWQYVq6RL9l-xqfblJmQ/edit?usp=sharing)
 
 Realm Of Collection is made by Nick Kronenberg(S1088460) & Tim Baak(S1077609)
 
