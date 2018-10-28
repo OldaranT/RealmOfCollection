@@ -18,7 +18,7 @@ namespace RealmOfCollection.entity.MovingEntitys
         public double stamina { get; set; }
         public static readonly double STAMINA_LIMIT = 100;
         public double tinder { get; set; }
-        public static readonly double TINDERBOX_CAPACITY = 40;
+        public static readonly double TINDERBOX_CAPACITY = 50;
         public static double TINDER_USAGE = 10;
         public Brain brain { get; set; }
         public float searchRadius { get; set; }
