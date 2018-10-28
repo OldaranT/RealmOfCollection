@@ -10,10 +10,7 @@ namespace RealmOfCollection.Goals.CompositeGoals
 {
     public class GetResources : CompositeGoal
     {
-        public GetResources(Hunter hunter) : base(hunter)
-        {
-            Console.WriteLine("Created GET RESOURCES goal");
-        }
+        public GetResources(Hunter hunter) : base(hunter) { }
 
         public override void Activate()
         {
@@ -25,9 +22,8 @@ namespace RealmOfCollection.Goals.CompositeGoals
 
         public override Status Process()
         {
-
-            //Console.WriteLine("Goal: Get resources");
             ActivateIfInactive();
+
             if (hunter.tinder >= Hunter.TINDERBOX_CAPACITY)
             {
                 hunter.tinder = Hunter.TINDERBOX_CAPACITY;

@@ -13,10 +13,7 @@ namespace RealmOfCollection.Goals.CompositeGoals
     {
         private int timer;
 
-        public Brain(Hunter hunter) : base(hunter)
-        {
-            Console.WriteLine("Created BRAIN goal");
-        }
+        public Brain(Hunter hunter) : base(hunter) { }
 
         public override void Activate()
         {
@@ -45,13 +42,8 @@ namespace RealmOfCollection.Goals.CompositeGoals
         {
             if (status == Status.Inactive)
             {
-                Console.WriteLine("Picking a job...");
-                // Choose one of the three strategy-level composite goals at random
+                // Generate random number to make a choice for the brain. 
                 int randomPick = World.random.Next(3);
-
-                // 0 = Explore
-                // 1 = getResources
-                Console.WriteLine("Pick: " + randomPick);
 
                 switch (randomPick)
                 {
@@ -125,15 +117,6 @@ namespace RealmOfCollection.Goals.CompositeGoals
             if (timer != 30) return;
             
             hunter.stamina -= 2d;
-            //Console.WriteLine("Hunter Stamina: " + hunter.stamina);
-            //Console.WriteLine("Hunter tinder: " + hunter.tinder);
-            //Console.WriteLine("Hunter TINDER: " + hunter.tinder);
-
-            //if (hunter.stamina <= 3)
-            //{
-            //    subgoals.Peek().status = Status.Inactive;
-            //    AddSubgoal(new Rest(hunter));
-            //}
             EstemateTinderUsage();
             CheckStamina();
 
@@ -143,7 +126,6 @@ namespace RealmOfCollection.Goals.CompositeGoals
 
         public void CheckStamina()
         {
-            //Console.WriteLine("Hunter Stamina: " + hunter.stamina);
             if (hunter.stamina <= 3)
             {
                 subgoals.Peek().status = Status.Inactive;
