@@ -13,10 +13,7 @@ namespace RealmOfCollection.Goals.CompositeGoals
     public class ManageTorch : CompositeGoal
     {
 
-        public ManageTorch(Hunter hunter) : base(hunter)
-        {
-            Console.WriteLine("Created MANAGE TORCH goal");
-        }
+        public ManageTorch(Hunter hunter) : base(hunter) { }
 
         public override void Activate()
         {
